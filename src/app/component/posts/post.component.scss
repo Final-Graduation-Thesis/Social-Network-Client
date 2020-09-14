@@ -1,0 +1,45 @@
+@import '../../scss/variable.scss';
+
+apps-post-component {
+    margin: 10px;
+    width: 570px;
+    font-family: "Segoe UI";
+    @include white-panel;
+    .header {
+        display: flex;
+        padding: 12px;
+        .avatar {
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .name-body {
+            display: flex;
+            flex-direction: column;
+            margin: 0 12px 0 12px;
+            flex: 1;
+            .user-name {
+                font-weight: 600!important;
+                line-height: 1.4;
+                
+                font-size: .9375rem;
+            }
+            .time {
+                font-size: .75rem;
+                color: grey!important;
+            }
+        }
+        .more {
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+    .body {
+      
+    }
+    .footer {
+
+    }
+}
+
