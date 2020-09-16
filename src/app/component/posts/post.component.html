@@ -1,16 +1,55 @@
-<div class="header">
-    <div class="avatar"><img></div>
-    <div class="name-body">
-        <span class="user-name">Huỳnh Phương Duy</span>
-        <span class="time">18 phút trước</span>
-    </div>
-    <div class="more"><span>...</span></div>
-</div>
-<div class="body">
-    
+<mat-card>
+	<mat-card-header>
+		<div mat-card-avatar class="avatar">
+			<img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+		</div>
+		<mat-card-title>Huỳnh Phương Duy</mat-card-title>
+		<mat-card-subtitle>16 phút trước</mat-card-subtitle>
+		<button class="more" mat-icon-button [matMenuTriggerFor]="menu">
+			<mat-icon>more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item>
+				<mat-icon>edit</mat-icon>
+				<span>Sửa</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>report_problem</mat-icon>
+				<span>Báo cáo bài viết</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>delete</mat-icon>
+				<span>Xóa</span>
+			</button>
+		</mat-menu>
+	</mat-card-header>
+	<div class="type-business">
+	</div>
+	<mat-card-content>
 
+		<div class="information">
+			<div class="title">ádasdasd</div>
+			<div class="price"><i class="fas fa-money-bill-wave"></i>2.500.000 VNĐ</div>
+			<div class="address">686 Xô Viết Nghệ Tĩnh</div>
+			<div class="district">Bình Thạnh</div>
+		</div>
+		<div class="break-line-small"></div>
+		<div class="description">
+			Service to register and display icons used by the component.
+			Registers icon URLs by namespace and name.
+			Registers icon set URLs by namespace.
+		</div>
 
-</div>
-<div class="footer">
-	
-</div>
+		<div class="like_amount">
+
+		</div>
+	</mat-card-content>
+	<div class="break-line"></div>
+	<div class="btn-group">
+		<button mat-button>Thích</button>
+		<button mat-button>Bình luận</button>
+		<button mat-button>Chia sẻ</button>
+	</div>
+	<div class="break-line"></div>
+	<div class="comment-section"></div>
+</mat-card>
