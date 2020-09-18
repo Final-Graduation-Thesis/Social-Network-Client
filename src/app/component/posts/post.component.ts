@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+import { PostService } from '../../service/post.service';
 @Component({
 	selector: 'apps-post-component',
 	templateUrl: './post.component.html',
@@ -15,9 +16,13 @@ export class AppsPostComponent implements OnInit {
 		{ src: `https://i.imgur.com/eqhxhmi.jpg` },
 
 	]
-	constructor() { }
+
+	constructor(
+		private postService: PostService
+		) {}
 
 	ngOnInit() {
+		this.postService.list().subscribe(res => console.log(res));
 	}
 
 }

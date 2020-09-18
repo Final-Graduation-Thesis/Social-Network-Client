@@ -1,0 +1,16 @@
+{
+    "teams": [
+      {
+        "id": 1,
+        "name": "FC Barcelona",
+        "coach": "Ernesto Valverde",
+        "description": "The best football team in the world!"
+      },
+      {
+        "id": 2,
+        "name": "Real Madrid",
+        "coach": "Zinedine Zidane",
+        "description": "The worst football team in the world!"
+      }
+    ]
+  }
