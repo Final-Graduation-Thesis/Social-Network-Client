@@ -10,6 +10,12 @@ apps-post-component {
             border-radius: 50%;
         }
     }
+    .mat-card-subtitle {
+        font-size: 12px;
+    }
+    .mat-button {
+        width: 140px;
+    }
     mat-card-header {
         .more {
             margin-left: auto;
@@ -24,11 +30,22 @@ apps-post-component {
         }
         .information {
             font-size: 18px;
+            .address, .district {
+                font-size: 14px;
+            }
             div {
                 padding: 5px;
             }
             .title {
                 font-weight: 500;
+                word-break: break-all;
+            }
+        }
+        .images-list {
+            display: block;
+            img {
+                max-width:100%;
+                max-height:100%;
             }
         }
         .break-line-small {
@@ -37,6 +54,7 @@ apps-post-component {
         }
         .description {
             word-break: break-all;
+            margin-bottom: 12px;
         }
     }
     .break-line {
@@ -44,7 +62,7 @@ apps-post-component {
         border-bottom: 1px solid #eee;
     }
     .btn-group {
-        padding: 0px 32px 0 32px;
+        padding: 0px 24px 0 24px;
         display: flex;
         position: relative;
         justify-content: space-between;

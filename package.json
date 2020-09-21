@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server api/db.json --routes api/routes.json --no-cors=true"
+    "api": "json-server --watch api/db.json --routes api/routes.json --no-cors=true"
   },
   "private": true,
   "dependencies": {

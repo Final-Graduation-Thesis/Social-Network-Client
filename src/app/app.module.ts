@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppsHomeViewComponent } from './view/home/apps-home-view-component.view';
+import { AppsCommentComponent } from './component/comments/index';
 import { AppsPostComponent } from './component/posts/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatButtonModule} from '@angular/material/button';
@@ -15,6 +16,7 @@ import { HttpClientModule }    from '@angular/common/http';
   declarations: [
     AppComponent,
     AppsHomeViewComponent,
+    AppsCommentComponent,
     AppsPostComponent
   ],
   imports: [

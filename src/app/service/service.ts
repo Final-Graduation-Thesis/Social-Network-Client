@@ -14,7 +14,7 @@ export abstract class BaseService {
     protected url: string;
 
     list(params: Params = {}, options: Options = {}): Observable<any> {
-        return this.http.get(this.url)
+        return this.http.get(this.url);
     }
 
 

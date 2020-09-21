@@ -3,8 +3,10 @@
 		<div mat-card-avatar class="avatar">
 			<img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
 		</div>
-		<mat-card-title>Huỳnh Phương Duy</mat-card-title>
-		<mat-card-subtitle>16 phút trước</mat-card-subtitle>
+		<div class="username">
+			<mat-card-title>{{post.username}}</mat-card-title>
+			<mat-card-subtitle>16 phút trước</mat-card-subtitle>
+		</div>
 		<button class="more" mat-icon-button [matMenuTriggerFor]="menu">
 			<mat-icon>more_vert</mat-icon>
 		</button>
@@ -26,20 +28,19 @@
 	<div class="type-business">
 	</div>
 	<mat-card-content>
-
 		<div class="information">
-			<div class="title">ádasdasd</div>
-			<div class="price"><i class="fas fa-money-bill-wave"></i>2.500.000 VNĐ</div>
-			<div class="address">686 Xô Viết Nghệ Tĩnh</div>
-			<div class="district">Bình Thạnh</div>
+			<div class="title">{{post.title}}</div>
+			<div class="price"><i class="fas fa-money-bill-wave"></i>{{post.price}}</div>
+			<div class="address">{{post.address}}</div>
+			<div class="district">{{post.district}}</div>
 		</div>
 		<div class="break-line-small"></div>
 		<div class="description">
-			Service to register and display icons used by the component.
-			Registers icon URLs by namespace and name.
-			Registers icon set URLs by namespace.
+			{{post.description}}
 		</div>
-
+		<div class="images-list">
+			<div #images></div>
+		</div>
 		<div class="like_amount">
 
 		</div>
@@ -51,5 +52,7 @@
 		<button mat-button>Chia sẻ</button>
 	</div>
 	<div class="break-line"></div>
-	<div class="comment-section"></div>
+	<apps-comment-component></apps-comment-component>
+	<apps-comment-component></apps-comment-component>
+	<apps-comment-component></apps-comment-component>
 </mat-card>

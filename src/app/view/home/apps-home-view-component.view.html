@@ -1,3 +1,2 @@
-<apps-post-component></apps-post-component>
-<apps-post-component></apps-post-component>
-<apps-post-component></apps-post-component>
+<apps-post-component *ngFor="let data of postData" [post]="data"></apps-post-component>
+<!-- <div *ngFor="let data of postData">{{data.username}}</div> -->

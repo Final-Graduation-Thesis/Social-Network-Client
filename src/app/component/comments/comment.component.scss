@@ -1,0 +1,47 @@
+
+apps-comment-component {
+    display: flex;
+    flex-direction: row;
+    margin: 12px;
+    .avatar{
+
+    }
+    .comment {
+        border: 1px solid #ede9e9;
+        display: table-cell;
+        margin-left: 20px;
+        padding: 10px;
+        vertical-align: top;
+        position: relative;
+        width: 100%;
+        .username {
+            font-weight: 500;
+        }
+        .time {
+            font-size: 10px;
+            margin-left: 12px;
+        }
+        .content {
+            padding: 4px;
+        }
+
+        :before {
+            border-bottom: 10px solid transparent;
+            border-right: 11px solid #ede9e9;
+            border-top: 10px solid transparent;
+            left: -11px;
+            top: 10px;
+            position: absolute;
+            content: '';
+        }
+        :after {
+            border-bottom: 8px solid transparent;
+            border-right: 9px solid #fff;
+            border-top: 8px solid transparent;
+            left: -9px;
+            top: 12px;
+            position: absolute;
+            content: '';
+        }
+    }
+}
