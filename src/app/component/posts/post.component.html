@@ -19,7 +19,7 @@
 				<mat-icon>report_problem</mat-icon>
 				<span>Báo cáo bài viết</span>
 			</button>
-			<button mat-menu-item>
+			<button mat-menu-item (click)="onDelete()">
 				<mat-icon>delete</mat-icon>
 				<span>Xóa</span>
 			</button>
@@ -30,7 +30,7 @@
 	<mat-card-content>
 		<div class="information">
 			<div class="title">{{post.title}}</div>
-			<div class="price"><i class="fas fa-money-bill-wave"></i>{{post.price}}</div>
+			<div class="price"><i class="fas fa-money-bill-wave"></i>{{post.price | vndCurrency}}</div>
 			<div class="address">{{post.address}}</div>
 			<div class="district">{{post.district}}</div>
 		</div>

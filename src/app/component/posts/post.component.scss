@@ -43,10 +43,15 @@ apps-post-component {
         }
         .images-list {
             display: block;
+            flex-direction: row;
             img {
                 max-width:100%;
                 max-height:100%;
+                &:nth-child(1) {
+                    max-width:99% !important;
+                }
             }
+            
         }
         .break-line-small {
             margin: 12px 0 12px 0;

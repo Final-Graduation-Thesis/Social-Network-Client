@@ -20,7 +20,8 @@ export class AppsPostComponent implements OnInit {
 				
 
 	constructor(
-		private renderer: Renderer2
+		private renderer: Renderer2,
+		private postService: PostService
 		) {}
 
 	ngOnInit() {
@@ -30,27 +31,39 @@ export class AppsPostComponent implements OnInit {
 			this.renderer.appendChild(this.images.nativeElement, img);
 			this.renderer.setAttribute(img, 'src', this.post.images[0]);
 		} else {
+			let widthImg: number = this.images.nativeElement.offsetWidth;
 			const subTotalImages: number = this.post.images.length - 1;
 			this.renderer.setStyle(this.images.nativeElement, 'display', 'grid');
-			this.renderer.setStyle(this.images.nativeElement, 'grid-template-columns', '70% 30%');
 			const mainLayout = this.renderer.createElement('div');
 			this.renderer.appendChild(this.images.nativeElement, mainLayout)
 			const subLayout = this.renderer.createElement('div');
 			this.renderer.appendChild(this.images.nativeElement, subLayout)
-			const mainImage = this.renderer.createElement('img'); 
+			const mainImage = this.renderer.createElement('img');
+			if (this.post.images.length === 2) {
+				this.renderer.setStyle(this.images.nativeElement, 'grid-template-columns', '50% 50%');
+			} else {
+				this.renderer.setStyle(this.images.nativeElement, 'grid-template-columns', '70% 30%');
+			}
+			
 			this.renderer.appendChild(mainLayout, mainImage);
 			this.renderer.setAttribute(mainImage, 'src', this.post.images[0]);
+			this.renderer.setAttribute(mainImage, 'width', (widthImg/0.7) + 'px');
 			this.renderer.setStyle(subLayout, 'display', 'grid');
 			this.renderer.setStyle(subLayout, 'flex-direction', 'column');
-			console.log(mainImage.clientHeight);
+			console.log(mainLayout.clientHeight);
 			for (let i: number = 1; i < this.post.images.length; i++) {
 				const image: ElementRef = this.renderer.createElement('img');
-				const height: number = mainImage.clientHeight/subTotalImages;
+				const height: number = mainLayout.clientHeight/subTotalImages - 3;
 				this.renderer.setStyle(image, 'height', height + 'px');
 				this.renderer.appendChild(subLayout, image);
 				this.renderer.setAttribute(image, 'src', this.post.images[i]);
 			}
 		}
+	}
+
+	onDelete(): void {
+		console.log();
+		this.postService.delete(this.post.id).subscribe(res => console.log('success'));
 	}
 
 }

@@ -15,7 +15,7 @@ export class AppsHomeViewComponent implements OnInit {
 	) {
 		this.postService.list().subscribe((res: any) => {
 			console.log(res);
-			this.postData = res.items
+			this.postData = res
 		});
 	}
 

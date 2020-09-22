@@ -12,12 +12,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule }    from '@angular/common/http';
+import { VndCurrencyPipe } from './pipe/VndCurrency.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     AppsHomeViewComponent,
     AppsCommentComponent,
-    AppsPostComponent
+    AppsPostComponent,
+    VndCurrencyPipe
   ],
   imports: [
     BrowserModule,    
