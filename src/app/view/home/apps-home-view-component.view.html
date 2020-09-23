@@ -1,1 +1,6 @@
-<apps-post-component *ngFor="let data of postData" [post]="data"></apps-post-component>
+<button style="width: 200px; height: 200px" (click)="createPost()">Post</button>
+
+
+<ng-container *ngFor="let data of postData">
+<apps-post-component  [post]="data" (update)="onUpdatePostData()"></apps-post-component>
+</ng-container>

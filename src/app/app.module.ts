@@ -8,17 +8,22 @@ import { AppsCommentComponent } from './component/comments/index';
 import { AppsPostComponent } from './component/posts/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule }    from '@angular/common/http';
-import { VndCurrencyPipe } from './pipe/VndCurrency.pipe';
+import { VndCurrencyPipe } from './pipe/VndCurrency';
+import { AppsPostDialogComponent } from './component/posts/CreatePostDialog/post-dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
     AppsHomeViewComponent,
     AppsCommentComponent,
     AppsPostComponent,
+    AppsPostDialogComponent,
     VndCurrencyPipe
   ],
   imports: [
@@ -29,9 +34,14 @@ import { VndCurrencyPipe } from './pipe/VndCurrency.pipe';
     MatMenuModule,
     MatIconModule,
     BrowserAnimationsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
+  entryComponents: [
+    AppsPostDialogComponent
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

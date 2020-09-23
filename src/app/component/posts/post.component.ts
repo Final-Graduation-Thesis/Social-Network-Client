@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter,
+	Input, Output, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { PostService } from '../../service/post.service';
 @Component({
@@ -11,6 +12,7 @@ export class AppsPostComponent implements OnInit {
 
 	@ViewChild('images') images: ElementRef;
 	@Input() post: any;
+	@Output('update') onChangePostData: EventEmitter<any> = new EventEmitter();
 	photosList = [
 				`https://i.imgur.com/nXgEtSy.jpg`,
 				`https://i.imgur.com/FcxINEt.jpg`,
@@ -62,8 +64,11 @@ export class AppsPostComponent implements OnInit {
 	}
 
 	onDelete(): void {
-		console.log();
-		this.postService.delete(this.post.id).subscribe(res => console.log('success'));
+		console.log('asddasd');
+		this.postService.delete(this.post.id).subscribe(res => {
+			 console.log('qwe');
+		 this.onChangePostData.emit();
+		});
 	}
 
 }
