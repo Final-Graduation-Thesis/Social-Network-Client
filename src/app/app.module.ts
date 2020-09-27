@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,10 @@ import { HttpClientModule }    from '@angular/common/http';
 import { VndCurrencyPipe } from './pipe/VndCurrency';
 import { AppsPostDialogComponent } from './component/posts/CreatePostDialog/post-dialog.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import { AppsButtonComponent } from './component/button/button.component';
+import { AppsNewPostPanelComponent } from './component/NewPostPanel/new-post-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,10 +28,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,
-    VndCurrencyPipe
+    VndCurrencyPipe,
+    AppsButtonComponent,
+    AppsNewPostPanelComponent
   ],
   imports: [
-    BrowserModule,    
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatCardModule,
@@ -36,7 +44,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   entryComponents: [
     AppsPostDialogComponent

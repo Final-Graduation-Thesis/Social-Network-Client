@@ -1,0 +1,11 @@
+
+apps-button-component {
+	margin: 12px;
+    button {
+		background-color: #ECF7E7 !important;
+		color: #6fbe44!important;
+		&:hover {
+			background-color:#d5edca;
+		}
+	}
+}

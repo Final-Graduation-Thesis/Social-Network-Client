@@ -1,3 +1,4 @@
+<div class="cmt" *ngFor="let data of commentsData">
 <div class="avatar">
 	<img src="https://i.imgur.com/nXgEtSy.jpg"/>
 </div>
@@ -6,5 +7,15 @@
 		<span class="username">Tấn Duy</span>
 		<span class="time">7 phút trước</span>
 	</div>
-	<div class="content">Comment ádasdasd</div>	
+	<div class="content">{{data.content}}</div>	
+</div>
+</div>
+<div class="my-comment">
+<div class="avatar">
+	<img src="https://i.imgur.com/nXgEtSy.jpg"/>
+</div>
+<mat-form-field class="comment-content">
+
+	<textarea matInput placeholder="Bình luận"></textarea>
+</mat-form-field>
 </div>

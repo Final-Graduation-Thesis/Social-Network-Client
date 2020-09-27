@@ -1,47 +1,75 @@
 
 apps-comment-component {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 12px;
-    .avatar{
+    .cmt {
+		display: flex;
+		margin-bottom: 16px;
+		.avatar{
+			
+		}
+		.comment {
+			border: 1px solid #ede9e9;
+			display: table-cell;
+			margin-left: 20px;
+			padding: 10px;
+			vertical-align: top;
+			position: relative;
+			width: 100%;
+			.username {
+				font-weight: 500;
+			}
+			.time {
+				font-size: 10px;
+				margin-left: 12px;
+			}
+			.content {
+				padding: 4px;
+			}
 
-    }
-    .comment {
-        border: 1px solid #ede9e9;
-        display: table-cell;
-        margin-left: 20px;
-        padding: 10px;
-        vertical-align: top;
-        position: relative;
-        width: 100%;
-        .username {
-            font-weight: 500;
-        }
-        .time {
-            font-size: 10px;
-            margin-left: 12px;
-        }
-        .content {
-            padding: 4px;
-        }
-
-        :before {
-            border-bottom: 10px solid transparent;
-            border-right: 11px solid #ede9e9;
-            border-top: 10px solid transparent;
-            left: -11px;
-            top: 10px;
-            position: absolute;
-            content: '';
-        }
-        :after {
-            border-bottom: 8px solid transparent;
-            border-right: 9px solid #fff;
-            border-top: 8px solid transparent;
-            left: -9px;
-            top: 12px;
-            position: absolute;
-            content: '';
-        }
-    }
+			:before {
+				border-bottom: 10px solid transparent;
+				border-right: 11px solid #ede9e9;
+				border-top: 10px solid transparent;
+				left: -11px;
+				top: 10px;
+				position: absolute;
+				content: '';
+			}
+			:after {
+				border-bottom: 8px solid transparent;
+				border-right: 9px solid #fff;
+				border-top: 8px solid transparent;
+				left: -9px;
+				top: 12px;
+				position: absolute;
+				content: '';
+			}
+		}
+	}
+	.my-comment {
+		display: flex;
+		.comment-content {
+			margin-left: 20px;
+			width: 100%;
+			.mat-form-field-wrapper {
+				border: 1px solid;
+				border-radius: 10px;
+				padding-bottom: 0 !important;
+				.mat-form-field-infix {
+					padding-left: 12px;
+					.mat-form-field-label-wrapper {
+						margin-left: 12px;
+					}
+				}
+				.mat-form-field-underline {
+					height: 0;
+					.mat-form-field-ripple {
+						height: 0;
+					}
+				}
+			}
+		}
+	}
 }

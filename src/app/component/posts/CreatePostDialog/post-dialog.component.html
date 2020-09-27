@@ -1,12 +1,67 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput>
-  </mat-form-field>
+<div class="header">
+	<span></span>
+	<span class="title">
+		Tạo bài viết mới
+	</span>
+
+	<span class="material-icons" (click)=onClose()>
+		cancel
+	</span>
+
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>
+<div class="break-line"></div>
+<form [formGroup]="form" (submit)="submit()">
+	<div class="body" mat-dialog-content>
+		<mat-form-field appearance="fill">
+			<mat-label>Thể loại cần đăng</mat-label>
+			<mat-select (selectionChange)="onChangeTypeBusiness()" formControlName="typeBusiness" required>
+				<mat-option *ngFor="let type of typeBusiness" [value]="type">
+					{{type.name}}
+				</mat-option>
+			</mat-select>
+			
+		</mat-form-field>
+		<mat-form-field class="">
+			<input matInput formControlName="title" placeholder="Tiêu đề">
+		</mat-form-field>
+		<mat-form-field formControlName="typeProperty">
+			<mat-label>Loại tài sản</mat-label>
+			<mat-select required>
+				<mat-option  *ngFor="let type of typeProperty" [value]="type">
+					{{type.name}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field class="">
+			<input matInput formControlName="area" placeholder="Diện tích">
+			<span matSuffix>m2 &nbsp;</span>
+		</mat-form-field>
+		<mat-form-field *ngIf="isPrice">
+			<input type="number"  formControlName="price" matInput  placeholder="Giá">
+		</mat-form-field>
+		<mat-form-field *ngIf="!isPrice">
+			<input type="number"  formControlName="priceFrom" matInput  placeholder="Giá thấp nhất">
+		</mat-form-field>
+		<mat-form-field *ngIf="!isPrice">
+			<input type="number"  formControlName="priceTo" matInput  placeholder="Giá cao nhất">
+		</mat-form-field>
+		<mat-form-field class="">
+			<input matInput formControlName="address" placeholder="Địa chỉ">
+			
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<mat-label>Quận</mat-label>
+			<mat-select required formControlName="district">
+				<mat-option *ngFor="let dist of district" [value]="dist">
+					{{dist}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput formControlName="description" placeholder="Mô tả"></textarea>
+		</mat-form-field>
+	</div>
+	<div class="footer">
+		<button mat-stroked-button color="primary" type="submit">Đăng bài</button>
+	</div>
+</form>

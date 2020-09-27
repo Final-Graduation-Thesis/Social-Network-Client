@@ -29,10 +29,21 @@
 	</div>
 	<mat-card-content>
 		<div class="information">
-			<div class="title">{{post.title}}</div>
-			<div class="price"><i class="fas fa-money-bill-wave"></i>{{post.price | vndCurrency}}</div>
-			<div class="address">{{post.address}}</div>
-			<div class="district">{{post.district}}</div>
+			<div class="title"><span class="material-icons">
+					campaign
+				</span>{{post.title}}</div>
+			<div class="price" *ngIf="post.price"><span class="material-icons">
+					local_atm
+				</span>{{post.price | vndCurrency}}</div>
+				<div class="priceFrom" *ngIf="post.priceFrom"><span class="material-icons">
+					local_atm
+				</span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</div>
+			<div class="address"><span class="material-icons">
+					place
+				</span>{{post.address}}</div>
+			<div class="district"><span class="material-icons">
+					my_location
+				</span>{{post.district}}</div>
 		</div>
 		<div class="break-line-small"></div>
 		<div class="description">
@@ -47,12 +58,17 @@
 	</mat-card-content>
 	<div class="break-line"></div>
 	<div class="btn-group">
-		<button mat-button>Thích</button>
-		<button mat-button>Bình luận</button>
-		<button mat-button>Chia sẻ</button>
+		<button mat-button> <span class="material-icons">
+				thumb_up_alt
+			</span>Thích</button>
+		<button mat-button><span class="material-icons">
+			comment
+			</span>Bình luận</button>
+		<button mat-button><span class="material-icons">
+			share
+			</span>Chia sẻ</button>
 	</div>
 	<div class="break-line"></div>
-	<apps-comment-component></apps-comment-component>
-	<apps-comment-component></apps-comment-component>
-	<apps-comment-component></apps-comment-component>
+	<apps-comment-component [postId]="post.id"></apps-comment-component>
+	
 </mat-card>

@@ -32,11 +32,4 @@ export class AppsHomeViewComponent implements OnInit {
 			this.postData = res
 		});
 	}
-
-	createPost(): void {
-		const dialogRef = this.dialog.open(AppsPostDialogComponent, {
-			width: '250px'
-			
-		  });
-	}
 }

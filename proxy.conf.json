@@ -1,5 +1,8 @@
 {
     "/api": {
       "target": "http://localhost:3000"
+    },
+    "/v1/*": {
+      "target": "https://api.mysupership.vn"
     }
   }
