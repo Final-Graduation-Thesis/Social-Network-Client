@@ -10,6 +10,7 @@ apps-comment-component {
 			
 		}
 		.comment {
+			background-color: #f5f5f5;
 			border: 1px solid #ede9e9;
 			display: table-cell;
 			margin-left: 20px;
@@ -28,7 +29,7 @@ apps-comment-component {
 				padding: 4px;
 			}
 
-			:before {
+			&:before {
 				border-bottom: 10px solid transparent;
 				border-right: 11px solid #ede9e9;
 				border-top: 10px solid transparent;
@@ -37,9 +38,9 @@ apps-comment-component {
 				position: absolute;
 				content: '';
 			}
-			:after {
+			&:after {
 				border-bottom: 8px solid transparent;
-				border-right: 9px solid #fff;
+				border-right: 9px solid #f5f5f5;
 				border-top: 8px solid transparent;
 				left: -9px;
 				top: 12px;
@@ -51,10 +52,11 @@ apps-comment-component {
 	.my-comment {
 		display: flex;
 		.comment-content {
+			background-color: #f5f5f5;
 			margin-left: 20px;
 			width: 100%;
 			.mat-form-field-wrapper {
-				border: 1px solid;
+				border: 1px solid #eee;
 				border-radius: 10px;
 				padding-bottom: 0 !important;
 				.mat-form-field-infix {

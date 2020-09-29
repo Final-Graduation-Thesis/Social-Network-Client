@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
 		{
 			path: 'home',
-			component: AppsHomeViewComponent,
+			component: AppComponent,
 		},
 		{
 			path: '',
-			component: AppComponent,
+			component: AppsHomeViewComponent,
 		}
 
 ];

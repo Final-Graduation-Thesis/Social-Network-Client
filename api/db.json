@@ -1,166 +1,204 @@
 {
-	"posts": [
-		{
-			"id": 1,
-			"typeBusiness": 1,
-			"title": "Cần bán căn hộ Green Field",
-			"username": "Huỳnh Phương Duy1",
-			"userId": 1,
-			"typeProperty": "2",
-			"area": 56,
-			"district": "Bình Thạnh",
-			"address": "686 Xô Viết Nghệ Tĩnh",
-			"roomNumber": 2,
-			"price": 2500000000,
-			"priceFrom": null,
-			"priceTo": null,
-			"createdAt": "",
-			"expiredAt": "",
-			"description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
-			"images": [
-				"https://i.imgur.com/nXgEtSy.jpg",
-				"https://i.imgur.com/FcxINEt.jpg",
-				"https://i.imgur.com/bJiRyI1.jpg",
-				"https://i.imgur.com/eqhxhmi.jpg"
-			]
-		},
-		{
-			"id": 13434,
-			"typeBusiness": 1,
-			"title": "Cần bán căn hộ Green Field",
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"typeProperty": "2",
-			"area": 56,
-			"district": "Bình Thạnh",
-			"address": "686 Xô Viết Nghệ Tĩnh",
-			"roomNumber": 2,
-			"price": 2500000000,
-			"priceFrom": null,
-			"priceTo": null,
-			"createdAt": "",
-			"expiredAt": "",
-			"description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
-			"images": [
-				"https://i.imgur.com/nXgEtSy.jpg",
-				"https://i.imgur.com/FcxINEt.jpg",
-				"https://i.imgur.com/bJiRyI1.jpg",
-				"https://i.imgur.com/eqhxhmi.jpg"
-			]
-		},
-		{
-			"id": 4,
-			"typeBusiness": 1,
-			"title": "Cần bán căn hộ Green Field",
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"typeProperty": "2",
-			"area": 56,
-			"district": "Bình Thạnh",
-			"address": "686 Xô Viết Nghệ Tĩnh",
-			"roomNumber": 2,
-			"price": 2500000000,
-			"priceFrom": null,
-			"priceTo": null,
-			"createdAt": "",
-			"expiredAt": "",
-			"description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
-			"images": [
-				"https://i.imgur.com/nXgEtSy.jpg",
-				"https://i.imgur.com/FcxINEt.jpg"
-			]
-		},
-		{
-			"id": 11111,
-			"typeBusiness": 1,
-			"title": "Cần bán căn hộ 123 Field",
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"typeProperty": "2",
-			"area": 56,
-			"district": "Bình Thạnh",
-			"address": "686 Xô Viết Nghệ Tĩnh",
-			"roomNumber": 2,
-			"price": 340000000,
-			"priceFrom": null,
-			"priceTo": null,
-			"createdAt": "",
-			"expiredAt": "",
-			"description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
-			"images": [
-				"https://i.imgur.com/nXgEtSy.jpg",
-				"https://i.imgur.com/FcxINEt.jpg",
-				"https://i.imgur.com/bJiRyI1.jpg",
-				"https://i.imgur.com/eqhxhmi.jpg"
-			]
-		},
-		{
-			"typeBusiness": 2,
-			"title": "asdasd",
-			"area": "43",
-			"price": "",
-			"address": "BinhF ",
-			"district": "Quận 6",
-			"description": "ASDASDASDSd",
-			"priceFrom": 56000000,
-			"priceTo": 100000000,
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"id": 13435
-		},
-		{
-			"typeBusiness": 3,
-			"title": "asdasd",
-			"area": "43",
-			"price": 345345345345,
-			"address": "BinhF ",
-			"district": "Quận 6",
-			"description": "sdfagrgwgerg",
-			"priceFrom": "",
-			"priceTo": "",
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"id": 13436
-		}
-	],
-	"comments": [
-		{
-			"postId": 1,
-			"userId": 1,
-			"items": [
-				{
-					"content": "Duynnnenenene",
-					"createdAt": ""
-				},
-				{
-					"content": "HAhsdhahsdh asdhahsdhads",
-					"createdAt": ""
-				},
-				{
-					"content": "HAhsdhahsdhasdasd HAhsdhahsdhasdasd ",
-					"createdAt": ""
-				}
-
-			]
-		},
-		{
-			"postId": 13434,
-			"userId": 1,
-			"items": [
-				{
-					"content": "ggtt",
-					"createdAt": ""
-				},
-				{
-					"content": "HAhsdhahsdh asdhahsdhads",
-					"createdAt": ""
-				},
-				{
-					"content": "asdasdad HAhsdhahsdhasdasd ",
-					"createdAt": ""
-				}
-
-			]
-		}
-	]
+  "posts": [
+    {
+      "id": 1,
+      "typeBusiness": 1,
+      "title": "Cần bán căn hộ Green Field",
+      "username": "Huỳnh Phương Duy1",
+      "userId": 1,
+      "typeProperty": "2",
+      "area": 56,
+      "district": "Bình Thạnh",
+      "address": "686 Xô Viết Nghệ Tĩnh",
+      "roomNumber": 2,
+      "price": 2500000000,
+      "priceFrom": null,
+      "priceTo": null,
+      "createdAt": "",
+      "expiredAt": "",
+      "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
+      "images": [
+        "https://i.imgur.com/nXgEtSy.jpg",
+        "https://i.imgur.com/FcxINEt.jpg",
+        "https://i.imgur.com/bJiRyI1.jpg",
+        "https://i.imgur.com/eqhxhmi.jpg"
+      ]
+    },
+    {
+      "id": 13434,
+      "typeBusiness": 1,
+      "title": "Cần bán căn hộ Green Field",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "typeProperty": "2",
+      "area": 56,
+      "district": "Bình Thạnh",
+      "address": "686 Xô Viết Nghệ Tĩnh",
+      "roomNumber": 2,
+      "price": 2500000000,
+      "priceFrom": null,
+      "priceTo": null,
+      "createdAt": "",
+      "expiredAt": "",
+      "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
+      "images": [
+        "https://i.imgur.com/nXgEtSy.jpg",
+        "https://i.imgur.com/FcxINEt.jpg",
+        "https://i.imgur.com/bJiRyI1.jpg",
+        "https://i.imgur.com/eqhxhmi.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "typeBusiness": 1,
+      "title": "Cần bán căn hộ Green Field",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "typeProperty": "2",
+      "area": 56,
+      "district": "Bình Thạnh",
+      "address": "686 Xô Viết Nghệ Tĩnh",
+      "roomNumber": 2,
+      "price": 2500000000,
+      "priceFrom": null,
+      "priceTo": null,
+      "createdAt": "",
+      "expiredAt": "",
+      "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
+      "images": [
+        "https://i.imgur.com/nXgEtSy.jpg",
+        "https://i.imgur.com/FcxINEt.jpg"
+      ]
+    },
+    {
+      "id": 11111,
+      "typeBusiness": 1,
+      "title": "Cần bán căn hộ 123 Field",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "typeProperty": "2",
+      "area": 56,
+      "district": "Bình Thạnh",
+      "address": "686 Xô Viết Nghệ Tĩnh",
+      "roomNumber": 2,
+      "price": 340000000,
+      "priceFrom": null,
+      "priceTo": null,
+      "createdAt": "",
+      "expiredAt": "",
+      "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
+      "images": [
+        "https://i.imgur.com/nXgEtSy.jpg",
+        "https://i.imgur.com/FcxINEt.jpg",
+        "https://i.imgur.com/bJiRyI1.jpg",
+        "https://i.imgur.com/eqhxhmi.jpg"
+      ]
+    },
+    {
+      "typeBusiness": 2,
+      "title": "asdasd",
+      "area": "43",
+      "price": "",
+      "address": "BinhF ",
+      "district": "Quận 6",
+      "description": "ASDASDASDSd",
+      "priceFrom": 56000000,
+      "priceTo": 100000000,
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "id": 13435
+    },
+    {
+      "typeBusiness": 3,
+      "title": "asdasd",
+      "area": "43",
+      "price": 345345345345,
+      "address": "BinhF ",
+      "district": "Quận 6",
+      "description": "sdfagrgwgerg",
+      "priceFrom": "",
+      "priceTo": "",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "id": 13436
+    },
+    {
+      "typeBusiness": 5,
+      "title": "ádasd",
+      "area": "3434",
+      "price": "",
+      "address": "56564",
+      "district": "Quận 5",
+      "description": "33543545dfsdf",
+      "priceFrom": 1235656,
+      "priceTo": 7465644,
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "id": 13437
+    },
+    {
+      "title": "",
+      "area": "",
+      "price": "",
+      "address": "",
+      "district": "",
+      "description": "",
+      "priceFrom": "",
+      "priceTo": "",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "id": 13438
+    },
+    {
+      "title": "",
+      "area": "",
+      "price": "",
+      "address": "",
+      "district": "",
+      "description": "",
+      "priceFrom": "",
+      "priceTo": "",
+      "username": "Huỳnh Phương Duy",
+      "userId": 1,
+      "id": 13439
+    }
+  ],
+  "comments": [
+    {
+      "postId": 1,
+      "userId": 1,
+      "items": [
+        {
+          "content": "Duynnnenenene",
+          "createdAt": ""
+        },
+        {
+          "content": "HAhsdhahsdh asdhahsdhads",
+          "createdAt": ""
+        },
+        {
+          "content": "HAhsdhahsdhasdasd HAhsdhahsdhasdasd ",
+          "createdAt": ""
+        }
+      ]
+    },
+    {
+      "postId": 13434,
+      "userId": 1,
+      "items": [
+        {
+          "content": "ggtt",
+          "createdAt": ""
+        },
+        {
+          "content": "HAhsdhahsdh asdhahsdhads",
+          "createdAt": ""
+        },
+        {
+          "content": "asdasdad HAhsdhahsdhasdasd ",
+          "createdAt": ""
+        }
+      ]
+    }
+  ]
 }

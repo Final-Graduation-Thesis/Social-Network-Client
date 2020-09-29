@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Social-Network-Client';
+  navLinks: any = [
+    {
+      path: '',
+      label: 'home'
+    },
+    {
+      path: '/asd',
+      label: 'explore'
+
+    },
+    {
+      path: '/sd',
+      label: 'textsms'
+    }
+  ]
 }

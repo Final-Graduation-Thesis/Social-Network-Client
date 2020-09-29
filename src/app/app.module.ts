@@ -21,6 +21,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import { AppsButtonComponent } from './component/button/button.component';
 import { AppsNewPostPanelComponent } from './component/NewPostPanel/new-post-panel.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { AppsNewPostPanelComponent } from './component/NewPostPanel/new-post-pan
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
   ],
   entryComponents: [
     AppsPostDialogComponent

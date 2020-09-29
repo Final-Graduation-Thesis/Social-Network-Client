@@ -1,1 +1,12 @@
+<nav mat-tab-nav-bar mat-align-tabs="center">
+	<div class="logo">
+		<img src="/assets/logo.jpg"/>
+	</div>
+	<a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+		[active]="rla.isActive">
+		<span class="material-icons">
+			{{link.label}}
+			</span>
+	</a>
+</nav>
 <router-outlet></router-outlet>

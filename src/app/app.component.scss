@@ -1,0 +1,17 @@
+@import "scss/variable.scss";
+
+
+.mat-tab-nav-bar {
+    flex-direction: row;
+    .logo {
+        left: 0;
+		position: absolute;
+		img {
+			margin-top: -9px;
+			max-width: 100%;
+		}	
+	}
+	.mat-tab-label-active {
+		color: $green;
+	}
+}
