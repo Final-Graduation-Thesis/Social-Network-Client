@@ -21,7 +21,6 @@ export class VndCurrencyPipe implements PipeTransform {
 		if (value.length % 3 === 0) {
 			val.pop();
 		}
-		console.log();
 		return val.reverse().join('') + ' VNĐ';
 	}
 }

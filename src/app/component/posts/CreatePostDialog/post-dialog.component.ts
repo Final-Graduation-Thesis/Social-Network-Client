@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { PostService } from 'src/app/service/post.service';
-
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router'
 interface Animal {
 	name: string;
 	sound: string;
@@ -87,21 +88,23 @@ export class AppsPostDialogComponent implements OnInit {
 		public dialogRef: MatDialogRef<AppsPostDialogComponent>,
 		// @Inject(MAT_DIALOG_DATA) public data: any
 		private formBuilder: FormBuilder,
-		private postService: PostService
+		private postService: PostService,
+		private snackBar: MatSnackBar,
+		private router: Router
 		) {}
 
 	ngOnInit(): void {
 		this.form = this.formBuilder.group({
-			typeBusiness: "",
-			title: "",
-			typeProperty: "",
-			area: "",
-			price: "",
-			address: "",
-			district: "",
-			description: "",
-			priceFrom: "",
-			priceTo: ""
+			typeBusiness: ["", Validators.required],
+			title: ["", Validators.required],
+			typeProperty: ["", Validators.required],
+			area: ["", Validators.required],
+			price: [""],
+			address: ["", Validators.required],
+			district:["", Validators.required],
+			description: [""],
+			priceFrom: [""],
+			priceTo: [""],
 		})
 	}
 	onClose(): void {
@@ -110,7 +113,6 @@ export class AppsPostDialogComponent implements OnInit {
 
 	submit(): void {
 		let val: any = this.form.value;
-		console.log(val);
 		let body: any = {
 			"typeBusiness": val.typeBusiness.value,
 			"title": val.title,
@@ -125,10 +127,27 @@ export class AppsPostDialogComponent implements OnInit {
 			"username": "Huỳnh Phương Duy",
       		"userId": 1
 		}
-		this.postService.post(body).subscribe(res => {
-			this.dialogRef.close();
-			window.location.reload();
-		});
+		if (!this.form.valid) {
+			this.snackBar.open("Vui lòng nhập thông tin", null , {
+				duration: 1000,
+				panelClass: 'error'
+			});
+		}
+		else {
+			// this.renderer.setStyle(
+				// this.snackBar._openedSnackBarRef.containerInstance._elementRef.nativeElement,
+				//  'color', '#44d244');
+			this.postService.post(body).subscribe(res => {
+				this.dialogRef.close();
+				this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+					this.router.navigate(['']);
+				}); 
+				this.snackBar.open("Đăng bài thành công",null, {
+					duration: 2000,
+					panelClass: 'success'
+				});
+			});
+		}
 	}
 	onChangeTypeBusiness(): void {
 		let val: number = this.form.value.typeBusiness.value;

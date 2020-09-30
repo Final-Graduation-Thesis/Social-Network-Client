@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import { AppsButtonComponent } from './component/button/button.component';
 import { AppsNewPostPanelComponent } from './component/NewPostPanel/new-post-panel.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     AppsPostDialogComponent

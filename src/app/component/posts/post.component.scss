@@ -40,6 +40,9 @@ apps-post-component {
                 font-weight: 500;
                 word-break: break-all;
             }
+            .priceFrom, .priceTo, .price {
+                font-size: 16px;
+            }
         }
         .images-list {
             display: block;

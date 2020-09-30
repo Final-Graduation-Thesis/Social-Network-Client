@@ -27,7 +27,6 @@ export class AppsPostComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-		console.log(this.post);
 		if (this.post.images.length === 1) {
 			const img = this.renderer.createElement('img');
 			this.renderer.appendChild(this.images.nativeElement, img);
@@ -52,7 +51,6 @@ export class AppsPostComponent implements OnInit {
 			this.renderer.setAttribute(mainImage, 'width', (widthImg/0.7) + 'px');
 			this.renderer.setStyle(subLayout, 'display', 'grid');
 			this.renderer.setStyle(subLayout, 'flex-direction', 'column');
-			console.log(mainLayout.clientHeight);
 			for (let i: number = 1; i < this.post.images.length; i++) {
 				const image: ElementRef = this.renderer.createElement('img');
 				const height: number = mainLayout.clientHeight/subTotalImages - 3;
@@ -64,9 +62,7 @@ export class AppsPostComponent implements OnInit {
 	}
 
 	onDelete(): void {
-		console.log('asddasd');
 		this.postService.delete(this.post.id).subscribe(res => {
-			 console.log('qwe');
 		 this.onChangePostData.emit();
 		});
 	}

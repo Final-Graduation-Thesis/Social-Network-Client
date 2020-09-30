@@ -18,17 +18,13 @@ export class AppsHomeViewComponent implements OnInit {
 
 	ngOnInit() {
 		this.postService.list().subscribe((res: any) => {
-			console.log(res);
 			this.postData = res
 		});
-		console.log(this.postData);
 
 	}
 
 	onUpdatePostData() {
-		console.log('delete');
 		this.postService.list().subscribe((res: any) => {
-			console.log(res);
 			this.postData = res
 		});
 	}

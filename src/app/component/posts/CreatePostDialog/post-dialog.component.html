@@ -22,18 +22,18 @@
 			
 		</mat-form-field>
 		<mat-form-field class="">
-			<input matInput formControlName="title" placeholder="Tiêu đề">
+			<input matInput formControlName="title" placeholder="Tiêu đề" required>
 		</mat-form-field>
-		<mat-form-field formControlName="typeProperty">
+		<mat-form-field >
 			<mat-label>Loại tài sản</mat-label>
-			<mat-select required>
+			<mat-select formControlName="typeProperty" required>
 				<mat-option  *ngFor="let type of typeProperty" [value]="type">
 					{{type.name}}
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="">
-			<input matInput formControlName="area" placeholder="Diện tích">
+			<input matInput formControlName="area" placeholder="Diện tích" required>
 			<span matSuffix>m2 &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field *ngIf="isPrice">
@@ -47,11 +47,10 @@
 		</mat-form-field>
 		<mat-form-field class="">
 			<input matInput formControlName="address" placeholder="Địa chỉ">
-			
 		</mat-form-field>
 		<mat-form-field appearance="fill">
 			<mat-label>Quận</mat-label>
-			<mat-select required formControlName="district">
+			<mat-select formControlName="district" required>
 				<mat-option *ngFor="let dist of district" [value]="dist">
 					{{dist}}
 				</mat-option>

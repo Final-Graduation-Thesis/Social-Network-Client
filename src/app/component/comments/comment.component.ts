@@ -19,14 +19,11 @@ export class AppsCommentComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-		console.log(this.postId);
 		let params = new HttpParams();
 		params = params.append('postId', this.postId.toString());
 		this.commentService.list(params).subscribe(res => 
 			{
-				console.log(res);
 				this.commentsData = res[0] ? res[0].items : []
-				console.log(this.commentsData);
 			});
 	}
 
