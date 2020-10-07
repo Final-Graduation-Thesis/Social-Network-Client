@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppsHomeViewComponent } from './view/home/apps-home-view-component.view';
+import { AppsLoginViewComponent } from './view/login/login.view';
 import { AppsCommentComponent } from './component/comments/index';
 import { AppsPostComponent } from './component/posts/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -28,6 +29,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   declarations: [
     AppComponent,
     AppsHomeViewComponent,
+    AppsLoginViewComponent,
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,

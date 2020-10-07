@@ -1,5 +1,5 @@
-<nav mat-tab-nav-bar mat-align-tabs="center">
-	<div class="logo">
+<nav mat-tab-nav-bar mat-align-tabs="center" *ngIf="router.url != '/login'">
+	<div class="logo" (click)="onClickIndex()">
 		<img src="/assets/logo.png"/>
 	</div>
 	<a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
@@ -9,4 +9,4 @@
 			</span>
 	</a>
 </nav>
-<router-outlet></router-outlet>
+<router-outlet ></router-outlet>

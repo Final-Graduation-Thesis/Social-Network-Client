@@ -1,13 +1,10 @@
-import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { PostService } from 'src/app/service/post.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router'
-interface Animal {
-	name: string;
-	sound: string;
-  }
+
 @Component({
 	selector: 'apps-post-dialog-component',
 	templateUrl: './post-dialog.component.html',
@@ -86,7 +83,7 @@ export class AppsPostDialogComponent implements OnInit {
 
 	constructor(
 		public dialogRef: MatDialogRef<AppsPostDialogComponent>,
-		// @Inject(MAT_DIALOG_DATA) public data: any
+		@Inject(MAT_DIALOG_DATA) public data: any,
 		private formBuilder: FormBuilder,
 		private postService: PostService,
 		private snackBar: MatSnackBar,
@@ -94,6 +91,7 @@ export class AppsPostDialogComponent implements OnInit {
 		) {}
 
 	ngOnInit(): void {
+		console.log(this.data);
 		this.form = this.formBuilder.group({
 			typeBusiness: ["", Validators.required],
 			title: ["", Validators.required],

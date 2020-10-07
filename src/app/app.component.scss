@@ -6,6 +6,9 @@
     .logo {
         left: 0;
 		position: absolute;
+		&:hover {
+			cursor: pointer;
+		}
 		img {
 			margin-top: -9px;
 			max-width: 100%;

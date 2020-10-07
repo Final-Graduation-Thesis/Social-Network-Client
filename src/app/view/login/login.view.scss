@@ -1,0 +1,63 @@
+
+
+apps-login-component {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    .logo-panel {
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        background: #6fbe49;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .logo {
+            margin-top: 165px;
+        }
+        .slogan {
+            font-size: 17px;
+            color: #fff;
+            letter-spacing: 0.5px;
+            font-family: "Muli", "Segoe Ui";
+        }
+    }
+    .login, .register {
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f7f6;
+        .panel {
+            width: 60%;
+            height: 35%;
+            background-color: #ffffff;
+            padding: 42px;
+            .title {
+                font-weight: 500;
+                text-transform: capitalize;
+                font-size: 2rem;
+            }
+            .login-form, .register-form {
+                margin: 16px 0 16px 0;
+                .mat-form-field {
+                    width: 100%;
+                }
+                a {
+                    color: blue;
+                    text-decoration: none;
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+                .button-group {
+                    display: inline-flex;
+                    margin: 12px 0 12px 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<div class="logo-panel">
+	<div class="logo">
+		<img src="../../../assets/logo_2.png">
+	</div>
+	<div class="slogan">
+		Mạng xã hội dành cho người quan tâm Bất động sản
+	</div>
+</div>
+<div class="login" *ngIf="isLogin">
+	<div class="panel">
+		<div class="title">
+			Đăng nhập
+		</div>
+		<form class="login-form" (submit)="login()">
+			<mat-form-field class="">
+				<input type="email" matInput placeholder="Email">
+			</mat-form-field>
+			<br>
+			<mat-form-field class="">
+				<input type="password" matInput placeholder="Mật khẩu">
+			</mat-form-field>
+			<a href="#">Quên mật khẩu?</a>
+			<div class="button-group">
+				<apps-button-component type="submit"  [title]="'Đăng nhập'"></apps-button-component>
+				<apps-button-component (click)="toggleLogin()" [title]="'Đăng kí'"></apps-button-component>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="register" *ngIf="!isLogin">
+	<div class="panel">
+		<div class="title">
+			Đăng kí
+		</div>
+		<form class="register-form" (submit)="register()">
+			<mat-form-field class="">
+				<input type="email" matInput placeholder="Email" required>
+			</mat-form-field>
+			<mat-form-field class="">
+				<input matInput placeholder="Tên hiển thị" required>
+			</mat-form-field>
+			<br>
+			<mat-form-field class="">
+				<input type="password" matInput placeholder="Mật khẩu" required>
+			</mat-form-field>
+			<mat-form-field class="">
+				<input type="password" matInput placeholder="Nhập lại mật khẩu" required>
+			</mat-form-field>
+			<a (click)="toggleLogin()">Đã có tài khoản?</a>
+			<div class="button-group">
+				<apps-button-component type="submit" [title]="'Đăng kí'"></apps-button-component>
+			</div>
+		</form>
+	</div>
+</div>
