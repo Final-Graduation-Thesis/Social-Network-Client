@@ -24,7 +24,7 @@ import { AppsButtonComponent } from './component/button/button.component';
 import { AppsNewPostPanelComponent } from './component/NewPostPanel/new-post-panel.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import  { TimePipeComponent } from './pipe/TimePipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppsPostDialogComponent,
     VndCurrencyPipe,
     AppsButtonComponent,
-    AppsNewPostPanelComponent
+    AppsNewPostPanelComponent,
+    TimePipeComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,8 @@ import {
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
+import { moment } from 'moment';
+
 @Component({
 	selector: 'apps-post-component',
 	templateUrl: './post.component.html',

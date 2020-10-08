@@ -14,7 +14,7 @@
       "price": 2500000000,
       "priceFrom": null,
       "priceTo": null,
-      "createdAt": "",
+      "createdAt": "2020-10-08T16:08:31.238+00:00",
       "expiredAt": "",
       "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
       "images": [
@@ -38,7 +38,7 @@
       "price": 2500000000,
       "priceFrom": null,
       "priceTo": null,
-      "createdAt": "",
+      "createdAt": "2020-10-08T13:59:31.238+00:00",
       "expiredAt": "",
       "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
       "images": [
@@ -62,7 +62,7 @@
       "price": 2500000000,
       "priceFrom": null,
       "priceTo": null,
-      "createdAt": "",
+      "createdAt": "2020-10-08T12:59:31.238+00:00",
       "expiredAt": "",
       "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
       "images": [
@@ -84,7 +84,7 @@
       "price": 340000000,
       "priceFrom": null,
       "priceTo": null,
-      "createdAt": "",
+      "createdAt": "2020-10-08T10:59:31.238+00:00",
       "expiredAt": "",
       "description": "Mình cần bán căn hộ Green Field, Ai mua inbox",
       "images": [
@@ -137,7 +137,8 @@
       "priceTo": 7465644,
       "username": "Huỳnh Phương Duy",
       "userId": 1,
-      "id": 13437
+      "id": 13437,
+      "createdAt": "2020-10-08T13:59:31.238+00:00"
     },
     {
       "title": "",
