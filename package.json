@@ -25,7 +25,6 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "core-js": "^2.5.4",
     "json-server": "^0.16.1",
-    "moment": "^2.29.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

@@ -3,7 +3,9 @@
 		<img src="/assets/logo.png"/>
 	</div>
 	<a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
-		[active]="rla.isActive">
+		[active]="rla.isActive"
+		(click)="link.label == 'home' ? onClickIndex() : null"
+		>
 		<span class="material-icons">
 			{{link.label}}
 			</span>

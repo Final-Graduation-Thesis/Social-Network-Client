@@ -5,8 +5,6 @@ import {
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
-import { moment } from 'moment';
-
 @Component({
 	selector: 'apps-post-component',
 	templateUrl: './post.component.html',
@@ -30,7 +28,6 @@ export class AppsPostComponent implements OnInit {
 		private renderer: Renderer2,
 		private postService: PostService,
 		private dialog: MatDialog
-
 	) { }
 
 	ngOnInit() {
@@ -91,7 +88,8 @@ export class AppsPostComponent implements OnInit {
 				"priceFrom": this.post.priceFrom,
 				"priceTo": this.post.priceTo,
 				"username": this.post.username,
-				"userId": this.post.userId
+				"userId": this.post.userId,
+				"isEdited": true
 			}
 		  });
 	}

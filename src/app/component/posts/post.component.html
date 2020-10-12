@@ -31,19 +31,19 @@
 		<div class="information">
 			<div class="title"><span class="material-icons">
 					campaign
-				</span>{{post.title}}</div>
+				</span><span>{{post.title}}</span></div>
 			<div class="price" *ngIf="post.price"><span class="material-icons">
 					local_atm
-				</span>{{post.price | vndCurrency}}</div>
+				</span><span>{{post.price | vndCurrency}}</span></div>
 				<div class="priceFrom" *ngIf="post.priceFrom"><span class="material-icons">
 					local_atm
-				</span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</div>
+				</span><span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</span></div>
 			<div class="address"><span class="material-icons">
 					place
-				</span>{{post.address}}</div>
+				</span><span>{{post.address}}</span></div>
 			<div class="district"><span class="material-icons">
 					my_location
-				</span>{{post.district}}</div>
+				</span><span>{{post.district}}</span></div>
 		</div>
 		<div class="break-line-small"></div>
 		<div class="description">
@@ -52,10 +52,16 @@
 		<div class="images-list">
 			<div #images></div>
 		</div>
-		<div class="like_amount">
-
-		</div>
+		
 	</mat-card-content>
+	<div class="break-line"></div>
+	<div class="statictis">
+		<span class="material-icons">
+			thumb_up_alt
+		</span>
+		<span class="like-amount">{{post.totalLike? post.totalLike : 0}}</span>
+		
+	</div>
 	<div class="break-line"></div>
 	<div class="btn-group">
 		<button mat-button> <span class="material-icons">

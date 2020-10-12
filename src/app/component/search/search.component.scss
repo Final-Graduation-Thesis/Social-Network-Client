@@ -1,0 +1,35 @@
+apps-search-component {
+    margin: 8px 12px 8px 12px;
+    background-color: #fff;
+	height: 400px;
+    position: sticky;
+    top: 57px;
+    border-radius: 10px;
+    .header {
+        padding: 16px;
+        .title {
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+    .break-line {
+        border-bottom: 1px solid #eee;
+    }
+    .body {
+        .type-business, .type-property, .district {
+			padding: 0px 11px;
+			width: 94%;
+		}
+		.price-min, .price-max, .area {
+			width: 40%;
+			padding: 0 11px;
+		}
+	}
+	.footer {
+		display: flex;
+		justify-content: center;
+		button {
+			width: 200px;
+		}
+	}
+}

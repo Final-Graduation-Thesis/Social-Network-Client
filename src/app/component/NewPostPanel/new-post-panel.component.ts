@@ -23,18 +23,6 @@ export class AppsNewPostPanelComponent implements OnInit {
         const dialogRef = this.dialog.open(AppsPostDialogComponent, {
 			width: '450px',
 			data: {
-				"typeBusiness": 1,
-				"title":'ádasdasd',
-				"typeProperty": 2,
-				"area": 123,
-				"price": 123123,
-				"address": "ádasdasd",
-				"district": "Quận 7",
-				"description": "aaaaaaa",
-				"priceFrom": "",
-				"priceTo": "",
-				"username": "Huỳnh Phương Duy",
-				"userId": 1
 			}
 		  });
     }

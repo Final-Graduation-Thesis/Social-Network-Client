@@ -32,6 +32,8 @@ apps-post-component {
             font-size: 18px;
             .address, .district {
                 font-size: 14px;
+                display: flex;
+                align-items: flex-end;
             }
             div {
                 padding: 5px;
@@ -39,9 +41,13 @@ apps-post-component {
             .title {
                 font-weight: 500;
                 word-break: break-all;
+                display: flex;
+                align-items: flex-end;
             }
             .priceFrom, .priceTo, .price {
                 font-size: 16px;
+                display: flex;
+                align-items: flex-end;
             }
         }
         .images-list {
@@ -65,6 +71,15 @@ apps-post-component {
             margin-bottom: 12px;
         }
     }
+    .statictis {
+        display: flex;
+        align-items: flex-end;
+        margin: 6px;
+        .like-amount {
+            padding-bottom: 1px;
+        }
+    }
+  
     .break-line {
         margin: 0 -16px 0 -16px;
         border-bottom: 1px solid #eee;

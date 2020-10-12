@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, Validators, FormGroup} from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PostService } from 'src/app/service/post.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router'
@@ -88,10 +88,9 @@ export class AppsPostDialogComponent implements OnInit {
 		private postService: PostService,
 		private snackBar: MatSnackBar,
 		private router: Router
-		) {}
+	) { }
 
 	ngOnInit(): void {
-		console.log(this.data);
 		this.form = this.formBuilder.group({
 			typeBusiness: ["", Validators.required],
 			title: ["", Validators.required],
@@ -99,7 +98,7 @@ export class AppsPostDialogComponent implements OnInit {
 			area: ["", Validators.required],
 			price: [""],
 			address: ["", Validators.required],
-			district:["", Validators.required],
+			district: ["", Validators.required],
 			description: [""],
 			priceFrom: [""],
 			priceTo: [""],
@@ -112,43 +111,45 @@ export class AppsPostDialogComponent implements OnInit {
 	submit(): void {
 		let val: any = this.form.value;
 		let body: any = {
-			"typeBusiness": val.typeBusiness.value,
-			"title": val.title,
-			"typeProperty": val.typeProperty.value,
-			"area": val.area,
-			"price": val.price,
-			"address": val.address,
-			"district": val.district,
-			"description": val.description,
+			"typeBusiness": val.typeBusiness ? val.typeBusiness.value : "",
+			"title": val.title ? val.title : "",
+			"typeProperty": val.typeProperty ? val.typeProperty.value : "",
+			"area": val.area ? val.area : "",
+			"price": val.price ? val.price : "",
+			"address": val.address ? val.address : "",
+			"district": val.district ? val.district : "",
+			"description": val.description ? val.description : "",
 			"priceFrom": val.priceFrom,
 			"priceTo": val.priceTo,
 			"username": "Huỳnh Phương Duy",
-      		"userId": 1
+			"userId": 1
 		}
 		if (!this.form.valid) {
-			this.snackBar.open("Vui lòng nhập thông tin", null , {
+			this.snackBar.open("Vui lòng nhập thông tin", null, {
 				duration: 1000,
 				panelClass: 'error'
 			});
 		}
 		else {
-			// this.renderer.setStyle(
-				// this.snackBar._openedSnackBarRef.containerInstance._elementRef.nativeElement,
-				//  'color', '#44d244');
-			this.postService.post(body).subscribe(res => {
-				this.dialogRef.close();
-				this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-					this.router.navigate(['']);
-				}); 
-				this.snackBar.open("Đăng bài thành công",null, {
-					duration: 2000,
-					panelClass: 'success'
+			if (!this.data.isEdited) {
+				this.postService.post(body).subscribe(res => {
+					this.onClose();
+					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+						this.router.navigate(['']);
+					});
+					this.snackBar.open("Đăng bài thành công", null, {
+						duration: 2000,
+						panelClass: 'success'
+					});
 				});
-			});
+			}
+			else {
+				// TODO put method
+			}
 		}
 	}
 	onChangeTypeBusiness(): void {
-		let val: number = this.form.value.typeBusiness.value;
+		let val: number = this.form.value.typeBusiness;
 		if (val === 2 || val === 4 || val === 5) {
 			this.isPrice = false;
 		}

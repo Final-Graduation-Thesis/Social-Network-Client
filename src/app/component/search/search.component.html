@@ -1,0 +1,49 @@
+<div class="header">
+    <div class="title">
+        Tìm kiếm
+    </div>
+   
+</div>
+<div class="break-line">
+</div>
+<form [formGroup]="form" (submit)="search()">
+<div class="body">
+    <mat-form-field class="type-business">
+        <mat-label>Thể loại cần tìm</mat-label>
+        <mat-select
+         formControlName="typeBusiness">
+            <mat-option *ngFor="let type of typeBusiness" [value]="type.value">
+                {{type.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="type-property">
+        <mat-label>Loại tài sản</mat-label>
+        <mat-select formControlName="typeProperty">
+            <mat-option  *ngFor="let type of typeProperty" [value]="type.value">
+                {{type.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="price-min">
+        <input type="number" formControlName="priceMin" matInput  placeholder="Giá thấp nhất">
+    </mat-form-field>
+    <mat-form-field class="price-max">
+        <input type="number" formControlName="priceMax" matInput  placeholder="Giá cao nhất">
+    </mat-form-field>
+    <mat-form-field class="area">
+        <input type="number" formControlName="area" matInput  placeholder="Diện tích">
+    </mat-form-field>
+    <mat-form-field class="district">
+        <mat-label>Khu vực</mat-label>
+        <mat-select formControlName="district">
+            <mat-option *ngFor="let dist of district" [value]="dist">
+                {{dist}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="footer">
+    <apps-button-component [title]="'Tìm kiếm'"></apps-button-component>
+</div>
+</form>

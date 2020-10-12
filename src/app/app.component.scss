@@ -2,7 +2,11 @@
 
 
 .mat-tab-nav-bar {
-    flex-direction: row;
+	flex-direction: row;
+	position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1000;
     .logo {
         left: 0;
 		position: absolute;

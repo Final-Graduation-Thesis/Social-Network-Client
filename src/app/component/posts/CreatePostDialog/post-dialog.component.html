@@ -13,7 +13,7 @@
 	<div class="body" mat-dialog-content>
 		<mat-form-field>
 			<mat-label>Thể loại cần đăng</mat-label>
-			<mat-select [(ngModel)]="data.typeBusiness" (selectionChange)="onChangeTypeBusiness()"
+			<mat-select [ngModel]="data.typeBusiness" (selectionChange)="onChangeTypeBusiness()"
 			 formControlName="typeBusiness"  required>
 				<mat-option *ngFor="let type of typeBusiness" [value]="type.value">
 					{{type.name}}
@@ -22,45 +22,46 @@
 			
 		</mat-form-field>
 		<mat-form-field class="">
-			<input matInput [(ngModel)]="data.title" formControlName="title" placeholder="Tiêu đề" required>
+			<input matInput [ngModel]="data.title" formControlName="title" placeholder="Tiêu đề" required>
 		</mat-form-field>
 		<mat-form-field >
 			<mat-label>Loại tài sản</mat-label>
-			<mat-select  [(ngModel)]="data.typeProperty" formControlName="typeProperty" required>
+			<mat-select  [ngModel]="data.typeProperty" formControlName="typeProperty" required>
 				<mat-option  *ngFor="let type of typeProperty" [value]="type.value">
 					{{type.name}}
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="">
-			<input [(ngModel)]="data.area" matInput formControlName="area" placeholder="Diện tích" required>
+			<input [ngModel]="data.area" matInput formControlName="area" placeholder="Diện tích" required>
 			<span matSuffix>m2 &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field *ngIf="isPrice">
-			<input type="number" [(ngModel)]="data.price" formControlName="price" matInput  placeholder="Giá">
+			<input type="number" [ngModel]="data.price" formControlName="price" matInput  placeholder="Giá">
 		</mat-form-field>
 		<mat-form-field *ngIf="!isPrice">
-			<input type="number" [(ngModel)]="data.priceFrom" formControlName="priceFrom" matInput  placeholder="Giá thấp nhất">
+			<input type="number" [ngModel]="data.priceFrom" formControlName="priceFrom" matInput  placeholder="Giá thấp nhất">
 		</mat-form-field>
 		<mat-form-field *ngIf="!isPrice">
-			<input type="number" [(ngModel)]="data.priceTo" formControlName="priceTo" matInput  placeholder="Giá cao nhất">
+			<input type="number" [ngModel]="data.priceTo" formControlName="priceTo" matInput  placeholder="Giá cao nhất">
 		</mat-form-field>
 		<mat-form-field class="">
-			<input matInput [(ngModel)]="data.address" formControlName="address" placeholder="Địa chỉ">
+			<input matInput [ngModel]="data.address" formControlName="address" placeholder="Địa chỉ">
 		</mat-form-field>
 		<mat-form-field appearance="fill">
 			<mat-label>Quận</mat-label>
-			<mat-select [(ngModel)]="data.district" formControlName="district" required>
+			<mat-select [ngModel]="data.district" formControlName="district" required>
 				<mat-option *ngFor="let dist of district" [value]="dist">
 					{{dist}}
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field>
-			<textarea matInput [(ngModel)]="data.description" formControlName="description" placeholder="Mô tả"></textarea>
+			<textarea matInput [ngModel]="data.description" formControlName="description" placeholder="Mô tả"></textarea>
 		</mat-form-field>
 	</div>
 	<div class="footer">
-		<button mat-stroked-button color="primary" type="submit">Đăng bài</button>
+		<button *ngIf="!data.isEdited" mat-stroked-button color="primary" type="submit">Đăng bài</button>
+		<button *ngIf="data.isEdited" mat-stroked-button color="primary" type="submit">Sửa bài</button>
 	</div>
 </form>

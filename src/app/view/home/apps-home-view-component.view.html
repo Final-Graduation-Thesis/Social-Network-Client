@@ -1,4 +1,10 @@
+<apps-search-component></apps-search-component>
+<div (scroll)="onScroll()">
 <apps-new-post-panel-component></apps-new-post-panel-component>
-<ng-container *ngFor="let data of postData">
-<apps-post-component  [post]="data" (update)="onUpdatePostData()"></apps-post-component>
+<ng-template #loading>
+<mat-spinner class="loading" mode="indeterminate" ></mat-spinner>
+</ng-template>
+<ng-container *ngIf="postData$ | async as postData; else loading">
+<apps-post-component *ngFor="let data of postData" [post]="data" (update)="onUpdatePostData()"></apps-post-component>
 </ng-container>
+</div>
