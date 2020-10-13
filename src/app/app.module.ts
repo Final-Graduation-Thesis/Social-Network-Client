@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TimePipeComponent } from './pipe/TimePipe';
 import { AppsSearchComponent } from './component/search/search.component'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AppsHeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppsButtonComponent,
     AppsNewPostPanelComponent,
     TimePipeComponent,
-    AppsSearchComponent
+    AppsSearchComponent,
+    AppsHeaderComponent
   ],
   imports: [
     BrowserModule,

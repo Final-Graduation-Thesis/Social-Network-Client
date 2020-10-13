@@ -1,7 +1,7 @@
 @import '../../scss/variable.scss';
 
 apps-post-component {
-    margin: 8px;
+    margin: 4px;
     width: 570px;
     .avatar {
         img {
@@ -25,7 +25,7 @@ apps-post-component {
         left: 229px;
     }
     mat-card-content {
-        padding: 16px;
+        padding: 16px 16px 0;
         .type-business {
         }
         .information {
