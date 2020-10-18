@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/file-input": "^4.0.1",
     "@angular/animations": "^7.1.4",
     "@angular/cdk": "^7.2.0",
     "@angular/common": "~7.1.0",
@@ -25,6 +26,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "core-js": "^2.5.4",
     "json-server": "^0.16.1",
+    "ngx-material-file-input": "^2.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

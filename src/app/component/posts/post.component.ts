@@ -74,6 +74,7 @@ export class AppsPostComponent implements OnInit {
 	}
 
 	onEdit(): void {
+		console.log(this.post.district);
 		const dialogRef = this.dialog.open(AppsPostDialogComponent, {
 			width: '450px',
 			data: {

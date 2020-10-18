@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { PostService } from 'src/app/service/post.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router'
@@ -51,7 +51,7 @@ export class AppsPostDialogComponent implements OnInit {
 			value: 3
 		}
 	]
-	district: string[] = [
+	districts: string[] = [
 		'Quận 1',
 		'Quận 2',
 		'Quận 3',
@@ -80,7 +80,6 @@ export class AppsPostDialogComponent implements OnInit {
 
 	]
 	isPrice: boolean = true;
-
 	constructor(
 		public dialogRef: MatDialogRef<AppsPostDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -91,6 +90,9 @@ export class AppsPostDialogComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		console.log(typeof(this.data.district));
+		console.log(this.data.district);
+		console.log(typeof(this.data.typeProperty));
 		this.form = this.formBuilder.group({
 			typeBusiness: ["", Validators.required],
 			title: ["", Validators.required],
@@ -102,6 +104,7 @@ export class AppsPostDialogComponent implements OnInit {
 			description: [""],
 			priceFrom: [""],
 			priceTo: [""],
+			images: [""]
 		})
 	}
 	onClose(): void {
@@ -111,9 +114,9 @@ export class AppsPostDialogComponent implements OnInit {
 	submit(): void {
 		let val: any = this.form.value;
 		let body: any = {
-			"typeBusiness": val.typeBusiness ? val.typeBusiness.value : "",
+			"typeBusiness": val.typeBusiness ? val.typeBusiness : "",
 			"title": val.title ? val.title : "",
-			"typeProperty": val.typeProperty ? val.typeProperty.value : "",
+			"typeProperty": val.typeProperty ? val.typeProperty : "",
 			"area": val.area ? val.area : "",
 			"price": val.price ? val.price : "",
 			"address": val.address ? val.address : "",
@@ -122,31 +125,33 @@ export class AppsPostDialogComponent implements OnInit {
 			"priceFrom": val.priceFrom,
 			"priceTo": val.priceTo,
 			"username": "Huỳnh Phương Duy",
-			"userId": 1
+			"userId": 1,
+			"images": val.images ? val.images.fileNames : ""
 		}
-		if (!this.form.valid) {
-			this.snackBar.open("Vui lòng nhập thông tin", null, {
-				duration: 1000,
-				panelClass: 'error'
-			});
-		}
-		else {
-			if (!this.data.isEdited) {
-				this.postService.post(body).subscribe(res => {
-					this.onClose();
-					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-						this.router.navigate(['']);
-					});
-					this.snackBar.open("Đăng bài thành công", null, {
-						duration: 2000,
-						panelClass: 'success'
-					});
-				});
-			}
-			else {
-				// TODO put method
-			}
-		}
+		console.log(body);
+		// if (!this.form.valid) {
+		// 	this.snackBar.open("Vui lòng nhập thông tin", null, {
+		// 		duration: 1000,
+		// 		panelClass: 'error'
+		// 	});
+		// }
+		// else {
+		// 	if (!this.data.isEdited) {
+		// 		this.postService.post(body).subscribe(res => {
+		// 			this.onClose();
+		// 			this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+		// 				this.router.navigate(['']);
+		// 			});
+		// 			this.snackBar.open("Đăng bài thành công", null, {
+		// 				duration: 2000,
+		// 				panelClass: 'success'
+		// 			});
+		// 		});
+		// 	}
+		// 	else {
+		// 		// TODO put method
+		// 	}
+		// }
 	}
 	onChangeTypeBusiness(): void {
 		let val: number = this.form.value.typeBusiness;

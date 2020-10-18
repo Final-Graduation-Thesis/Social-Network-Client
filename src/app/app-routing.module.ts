@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppsHomeViewComponent } from './view/home/apps-home-view-component.view';
 import { AppComponent } from './app.component';
 import { AppsLoginViewComponent } from './view/login/login.view';
+import { AppsTimeLineView } from './view/timeline/timeline.view';
 const routes: Routes = [
 		{
 			path: 'home',
@@ -15,6 +16,10 @@ const routes: Routes = [
 		{
 			path: 'login',
 			component: AppsLoginViewComponent
+		},
+		{
+			path: 'timeline',
+			component: AppsTimeLineView
 		}
 
 

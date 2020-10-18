@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { Router } from '@angular/router'
 @Component({
 	selector: 'app-root',
@@ -7,6 +7,8 @@ import { Router } from '@angular/router'
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+	// @HostListener('scroll', '$event') 
+	// onScroll 
 	isLoginView: boolean = true;
 	title = 'MyLand';
 

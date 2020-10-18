@@ -28,7 +28,8 @@ import { TimePipeComponent } from './pipe/TimePipe';
 import { AppsSearchComponent } from './component/search/search.component'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AppsHeaderComponent } from './component/header/header.component';
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { AppsTimeLineView } from './view/timeline/timeline.view';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { AppsHeaderComponent } from './component/header/header.component';
     AppsNewPostPanelComponent,
     TimePipeComponent,
     AppsSearchComponent,
-    AppsHeaderComponent
+    AppsHeaderComponent,
+    AppsTimeLineView
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { AppsHeaderComponent } from './component/header/header.component';
     MatInputModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MaterialFileInputModule
   ],
   entryComponents: [
     AppsPostDialogComponent

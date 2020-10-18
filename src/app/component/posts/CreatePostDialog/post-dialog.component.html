@@ -11,7 +11,7 @@
 <div class="break-line"></div>
 <form [formGroup]="form" (submit)="submit()">
 	<div class="body" mat-dialog-content>
-		<mat-form-field>
+		<mat-form-field appearance="fill">
 			<mat-label>Thể loại cần đăng</mat-label>
 			<mat-select [ngModel]="data.typeBusiness" (selectionChange)="onChangeTypeBusiness()"
 			 formControlName="typeBusiness"  required>
@@ -19,7 +19,6 @@
 					{{type.name}}
 				</mat-option>
 			</mat-select>
-			
 		</mat-form-field>
 		<mat-form-field class="">
 			<input matInput [ngModel]="data.title" formControlName="title" placeholder="Tiêu đề" required>
@@ -48,16 +47,21 @@
 		<mat-form-field class="">
 			<input matInput [ngModel]="data.address" formControlName="address" placeholder="Địa chỉ">
 		</mat-form-field>
-		<mat-form-field appearance="fill">
+		<mat-form-field>
 			<mat-label>Quận</mat-label>
 			<mat-select [ngModel]="data.district" formControlName="district" required>
-				<mat-option *ngFor="let dist of district" [value]="dist">
+				<mat-option *ngFor="let dist of districts" [value]="dist">
 					{{dist}}
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field>
 			<textarea matInput [ngModel]="data.description" formControlName="description" placeholder="Mô tả"></textarea>
+		</mat-form-field>
+		<mat-form-field>
+			<ngx-mat-file-input formControlName="images" [multiple]="true" [accept]="'image/*'" placeholder="Đăng ảnh"></ngx-mat-file-input>
+			<mat-icon ngxMatFileInputIcon>perm_media
+			</mat-icon>
 		</mat-form-field>
 	</div>
 	<div class="footer">

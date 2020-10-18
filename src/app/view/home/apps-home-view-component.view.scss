@@ -19,4 +19,9 @@ apps-home-view-component {
         }
         
     }
+    .not-found {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
 }

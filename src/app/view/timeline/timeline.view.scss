@@ -1,0 +1,24 @@
+apps-timeline-view {
+    display: flex;
+    flex-direction: column;
+    background-color: #cccccc;
+    align-items: center;
+    .header {
+        background-color: #ffffff;
+		border-radius: 4px;
+    }
+    .body {
+        display: grid;
+        width: 60%;
+        grid-template-columns: 40% 60%;
+        >.information {
+            background-color: #ffffff;
+            border-radius: 4px;
+            height: 400px;
+            margin: 8px;
+        }
+        .post {
+
+        }
+    }
+}

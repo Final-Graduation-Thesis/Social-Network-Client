@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 import { PostService } from '../../service/post.service';
 import { Observable} from 'rxjs'
+import { Router } from '@angular/router';
 @Component({
 	selector: 'apps-home-view-component',
 	templateUrl: './apps-home-view-component.view.html',
@@ -10,31 +11,33 @@ import { Observable} from 'rxjs'
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsHomeViewComponent implements OnInit {
-	@HostListener('scroll', ['$event'])
-	onScroll(event) {
-		// do tracking
-		// console.log('scrolled', event.target.scrollTop);
-		// Listen to click events in the component
-		let tracker = event.target;
-
-		let limit = tracker.scrollHeight - tracker.clientHeight;
-		console.log(event.target.scrollTop, limit);
-		if (event.target.scrollTop === limit) {
-			alert('end reached');
+	@HostListener("window:scroll", [])
+		onWindowScroll() {
+			let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight;
+			let max = document.documentElement.scrollHeight;
+			if(pos == max )   {
+				this.hasNext = false;
+			}
 		}
-	}
-
-	postData$: Observable<any[]>;
+	hasNext: boolean = true;
+	postData: any;
 	constructor(
+		private router: Router,
 		private postService: PostService,
 		public dialog: MatDialog
 	) { }
 
 	ngOnInit() {
-		this.postData$ = this.postService.list();
+		this.postService.list().subscribe(res => {this.postData = res; console.log(res)});
 	}
 
 	onUpdatePostData() {
-		this.postData$ = this.postService.list();
+		this.postService.list().subscribe(res => this.postData = res);
+	}
+
+	reload() {
+		this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+			this.router.navigate(['']);
+		});
 	}
 }
