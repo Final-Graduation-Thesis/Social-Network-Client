@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseService, Options } from './service';
 
-const URL = '/api/comments/';
+const URL = 'social/comment/';
 
 @Injectable({
     providedIn: 'root',
@@ -14,5 +14,9 @@ export class CommentService extends BaseService {
         protected http: HttpClient
     ) {
         super();
+    }
+
+    get(postId: number): Observable<any> {
+        return this.http.get(this.url + postId);
     }
 }

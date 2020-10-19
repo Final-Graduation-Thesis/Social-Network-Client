@@ -22,12 +22,10 @@ export class AppsCommentComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-		let params = new HttpParams();
-		params = params.append('postId', this.postId.toString());
-		this.commentService.list(params).subscribe(res => 
+		this.commentService.get(this.postId).subscribe(res => 
 			{
-				this.commentOfPost = res[0] ? res[0].items : []
-				this.comment = res[0] ? res[0] : {}
+				this.commentOfPost = res ? res.items : []
+				this.comment = res ? res : {}
 			});
 	}
 
@@ -40,8 +38,6 @@ export class AppsCommentComponent implements OnInit {
 		)
 		this.commentInput.nativeElement.value="";
 		this.commentInput.nativeElement.blur();
-		// this.renderer.removeClass(this.commentInput.underlineRef.nativeElement, 'mat-form-field-should-float');
-		// this.renderer.removeClass(this.commentInput.underlineRef.nativeElement, 'mat-focused');
 		
 	}
 

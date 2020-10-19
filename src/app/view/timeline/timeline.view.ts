@@ -27,10 +27,10 @@ export class AppsTimeLineView implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.postService.list().subscribe(res => {this.postData = res; console.log(res)});
+		this.postService.list().subscribe(res => {this.postData = res.items; console.log(res)});
 	}
 
 	onUpdatePostData() {
-		this.postService.list().subscribe(res => this.postData = res);
+		this.postService.list().subscribe(res => this.postData = res.items);
 	}
 }

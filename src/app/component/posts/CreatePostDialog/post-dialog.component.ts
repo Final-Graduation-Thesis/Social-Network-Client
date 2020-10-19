@@ -104,7 +104,8 @@ export class AppsPostDialogComponent implements OnInit {
 			description: [""],
 			priceFrom: [""],
 			priceTo: [""],
-			images: [""]
+			images: [""],
+			file: [""]
 		})
 	}
 	onClose(): void {
@@ -128,7 +129,9 @@ export class AppsPostDialogComponent implements OnInit {
 			"userId": 1,
 			"images": val.images ? val.images.fileNames : ""
 		}
-		console.log(body);
+		console.log(this.form.value.images);
+		console.log(this.form.value);
+
 		// if (!this.form.valid) {
 		// 	this.snackBar.open("Vui lòng nhập thông tin", null, {
 		// 		duration: 1000,
