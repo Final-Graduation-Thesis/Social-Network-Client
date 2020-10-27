@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { PostService } from '../../service/post.service';
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 
 @Component({
@@ -12,7 +11,6 @@ import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/
 export class AppsNewPostPanelComponent implements OnInit {
 
 	constructor(
-        private postService: PostService,
 		private dialog: MatDialog
     ) {}
 

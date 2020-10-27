@@ -1,9 +1,9 @@
 apps-home-view-component {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 30% 40% 1fr;
     background-color: #cccccc;
     flex-direction: column;
-    .loading {
+    .loading, .load-more {
         width: 60px !important;
         height: 60px !important;
         margin: 12px;

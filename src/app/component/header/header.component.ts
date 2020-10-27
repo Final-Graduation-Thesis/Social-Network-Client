@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router'
+import { AuthService } from 'src/app/service/auth.service';
+import { ReloadService } from 'src/app/service/reload.service';
 @Component({
 	selector: 'header',
 	templateUrl: './header.component.html',
@@ -25,14 +27,19 @@ export class AppsHeaderComponent {
 	]
 
 	constructor(
-		public router: Router
+		public router: Router,
+		private authService: AuthService,
+		private reloadService: ReloadService
 	) { }
 
 	ngOnInit(): void {
 	}
 	onClickIndex(): void {
-		this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-			this.router.navigate(['']);
-		});
+		this.reloadService.reloadPost(true);
+	}
+
+	logout(): void {
+		this.authService.logout();
+		this.router.navigateByUrl("/login");
 	}
 }

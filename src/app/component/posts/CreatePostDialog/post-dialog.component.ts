@@ -80,6 +80,7 @@ export class AppsPostDialogComponent implements OnInit {
 
 	]
 	isPrice: boolean = true;
+	selectedImage: string[]  =  [];
 	constructor(
 		public dialogRef: MatDialogRef<AppsPostDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -90,9 +91,6 @@ export class AppsPostDialogComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log(typeof(this.data.district));
-		console.log(this.data.district);
-		console.log(typeof(this.data.typeProperty));
 		this.form = this.formBuilder.group({
 			typeBusiness: ["", Validators.required],
 			title: ["", Validators.required],
@@ -105,16 +103,42 @@ export class AppsPostDialogComponent implements OnInit {
 			priceFrom: [""],
 			priceTo: [""],
 			images: [""],
-			file: [""]
 		})
 	}
 	onClose(): void {
 		this.dialogRef.close();
 	}
 
+	onFileChanged(event) {
+		for  (var i =  0; i <  event.target.files.length; i++)  {  
+			this.selectedImage.push(event.target.files[i]);
+		}
+
+	}
+
 	submit(): void {
 		let val: any = this.form.value;
-		let body: any = {
+		let body = new FormData();
+		console.log(val.images);
+		for  (var i =  0; i <  this.selectedImage.length; i++)  {  
+			body.append("images",  this.selectedImage[i]);
+		} 
+		body.append("typeBusiness", val.typeBusiness ? val.typeBusiness : "");
+		body.append("title", val.title ? val.title : "");
+		body.append("typeProperty", val.typeProperty ? val.typeProperty : "");
+		body.append("area", val.area ? val.area : "");
+		body.append("price", val.price ? val.price : "");
+		body.append("address", val.address ? val.address : "");
+		body.append("district", val.district ? val.district : "");
+		body.append("description", val.description ? val.description : "");
+		body.append("priceFrom", val.priceFrom);
+		body.append("priceTo", val.priceTo);
+		body.append("username", "Huỳnh Phương Duy");
+		body.append("userId", "1");
+		body.append("expiredAt", "30-10-2020");
+		body.append("roomNumber", "2");
+
+		let bodyPut: any = {
 			"typeBusiness": val.typeBusiness ? val.typeBusiness : "",
 			"title": val.title ? val.title : "",
 			"typeProperty": val.typeProperty ? val.typeProperty : "",
@@ -125,36 +149,39 @@ export class AppsPostDialogComponent implements OnInit {
 			"description": val.description ? val.description : "",
 			"priceFrom": val.priceFrom,
 			"priceTo": val.priceTo,
-			"username": "Huỳnh Phương Duy",
-			"userId": 1,
-			"images": val.images ? val.images.fileNames : ""
 		}
-		console.log(this.form.value.images);
-		console.log(this.form.value);
-
-		// if (!this.form.valid) {
-		// 	this.snackBar.open("Vui lòng nhập thông tin", null, {
-		// 		duration: 1000,
-		// 		panelClass: 'error'
-		// 	});
-		// }
-		// else {
-		// 	if (!this.data.isEdited) {
-		// 		this.postService.post(body).subscribe(res => {
-		// 			this.onClose();
-		// 			this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-		// 				this.router.navigate(['']);
-		// 			});
-		// 			this.snackBar.open("Đăng bài thành công", null, {
-		// 				duration: 2000,
-		// 				panelClass: 'success'
-		// 			});
-		// 		});
-		// 	}
-		// 	else {
-		// 		// TODO put method
-		// 	}
-		// }
+		if (!this.form.valid) {
+			this.snackBar.open("Vui lòng nhập thông tin", null, {
+				duration: 1000,
+				panelClass: 'error'
+			});
+		}
+		else {
+			if (!this.data.isEdited) {
+				this.postService.post(body).subscribe(res => {
+					this.onClose();
+					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+						this.router.navigate(['']);
+					});
+					this.snackBar.open("Đăng bài thành công", null, {
+						duration: 2000,
+						panelClass: 'success'
+					});
+				});
+			}
+			else {
+				this.postService.put(this.data.id, bodyPut).subscribe(res => {
+					this.onClose();
+					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+						this.router.navigate(['']);
+					});
+					this.snackBar.open("Sửa bài thành công", null, {
+						duration: 2000,
+						panelClass: 'success'
+					});
+				});
+			}
+		}
 	}
 	onChangeTypeBusiness(): void {
 		let val: number = this.form.value.typeBusiness;

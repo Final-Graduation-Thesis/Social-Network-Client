@@ -74,7 +74,7 @@ export class AppsPostComponent implements OnInit {
 	}
 
 	onEdit(): void {
-		console.log(this.post.district);
+		console.log(this.post);
 		const dialogRef = this.dialog.open(AppsPostDialogComponent, {
 			width: '450px',
 			data: {
@@ -90,6 +90,7 @@ export class AppsPostComponent implements OnInit {
 				"priceTo": this.post.priceTo,
 				"username": this.post.username,
 				"userId": this.post.userId,
+				"id": this.post.id,
 				"isEdited": true
 			}
 		  });

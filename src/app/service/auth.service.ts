@@ -38,8 +38,8 @@ export class AuthService extends BaseService {
     }          
 
     logout() {
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("expires_in");
     }
 
     public isLoggedIn() {
@@ -47,7 +47,7 @@ export class AuthService extends BaseService {
     }
 
     public getToken() {
-        return localStorage.getItem('id_token');
+        return localStorage.getItem('access_token');
     }
 
     isLoggedOut() {
@@ -55,7 +55,7 @@ export class AuthService extends BaseService {
     }
 
     getExpiration() {
-        const expiration = localStorage.getItem("expires_at");
+        const expiration = localStorage.getItem("expires_in");
         const expiresAt = JSON.parse(expiration);
         return moment(expiresAt);
     }   

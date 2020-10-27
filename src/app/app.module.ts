@@ -14,7 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpConfigInterceptor } from 'src/app/httpconfig.interceptor';
 import { VndCurrencyPipe } from './pipe/VndCurrency';
 import { AppsPostDialogComponent } from './component/posts/CreatePostDialog/post-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,6 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AppsHeaderComponent } from './component/header/header.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AppsTimeLineView } from './view/timeline/timeline.view';
+import { ReloadService } from 'src/app/service/reload.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,12 +46,14 @@ import { AppsTimeLineView } from './view/timeline/timeline.view';
     TimePipeComponent,
     AppsSearchComponent,
     AppsHeaderComponent,
-    AppsTimeLineView
+    AppsTimeLineView,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatButtonModule,
     MatCardModule,
@@ -64,13 +68,16 @@ import { AppsTimeLineView } from './view/timeline/timeline.view';
     MatTabsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
   ],
   entryComponents: [
     AppsPostDialogComponent
   ],
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    ReloadService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

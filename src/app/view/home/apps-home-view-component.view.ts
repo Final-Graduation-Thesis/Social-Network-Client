@@ -1,9 +1,8 @@
-import { Component, OnInit, HostListener, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
+import { Component, OnInit, HostListener, ViewEncapsulation, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
-import { Observable} from 'rxjs'
 import { Router } from '@angular/router';
+import { ReloadService } from 'src/app/service/reload.service';
 @Component({
 	selector: 'apps-home-view-component',
 	templateUrl: './apps-home-view-component.view.html',
@@ -15,29 +14,57 @@ export class AppsHomeViewComponent implements OnInit {
 		onWindowScroll() {
 			let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight;
 			let max = document.documentElement.scrollHeight;
-			if(pos == max )   {
-				this.hasNext = false;
+			if(pos == max) {
+				if (this.hasNext) {
+					const nextLink = '/social' + this.nextLink;
+					if (this.nextLink) {
+						this.postService.list(nextLink).subscribe(res => {
+						this.postData = [...this.postData, ...res.items];
+						this.nextLink = res.nextLink;
+						this.hasNext = res.hasNext;
+						});
+					}
+				}
 			}
 		}
+
+	nextLink: string;
 	hasNext: boolean = true;
 	postData: any;
 	constructor(
 		private router: Router,
 		private postService: PostService,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private ngRenderer: Renderer2,
+		private reloadService: ReloadService
 	) { }
 
 	ngOnInit() {
-		this.postService.list().subscribe(res => {this.postData = res.items; console.log(res)});
+		this.postService.list().subscribe(res => {
+			this.postData = res.items;
+			this.hasNext = res.hasNext;
+			this.nextLink = res.nextLink;
+		});
+		this.reloadService.onReloadPost().subscribe(isReload => {
+			this.reload();
+		})
 	}
 
 	onUpdatePostData() {
-		this.postService.list().subscribe(res => this.postData = res.items);
+		this.postService.list().subscribe(res => {
+			this.postData = res.items;
+			this.hasNext = res.hasNext;
+			this.nextLink = res.nextLink;
+		});
 	}
 
 	reload() {
-		this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-			this.router.navigate(['']);
+		this.postData = null;
+		this.hasNext = true;
+		this.postService.list().subscribe(res => {
+			this.postData = res.items;
+			this.hasNext = res.hasNext;
+			this.nextLink = res.nextLink;
 		});
 	}
 }

@@ -30,12 +30,16 @@ export class AppsCommentComponent implements OnInit {
 	}
 
 	onEnterComment(evt: KeyboardEvent): void {
-		this.commentOfPost.push(
-			{
-				"content": this.commentInput.nativeElement.value,
-				"createdAt": Date.now()
-			}
-		)
+		let body: any = {
+			"content": this.commentInput.nativeElement.value,
+			"postId": this.postId
+		}
+		this.commentService.post(body).subscribe(res => {
+			this.commentService.get(this.postId).subscribe(res => 
+				{
+					this.commentOfPost = res ? res.items : []
+					this.comment = res ? res : {}
+				});});
 		this.commentInput.nativeElement.value="";
 		this.commentInput.nativeElement.blur();
 		

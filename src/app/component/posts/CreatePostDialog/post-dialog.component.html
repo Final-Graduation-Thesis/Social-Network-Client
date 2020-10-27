@@ -59,11 +59,10 @@
 			<textarea matInput [ngModel]="data.description" formControlName="description" placeholder="Mô tả"></textarea>
 		</mat-form-field>
 		<mat-form-field>
-			<ngx-mat-file-input formControlName="images" [multiple]="true" [accept]="'image/*'" placeholder="Đăng ảnh"></ngx-mat-file-input>
+			<ngx-mat-file-input formControlName="images" (change)="onFileChanged($event)" [multiple]="true" [accept]="'image/*'" placeholder="Đăng ảnh"></ngx-mat-file-input>
 			<mat-icon ngxMatFileInputIcon>perm_media
 			</mat-icon>
 		</mat-form-field>
-		<input formControlName="file" type="file" multiple="true">
 	</div>
 	<div class="footer">
 		<button *ngIf="!data.isEdited" mat-stroked-button color="primary" type="submit">Đăng bài</button>
