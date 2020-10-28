@@ -4,6 +4,7 @@ import { AppsHomeViewComponent } from './view/home/apps-home-view-component.view
 import { AppComponent } from './app.component';
 import { AppsLoginViewComponent } from './view/login/login.view';
 import { AppsTimeLineView } from './view/timeline/timeline.view';
+import { AppsDetailPostView } from './view/detail-post/detail-post.view';
 const routes: Routes = [
 		{
 			path: 'home',
@@ -20,9 +21,11 @@ const routes: Routes = [
 		{
 			path: 'timeline',
 			component: AppsTimeLineView
+		},
+		{
+			path: 'detail-post/:id',
+			component: AppsDetailPostView
 		}
-
-
 ];
 
 @NgModule({

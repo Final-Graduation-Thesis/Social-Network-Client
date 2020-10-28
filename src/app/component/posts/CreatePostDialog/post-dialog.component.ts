@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { PostService } from 'src/app/service/post.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router'
+import { ReloadService } from 'src/app/service/reload.service';
 
 @Component({
 	selector: 'apps-post-dialog-component',
@@ -87,7 +88,8 @@ export class AppsPostDialogComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private postService: PostService,
 		private snackBar: MatSnackBar,
-		private router: Router
+		private router: Router,
+		private reloadService: ReloadService
 	) { }
 
 	ngOnInit(): void {
@@ -160,9 +162,7 @@ export class AppsPostDialogComponent implements OnInit {
 			if (!this.data.isEdited) {
 				this.postService.post(body).subscribe(res => {
 					this.onClose();
-					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-						this.router.navigate(['']);
-					});
+					this.reloadService.reloadPost(true);
 					this.snackBar.open("Đăng bài thành công", null, {
 						duration: 2000,
 						panelClass: 'success'
@@ -172,13 +172,12 @@ export class AppsPostDialogComponent implements OnInit {
 			else {
 				this.postService.put(this.data.id, bodyPut).subscribe(res => {
 					this.onClose();
-					this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-						this.router.navigate(['']);
-					});
+				
 					this.snackBar.open("Sửa bài thành công", null, {
 						duration: 2000,
 						panelClass: 'success'
 					});
+					this.router.navigateByUrl(this.router.url);
 				});
 			}
 		}

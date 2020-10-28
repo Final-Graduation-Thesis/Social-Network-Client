@@ -32,11 +32,13 @@ import { AppsHeaderComponent } from './component/header/header.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AppsTimeLineView } from './view/timeline/timeline.view';
 import { ReloadService } from 'src/app/service/reload.service';
+import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
 @NgModule({
   declarations: [
     AppComponent,
     AppsHomeViewComponent,
     AppsLoginViewComponent,
+    AppsDetailPostView,
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,
@@ -47,7 +49,6 @@ import { ReloadService } from 'src/app/service/reload.service';
     AppsSearchComponent,
     AppsHeaderComponent,
     AppsTimeLineView,
-    
   ],
   imports: [
     BrowserModule,

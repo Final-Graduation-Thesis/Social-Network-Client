@@ -32,10 +32,10 @@
 			<div class="title"><span class="material-icons">
 					campaign
 				</span><span>{{post.title}}</span></div>
-			<div class="price" *ngIf="post.price"><span class="material-icons">
+			<div class="price" *ngIf="post.typeBusiness == (1 || 3)"><span class="material-icons">
 					local_atm
 				</span><span>{{post.price | vndCurrency}}</span></div>
-				<div class="priceFrom" *ngIf="post.priceFrom"><span class="material-icons">
+				<div class="priceFrom" *ngIf="post.typeBusiness == (2 || 4 || 5)"><span class="material-icons">
 					local_atm
 				</span><span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</span></div>
 			<div class="address"><span class="material-icons">

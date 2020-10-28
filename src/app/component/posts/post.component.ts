@@ -1,6 +1,6 @@
 import {
 	Component, ElementRef, EventEmitter,
-	Input, Output, OnInit, Renderer2, ViewChild, ViewEncapsulation
+	Input, Output, OnInit, Renderer2, ViewChild, ViewEncapsulation, AfterViewInit
 } from '@angular/core';
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { PostService } from '../../service/post.service';
 	styleUrls: ['./post.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AppsPostComponent implements OnInit {
+export class AppsPostComponent implements AfterViewInit {
 
 	@ViewChild('images') images: ElementRef;
 	@Input() post: any;
@@ -30,7 +30,8 @@ export class AppsPostComponent implements OnInit {
 		private dialog: MatDialog
 	) { }
 
-	ngOnInit() {
+	ngAfterViewInit() {
+		console.log(this.post);
 		if (this.post.images) {
 			if (this.post.images.length === 1) {
 				const img = this.renderer.createElement('img');
@@ -74,7 +75,6 @@ export class AppsPostComponent implements OnInit {
 	}
 
 	onEdit(): void {
-		console.log(this.post);
 		const dialogRef = this.dialog.open(AppsPostDialogComponent, {
 			width: '450px',
 			data: {

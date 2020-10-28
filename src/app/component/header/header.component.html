@@ -1,5 +1,5 @@
 <nav mat-tab-nav-bar mat-align-tabs="center" *ngIf="router.url != '/login'">
-	<div class="logo" (click)="onClickIndex()">
+	<div class="logo" (click)="onClickIndex()" [routerLink]="'/'" >
 		<img src="/assets/logo.png" />
 	</div>
 	<div class="center">
