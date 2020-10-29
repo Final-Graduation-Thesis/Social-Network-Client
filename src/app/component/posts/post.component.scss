@@ -94,7 +94,17 @@ apps-post-component {
         margin-right: 5px;
         color: #6fbe44;
     }
-
+    .tag {
+        position: absolute;
+        background-color: rgba(111, 190, 68, 0.70);
+        z-index: 100;
+        width: 90px;
+        margin-top: 94px;
+        margin-left: -73px;
+        text-align: center;
+        font-size: 16px;
+        padding: 6px;
+    }
 }
 
 @media only screen and (max-width: 600px) {

@@ -172,12 +172,11 @@ export class AppsPostDialogComponent implements OnInit {
 			else {
 				this.postService.put(this.data.id, bodyPut).subscribe(res => {
 					this.onClose();
-				
+					this.reloadService.reloadPost(true);
 					this.snackBar.open("Sửa bài thành công", null, {
 						duration: 2000,
 						panelClass: 'success'
 					});
-					this.router.navigateByUrl(this.router.url);
 				});
 			}
 		}

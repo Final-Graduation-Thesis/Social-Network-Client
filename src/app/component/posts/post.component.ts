@@ -31,7 +31,7 @@ export class AppsPostComponent implements AfterViewInit {
 	) { }
 
 	ngAfterViewInit() {
-		console.log(this.post);
+		console.log(this.post.typeBusiness);
 		if (this.post.images) {
 			if (this.post.images.length === 1) {
 				const img = this.renderer.createElement('img');
@@ -96,4 +96,32 @@ export class AppsPostComponent implements AfterViewInit {
 		  });
 	}
 
+	isTypeBS13(post: any) {
+		if (post.typeBusiness === 1 || post.typeBusiness === 3) {
+			return true;
+		}
+		return false;
+	}
+
+	getTypeBusinessStr(): string {
+		switch(this.post.typeBusiness) {
+			case 1:
+				return 'Bán';
+				break;
+			case 2:
+				return 'Cần mua';
+				break;
+			case 3:
+				return 'Cho thuê';
+				break;
+			case 4:
+				return 'Cần thuê';
+				break;
+			case 5:
+				return 'Tìm bạn cùng phòng';
+				break;
+			default:
+				break;
+		}
+	}
 }

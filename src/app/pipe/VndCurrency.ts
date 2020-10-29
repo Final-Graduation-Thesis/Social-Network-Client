@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class VndCurrencyPipe implements PipeTransform {
 	transform(value: number | string): string {
-		value = value.toString();
+		value = value ? value.toString() : '10000';
 		let i: number = 0;
 		let j: number = value.length;
 		let val: string[] = [];
