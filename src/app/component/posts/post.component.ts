@@ -5,6 +5,7 @@ import {
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
+import { LikeService } from 'src/app/service/like.service';
 @Component({
 	selector: 'apps-post-component',
 	templateUrl: './post.component.html',
@@ -23,15 +24,16 @@ export class AppsPostComponent implements AfterViewInit {
 		`https://i.imgur.com/eqhxhmi.jpg`
 	]
 
-
+	liked: boolean = false;
 	constructor(
 		private renderer: Renderer2,
 		private postService: PostService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private likeService: LikeService
 	) { }
 
 	ngAfterViewInit() {
-		console.log(this.post.typeBusiness);
+		this.liked = this.post.liked;
 		if (this.post.images) {
 			if (this.post.images.length === 1) {
 				const img = this.renderer.createElement('img');
@@ -123,5 +125,26 @@ export class AppsPostComponent implements AfterViewInit {
 			default:
 				break;
 		}
+	}
+
+	likePost(): void {
+		let body: any = {
+			"postId": this.post.id
+		};
+		this.likeService.post(body).subscribe(res => {
+			this.liked = true;
+			this.post.totalLike++;
+		});
+	}
+
+	unlikePost(): void {
+		let body: any = {
+			"postId": this.post.id
+		};
+		this.likeService.unlike(body).subscribe(res => {
+			this.liked = false;
+			this.post.liked = false;
+			this.post.totalLike--;
+		});
 	}
 }
