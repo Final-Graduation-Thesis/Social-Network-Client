@@ -1,5 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import {
-	Component, OnInit, ViewEncapsulation
+	Component, EventEmitter, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -11,6 +12,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class AppsSearchComponent implements OnInit {
 
+	@Output('search') searchEmitter: EventEmitter<any> = new EventEmitter();
 	form: FormGroup;
 	typeBusiness: any[] = [
 		{
@@ -91,10 +93,19 @@ export class AppsSearchComponent implements OnInit {
 	}
 
 	search(): void {
-		if (this.form.value.priceMin > this.form.value.priceMax) {
-			console.log('ádasdasd');
+		let form: any = this.form.value;
+		if (form.priceMin > form.priceMax) {
+			alert('Vui lòng nhập lại giá hợp lệ!')
 		} else {
-
+			let body: HttpParams = new HttpParams()
+			.set('typeBusiness', form.typeBusiness.toString())
+			.set('priceFrom', form.priceMin)
+			.set('priceTo', form.priceMax)
+			.set('district', form.district)
+			.set('typeProperty', form.typeProperty)
+			.set('area', form.area);
+			console.log(form.typeBusiness);
+			this.searchEmitter.emit(body);
 		}
 	}
 }

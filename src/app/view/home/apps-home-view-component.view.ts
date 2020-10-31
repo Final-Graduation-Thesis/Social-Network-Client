@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
 import { Router } from '@angular/router';
 import { ReloadService } from 'src/app/service/reload.service';
+import { EventEmitter } from 'protractor';
+import { SearchService } from 'src/app/service/search.service';
 @Component({
 	selector: 'apps-home-view-component',
 	templateUrl: './apps-home-view-component.view.html',
@@ -36,7 +38,8 @@ export class AppsHomeViewComponent implements OnInit {
 		private postService: PostService,
 		public dialog: MatDialog,
 		private ngRenderer: Renderer2,
-		private reloadService: ReloadService
+		private reloadService: ReloadService,
+		private searchService:  SearchService
 	) { }
 
 	ngOnInit() {
@@ -66,5 +69,14 @@ export class AppsHomeViewComponent implements OnInit {
 			this.hasNext = res.hasNext;
 			this.nextLink = res.nextLink;
 		});
+	}
+
+	searchPost(params: any): void {
+		console.log(params);
+		this.searchService.list(this.searchService.url, params).subscribe(res => {
+			this.postData = res.items;
+			this.hasNext = res.hasNext;
+			this.nextLink = res.nextLink;
+		})
 	}
 }

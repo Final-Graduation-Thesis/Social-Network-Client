@@ -1,7 +1,10 @@
 <div class="header">
 	<span></span>
-	<span class="title">
+	<span class="title" *ngIf="!data.isEdited">
 		Tạo bài viết mới
+	</span>
+	<span class="title" *ngIf="data.isEdited">
+		Sửa bài
 	</span>
 	<span class="material-icons" (click)=onClose()>
 		cancel
@@ -58,7 +61,7 @@
 		<mat-form-field>
 			<textarea matInput [ngModel]="data.description" formControlName="description" placeholder="Mô tả"></textarea>
 		</mat-form-field>
-		<mat-form-field>
+		<mat-form-field *ngIf="!data.isEdited">
 			<ngx-mat-file-input formControlName="images" (change)="onFileChanged($event)" [multiple]="true" [accept]="'image/*'" placeholder="Đăng ảnh"></ngx-mat-file-input>
 			<mat-icon ngxMatFileInputIcon>perm_media
 			</mat-icon>
