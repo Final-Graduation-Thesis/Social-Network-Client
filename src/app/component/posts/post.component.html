@@ -2,7 +2,7 @@
 <mat-card>
 	<mat-card-header>
 		<div mat-card-avatar class="avatar">
-			<img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+			<img src="{{post.avatar ? post.avatar : 'https://material.angular.io/assets/img/examples/shiba1.jpg'}}">
 		</div>
 		<div class="username">
 			<mat-card-title>{{post.username}}</mat-card-title>
@@ -12,7 +12,7 @@
 			<mat-icon>more_vert</mat-icon>
 		</button>
 		<mat-menu #menu="matMenu">
-			<button mat-menu-item (click)="onEdit()">
+			<button mat-menu-item (click)="onEdit()" [disabled]="!isOwner">
 				<mat-icon>edit</mat-icon>
 				<span>Sửa</span>
 			</button>
@@ -57,11 +57,12 @@
 	</mat-card-content>
 	<div class="break-line"></div>
 	<div class="statictis">
-		<span class="material-icons">
-			thumb_up_alt
+		<span class="like" [matTooltipClass]="'tooltip-like'" [matTooltip]="likeList" [matTooltipPosition]="'above'" (mouseenter)="showLikeList()">
+			<span class="material-icons">
+				thumb_up_alt
+			</span>
+			<span class="like-amount">{{post.totalLike? post.totalLike : 0}}</span>
 		</span>
-		<span class="like-amount">{{post.totalLike? post.totalLike : 0}}</span>
-
 	</div>
 	<div class="break-line"></div>
 	<div class="btn-group">

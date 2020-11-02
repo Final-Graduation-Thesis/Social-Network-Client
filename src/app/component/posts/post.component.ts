@@ -6,6 +6,7 @@ import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/
 import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
 import { LikeService } from 'src/app/service/like.service';
+
 @Component({
 	selector: 'apps-post-component',
 	templateUrl: './post.component.html',
@@ -23,8 +24,9 @@ export class AppsPostComponent implements AfterViewInit {
 		`https://i.imgur.com/bJiRyI1.jpg`,
 		`https://i.imgur.com/eqhxhmi.jpg`
 	]
-
+	isOwner: boolean;
 	liked: boolean = false;
+	likeList: string;
 	constructor(
 		private renderer: Renderer2,
 		private postService: PostService,
@@ -32,6 +34,9 @@ export class AppsPostComponent implements AfterViewInit {
 		private likeService: LikeService
 	) { }
 
+	ngOnInit() {
+		this.isOwner = parseInt(localStorage.getItem('user_id')) == this.post.userId;
+	}
 	ngAfterViewInit() {
 		this.liked = this.post.liked;
 		if (this.post.images) {
@@ -146,5 +151,14 @@ export class AppsPostComponent implements AfterViewInit {
 			this.post.liked = false;
 			this.post.totalLike--;
 		});
+	}
+
+	showLikeList(): void {
+		this.likeList = 'Chưa có ai like bài viết này';
+		this.likeService.list(null, {postId: this.post.id}).subscribe((res) => {
+			if (res.length !== 0) {
+				this.likeList = res.join('\n');
+			}
+		})
 	}
 }

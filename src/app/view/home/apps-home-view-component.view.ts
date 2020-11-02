@@ -12,6 +12,7 @@ import { SearchService } from 'src/app/service/search.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsHomeViewComponent implements OnInit {
+	@ViewChild('notFound') notFound: ElementRef;
 	@HostListener("window:scroll", [])
 		onWindowScroll() {
 			let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight;
@@ -72,11 +73,16 @@ export class AppsHomeViewComponent implements OnInit {
 	}
 
 	searchPost(params: any): void {
-		console.log(params);
+		this.postData = null;
 		this.searchService.list(this.searchService.url, params).subscribe(res => {
 			this.postData = res.items;
 			this.hasNext = res.hasNext;
 			this.nextLink = res.nextLink;
+			console.log(this.postData);
+			if (res.items.length === 0) {
+				this.notFound.nativeElement.innerHTML = "Không tìm thấy bài viết";
+			}
 		})
+	
 	}
 }

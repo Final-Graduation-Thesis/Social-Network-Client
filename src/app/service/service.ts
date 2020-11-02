@@ -14,7 +14,7 @@ export abstract class BaseService {
 	protected url: string;
 
 	list(urlLink: string = this.url, params: Params = {}, options: Options = {}): Observable<any> {
-		return this.http.get(urlLink, {params: params});
+		return this.http.get(urlLink ? urlLink : this.url, {params: params});
 	}
 
 	get(id: number): Observable<any> {

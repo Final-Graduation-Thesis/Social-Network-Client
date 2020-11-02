@@ -1,3 +1,6 @@
+<div class="overlay" *ngIf="loading">
+	<mat-spinner class="loading" mode="indeterminate"></mat-spinner>
+</div>
 <div class="header">
 	<span></span>
 	<span class="title" *ngIf="!data.isEdited">

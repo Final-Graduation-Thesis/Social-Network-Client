@@ -32,19 +32,19 @@
 		<div class="title">
 			Đăng kí
 		</div>
-		<form class="register-form" (submit)="register()">
+		<form class="register-form" [formGroup]="registerForm" (submit)="register()">
 			<mat-form-field class="">
-				<input type="email" matInput placeholder="Email" required>
+				<input type="email" formControlName="email" matInput placeholder="Email" required>
 			</mat-form-field>
 			<mat-form-field class="">
-				<input matInput placeholder="Tên hiển thị" required>
+				<input matInput formControlName="username" placeholder="Tên hiển thị" required>
 			</mat-form-field>
 			<br>
 			<mat-form-field class="">
 				<input type="password" matInput placeholder="Mật khẩu" required>
 			</mat-form-field>
 			<mat-form-field class="">
-				<input type="password" matInput placeholder="Nhập lại mật khẩu" required>
+				<input type="password" formControlName="password" matInput placeholder="Nhập lại mật khẩu" required>
 			</mat-form-field>
 			<a (click)="toggleLogin()">Đã có tài khoản?</a>
 			<div class="button-group">

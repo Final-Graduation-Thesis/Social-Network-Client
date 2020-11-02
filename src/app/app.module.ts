@@ -33,6 +33,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AppsTimeLineView } from './view/timeline/timeline.view';
 import { ReloadService } from 'src/app/service/reload.service';
 import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,7 @@ import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MaterialFileInputModule,
+    MatTooltipModule
   ],
   entryComponents: [
     AppsPostDialogComponent

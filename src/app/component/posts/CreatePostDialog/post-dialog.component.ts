@@ -80,6 +80,7 @@ export class AppsPostDialogComponent implements OnInit {
 
 
 	]
+	loading: boolean;
 	isPrice: boolean = true;
 	selectedImage: string[]  =  [];
 	constructor(
@@ -119,6 +120,7 @@ export class AppsPostDialogComponent implements OnInit {
 	}
 
 	submit(): void {
+		this.loading = true;
 		let val: any = this.form.value;
 		let body = new FormData();
 		console.log(val.images);
@@ -161,16 +163,18 @@ export class AppsPostDialogComponent implements OnInit {
 		else {
 			if (!this.data.isEdited) {
 				this.postService.post(body).subscribe(res => {
+					this.loading = false;
 					this.onClose();
 					this.reloadService.reloadPost(true);
 					this.snackBar.open("Đăng bài thành công", null, {
 						duration: 2000,
 						panelClass: 'success'
 					});
-				});
+				}, (err) => alert(err));
 			}
 			else {
 				this.postService.put(this.data.id, bodyPut).subscribe(res => {
+					this.loading = false;
 					this.onClose();
 					this.reloadService.reloadPost(true);
 					this.snackBar.open("Sửa bài thành công", null, {

@@ -3,6 +3,7 @@ import { shareReplay, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseService } from './service';
 import * as moment from "moment";
+import { Observable } from 'rxjs';
 
 const URL = '/auth/oauth/token';
 
@@ -26,7 +27,7 @@ export class AuthService extends BaseService {
         form.append('username', email);
         form.append('password', password);
         form.append('scope', 'ui');
-        return this.http.post<any>(this.url, form).pipe(map(res => this.setSession(res)));
+        return this.http.post<any>(this.url, form, { withCredentials: true }).pipe(map(res => this.setSession(res)));
     }
 
     private setSession(authResult) {
@@ -34,12 +35,13 @@ export class AuthService extends BaseService {
 
         localStorage.setItem('access_token', authResult.access_token);
         localStorage.setItem("expires_in", JSON.stringify(expires_in.valueOf()) );
-        console.log(localStorage);
+        localStorage.setItem("user_id", authResult.user_id);
     }          
 
     logout() {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("expires_in");
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('expires_in');
+        localStorage.removeItem('user_id');
     }
 
     public isLoggedIn() {
@@ -55,9 +57,12 @@ export class AuthService extends BaseService {
     }
 
     getExpiration() {
-        const expiration = localStorage.getItem("expires_in");
+        const expiration = localStorage.getItem('expires_in');
         const expiresAt = JSON.parse(expiration);
         return moment(expiresAt);
     }   
-    
+
+    register(body: any): Observable<any> {
+		return this.http.post('/auth/user/register', body);
+	}
 }

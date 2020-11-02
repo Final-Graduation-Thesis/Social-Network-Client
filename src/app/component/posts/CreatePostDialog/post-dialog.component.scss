@@ -36,7 +36,15 @@ apps-post-dialog-component {
             }
         }
     }
-    
+    .overlay {
+        position: absolute;
+        z-index: 9999;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 31.5%;
+        height: 85%;
+        justify-content: center;
+        display: flex;
+    }
 }
 .mat-snack-bar-container  {
     margin-bottom: 160% !important;

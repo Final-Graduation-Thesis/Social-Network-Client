@@ -75,8 +75,13 @@ apps-post-component {
         display: flex;
         align-items: flex-end;
         margin: 6px;
-        .like-amount {
-            padding-bottom: 1px;
+      
+        .like {
+            display: flex;
+            .like-amount {
+                padding-bottom: 1px;
+                margin-top: 3px;
+            }
         }
     }
   
@@ -112,4 +117,8 @@ apps-post-component {
         margin: 8px;
         width: 390px;
     }
+}
+.tooltip-like {
+    white-space: pre-line;
+    font-size: 13px;
 }
