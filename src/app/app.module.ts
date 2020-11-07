@@ -34,7 +34,7 @@ import { AppsTimeLineView } from './view/timeline/timeline.view';
 import { ReloadService } from 'src/app/service/reload.service';
 import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { WebSocketService } from 'src/app/service/websocket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +80,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
-    ReloadService
+    ReloadService,
+    WebSocketService
   ],
   bootstrap: [AppComponent]
 })

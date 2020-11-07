@@ -24,20 +24,24 @@ export class AppsPostComponent implements AfterViewInit {
 		`https://i.imgur.com/bJiRyI1.jpg`,
 		`https://i.imgur.com/eqhxhmi.jpg`
 	]
-	isOwner: boolean;
+	isOwner: boolean = false;
 	liked: boolean = false;
 	likeList: string;
 	constructor(
 		private renderer: Renderer2,
 		private postService: PostService,
 		private dialog: MatDialog,
-		private likeService: LikeService
+		private likeService: LikeService,
 	) { }
 
 	ngOnInit() {
-		this.isOwner = parseInt(localStorage.getItem('user_id')) == this.post.userId;
+	
 	}
+
 	ngAfterViewInit() {
+		setTimeout(() => {
+			this.isOwner = parseInt(localStorage.getItem('user_id')) == this.post.userId;
+		});
 		this.liked = this.post.liked;
 		if (this.post.images) {
 			if (this.post.images.length === 1) {
@@ -104,6 +108,7 @@ export class AppsPostComponent implements AfterViewInit {
 	}
 
 	isTypeBS13(post: any) {
+		if (!post) return;
 		if (post.typeBusiness === 1 || post.typeBusiness === 3) {
 			return true;
 		}

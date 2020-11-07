@@ -12,7 +12,7 @@
 			<mat-icon>more_vert</mat-icon>
 		</button>
 		<mat-menu #menu="matMenu">
-			<button mat-menu-item (click)="onEdit()" [disabled]="!isOwner">
+			<button mat-menu-item (click)="onEdit()" *ngIf="isOwner">
 				<mat-icon>edit</mat-icon>
 				<span>Sửa</span>
 			</button>
@@ -20,7 +20,7 @@
 				<mat-icon>report_problem</mat-icon>
 				<span>Báo cáo bài viết</span>
 			</button>
-			<button mat-menu-item (click)="onDelete()">
+			<button mat-menu-item (click)="onDelete()" *ngIf="isOwner">
 				<mat-icon>delete</mat-icon>
 				<span>Xóa</span>
 			</button>
@@ -46,11 +46,11 @@
 					my_location
 				</span><span>{{post.district}}</span></div>
 		</div>
-		<div class="break-line-small"></div>
+		<div class="break-line-small" *ngIf="post.images.length !== 0"></div>
 		<div class="description">
 			{{post.description}}
 		</div>
-		<div class="images-list">
+		<div class="images-list" *ngIf="post.images.length !== 0">
 			<div #images></div>
 		</div>
 

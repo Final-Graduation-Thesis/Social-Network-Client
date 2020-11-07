@@ -89,11 +89,17 @@ export class AppsPostDialogComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private postService: PostService,
 		private snackBar: MatSnackBar,
-		private router: Router,
 		private reloadService: ReloadService
 	) { }
 
 	ngOnInit(): void {
+		let val = this.data.typeBusiness;
+		if (val === 2 || val === 4 || val === 5) {
+			this.isPrice = false;
+		}
+		else {
+			this.isPrice = true;
+		}
 		this.form = this.formBuilder.group({
 			typeBusiness: ["", Validators.required],
 			title: ["", Validators.required],
@@ -159,6 +165,7 @@ export class AppsPostDialogComponent implements OnInit {
 				duration: 1000,
 				panelClass: 'error'
 			});
+			this.loading = false;
 		}
 		else {
 			if (!this.data.isEdited) {
@@ -170,7 +177,8 @@ export class AppsPostDialogComponent implements OnInit {
 						duration: 2000,
 						panelClass: 'success'
 					});
-				}, (err) => alert(err));
+				}
+				);
 			}
 			else {
 				this.postService.put(this.data.id, bodyPut).subscribe(res => {

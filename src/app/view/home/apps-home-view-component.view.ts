@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ReloadService } from 'src/app/service/reload.service';
 import { EventEmitter } from 'protractor';
 import { SearchService } from 'src/app/service/search.service';
+import { WebSocketService } from 'src/app/service/websocket.service';
 @Component({
 	selector: 'apps-home-view-component',
 	templateUrl: './apps-home-view-component.view.html',
@@ -40,14 +41,29 @@ export class AppsHomeViewComponent implements OnInit {
 		public dialog: MatDialog,
 		private ngRenderer: Renderer2,
 		private reloadService: ReloadService,
-		private searchService:  SearchService
+		private searchService:  SearchService,
+		private webSocketService: WebSocketService
 	) { }
 
+	
 	ngOnInit() {
-		this.postService.list().subscribe(res => {
+		let stompClient = this.webSocketService.connect();
+        stompClient.connect({}, frame => {
+
+			// Subscribe to notification topic
+            stompClient.subscribe('user/queue/notification', notifications => {
+
+				// Update notifications attribute with the recent messsage sent from the server
+                console.log(notifications);
+            })
+        });
+		this.postService.list().subscribe((res) => {
 			this.postData = res.items;
 			this.hasNext = res.hasNext;
 			this.nextLink = res.nextLink;
+		},
+		(err) => {
+			console.log(err);
 		});
 		this.reloadService.onReloadPost().subscribe(isReload => {
 			this.reload();
