@@ -35,6 +35,8 @@ import { ReloadService } from 'src/app/service/reload.service';
 import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { WebSocketService } from 'src/app/service/websocket.service';
+import { MatBadgeModule } from '@angular/material/badge';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,8 @@ import { WebSocketService } from 'src/app/service/websocket.service';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MaterialFileInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBadgeModule
   ],
   entryComponents: [
     AppsPostDialogComponent

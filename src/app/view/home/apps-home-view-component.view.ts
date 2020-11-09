@@ -42,21 +42,10 @@ export class AppsHomeViewComponent implements OnInit {
 		private ngRenderer: Renderer2,
 		private reloadService: ReloadService,
 		private searchService:  SearchService,
-		private webSocketService: WebSocketService
 	) { }
 
 	
 	ngOnInit() {
-		let stompClient = this.webSocketService.connect();
-        stompClient.connect({}, frame => {
-
-			// Subscribe to notification topic
-            stompClient.subscribe('user/queue/notification', notifications => {
-
-				// Update notifications attribute with the recent messsage sent from the server
-                console.log(notifications);
-            })
-        });
 		this.postService.list().subscribe((res) => {
 			this.postData = res.items;
 			this.hasNext = res.hasNext;

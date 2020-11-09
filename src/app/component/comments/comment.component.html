@@ -18,3 +18,4 @@
 		<textarea  #commentInput (keydown.enter)="onEnterComment($event)" matInput placeholder="Bình luận..."></textarea>
 	</mat-form-field>
 </div>
+<div class="more" *ngIf="comment?.hasNext" (click)="loadMore()">Xem thêm bình luận</div>

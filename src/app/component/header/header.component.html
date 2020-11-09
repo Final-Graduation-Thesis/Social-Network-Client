@@ -11,19 +11,17 @@
 		</a>
 	</div>
 	<div class="right-header">
-		<div class="notification-container" [matMenuTriggerFor]="menu">
-			<span class="material-icons">
+		<div class="notification-container" (click)="clearNotiCount()"[matMenuTriggerFor]="menu">
+			<span class="material-icons" [matBadgeHidden]="countNoti == 0" [matBadge]="countNoti" matBadgeColor="warn">
 				notifications
 			</span>
 			<mat-menu class="notification-menu" #menu="matMenu">
-				<div class="notification" *ngFor="let i of [1,2,3,4,5,6,7,8,9,1,12,123,123,13123,123]">
+				<div class="notification" *ngFor="let noti of notifications" (click)="navigatePost(noti.url)">
 					<div class="avatar">
-						<img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+						<img src="{{noti.avatar}}">
 					</div>
 					<div class="info">
-						<div class="content">
-							Nguyễn Văn A đã thích bài viết của bạn
-						</div>
+						<div class="content">{{noti.message}}</div>
 						<div class="time-ago">16 phút trước</div>
 					</div>
 				</div>

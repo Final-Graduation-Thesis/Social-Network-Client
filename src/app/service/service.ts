@@ -17,8 +17,8 @@ export abstract class BaseService {
 		return this.http.get(urlLink ? urlLink : this.url, {params: params});
 	}
 
-	get(id: number): Observable<any> {
-        return this.http.get(this.url + id);
+	get(id: number, params: Params = {}): Observable<any> {
+        return this.http.get(this.url + id, {params: params});
 	}
 
 	post(body: any, options: Options = {}): Observable<any> {

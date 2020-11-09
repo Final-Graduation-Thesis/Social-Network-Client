@@ -22,11 +22,10 @@ export class AppsCommentComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-		this.commentService.get(this.postId).subscribe(res => 
-			{
-				this.commentOfPost = res ? res.items : []
-				this.comment = res ? res : {}
-			});
+		this.commentService.get(this.postId).subscribe(res => {
+			this.commentOfPost = res ? res.items : []
+			this.comment = res ? res : {}
+		});
 	}
 
 	onEnterComment(evt: KeyboardEvent): void {
@@ -40,9 +39,15 @@ export class AppsCommentComponent implements OnInit {
 					this.commentOfPost = res ? res.items : []
 					this.comment = res ? res : {}
 				});});
-		this.commentInput.nativeElement.value="";
+		this.commentInput.nativeElement.value = "";
 		this.commentInput.nativeElement.blur();
-		
 	}
 
+	loadMore(): void {
+		const nextLink = '/social' + this.comment.nextLink;
+		this.commentService.list(nextLink).subscribe(res => {
+			this.commentOfPost = [...this.commentOfPost, ...res.items];
+			this.comment = res ? res : {}
+		});
+	}
 }

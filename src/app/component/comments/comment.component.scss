@@ -2,7 +2,15 @@
 apps-comment-component {
     display: flex;
     flex-direction: column;
-    margin-top: 12px;
+	margin-top: 12px;
+	.more {
+		margin-top: 16px;
+		&:hover {
+			color: #6fbe44;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
     .cmt {
 		display: flex;
 		margin-bottom: 16px;

@@ -23,7 +23,7 @@ const routes: Routes = [
 			component: AppsTimeLineView
 		},
 		{
-			path: 'detail-post/:id',
+			path: 'post/:id',
 			component: AppsDetailPostView
 		}
 ];

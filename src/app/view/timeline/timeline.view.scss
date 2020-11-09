@@ -8,14 +8,36 @@ apps-timeline-view {
 		border-radius: 4px;
     }
     .body {
+        margin-right: 350px;
         display: grid;
         width: 60%;
-        grid-template-columns: 40% 60%;
+        grid-template-columns: 50% 60%;
         >.information {
+            position: sticky;
+            top: 58px;
             background-color: #ffffff;
             border-radius: 4px;
-            height: 400px;
-            margin: 8px;
+            height: 140px;
+            margin: 8px 84px 8px 8px;
+            .intro {
+                margin: 16px;
+                .title {
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                }
+                div {
+                    margin: 6px 0px;
+                    display: flex;
+                    align-items: flex-end;
+                }
+                .material-icons {
+                    color:#9a9a9a;
+                }
+            }
+            .break-line {
+                margin: 8px 0px;
+                border-bottom: 1px solid #eee;
+            }
         }
         .post {
 
