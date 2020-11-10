@@ -22,7 +22,7 @@
 					</div>
 					<div class="info">
 						<div class="content">{{noti.message}}</div>
-						<div class="time-ago">16 phút trước</div>
+						<div class="time-ago">{{noti.createdAt | timeAgo}}</div>
 					</div>
 				</div>
 			</mat-menu>
@@ -34,10 +34,10 @@
 			<mat-menu class="personal-info" #menuPersonal="matMenu">
 				<div class="info">
 					<div class="avatar">
-						<img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+						<img src="user.avatar">
 					</div>
 					<div class="username">
-						Huynh Tan Duy
+						{{user.username}}
 					</div>
 				</div>
 				<div class="break-line"></div>

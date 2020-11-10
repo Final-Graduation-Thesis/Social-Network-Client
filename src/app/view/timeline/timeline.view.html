@@ -6,7 +6,7 @@
         <div class="intro">
             <div class="title">Giới thiệu</div>
             <div class="break-line"></div>
-            <div class="sex"><span class="material-icons">person</span> Giới tính: </div>
+            <div class="sex"><span class="material-icons">person</span> Giới tính: {{user.gender}}</div>
             <div class="hometown"><span class="material-icons">home_work</span>Quê quán: </div>
             <div class="address"><span class="material-icons">location_city</span>Tỉnh, thành phố hiện tại: </div>
         </div>
@@ -21,7 +21,7 @@
             </apps-post-component>
         </ng-container>
         <div class="not-found" *ngIf="!hasNext">
-            Đã hết bài viết mới, vui lòng &nbsp;<a href="#" (click)="reload()">tải lại trang </a>
+            Đã hết bài viết mới, vui lòng &nbsp;<a href="#">tải lại trang </a>
         </div>
     </div>
 </div>

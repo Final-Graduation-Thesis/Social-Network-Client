@@ -129,7 +129,6 @@ export class AppsPostDialogComponent implements OnInit {
 		this.loading = true;
 		let val: any = this.form.value;
 		let body = new FormData();
-		console.log(val.images);
 		for  (var i =  0; i <  this.selectedImage.length; i++)  {  
 			body.append("images",  this.selectedImage[i]);
 		} 

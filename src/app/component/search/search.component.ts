@@ -104,7 +104,6 @@ export class AppsSearchComponent implements OnInit {
 			.set('district', form.district)
 			.set('typeProperty', form.typeProperty)
 			.set('area', form.area);
-			console.log(form.typeBusiness);
 			this.searchEmitter.emit(body);
 		}
 	}

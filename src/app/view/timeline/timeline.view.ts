@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/cor
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
 	selector: 'apps-timeline-view',
@@ -20,13 +21,16 @@ export class AppsTimeLineView implements OnInit {
 	}
 	hasNext: boolean = true;
 	postData: any;
+	user: any;
 	constructor(
 		private router: Router,
 		private postService: PostService,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private userService: UserService
 	) { }
 
 	ngOnInit() {
+		this.user = this.userService.getInfo(); // TODO
 		this.postService.list().subscribe(res => {this.postData = res.items;});
 	}
 

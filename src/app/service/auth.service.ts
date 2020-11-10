@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseService } from './service';
 import * as moment from "moment";
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 const URL = '/auth/oauth/token';
 
@@ -13,7 +14,8 @@ const URL = '/auth/oauth/token';
 export class AuthService extends BaseService {
     protected url: string = URL;
     constructor(
-        protected http: HttpClient
+        protected http: HttpClient,
+        private userService: UserService
     ) {
         super();
     }
@@ -31,11 +33,14 @@ export class AuthService extends BaseService {
     }
 
     private setSession(authResult) {
-        const expires_in = moment().add(authResult.expires_in,'second');
 
+        const expires_in = moment().add(authResult.expires_in,'second');
         localStorage.setItem('access_token', authResult.access_token);
         localStorage.setItem("expires_in", JSON.stringify(expires_in.valueOf()) );
         localStorage.setItem("user_id", authResult.user_id);
+        this.userService.get(parseInt(localStorage.getItem('user_id'))).subscribe(res => {
+            this.userService.setSession(res);
+		});
     }          
 
     logout() {

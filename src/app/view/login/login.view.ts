@@ -33,7 +33,6 @@ export class AppsLoginViewComponent implements OnInit {
 		)
 	}
 	login(): void {
-		console.log(this.loginForm.value);
 		this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res => {
 			this.router.navigateByUrl('/');
 		});

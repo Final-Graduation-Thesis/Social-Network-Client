@@ -52,7 +52,6 @@ export class AppsHomeViewComponent implements OnInit {
 			this.nextLink = res.nextLink;
 		},
 		(err) => {
-			console.log(err);
 		});
 		this.reloadService.onReloadPost().subscribe(isReload => {
 			this.reload();
@@ -83,7 +82,6 @@ export class AppsHomeViewComponent implements OnInit {
 			this.postData = res.items;
 			this.hasNext = res.hasNext;
 			this.nextLink = res.nextLink;
-			console.log(this.postData);
 			if (res.items.length === 0) {
 				this.notFound.nativeElement.innerHTML = "Không tìm thấy bài viết";
 			}
