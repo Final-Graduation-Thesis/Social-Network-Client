@@ -6,6 +6,7 @@ import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/
 import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
 import { LikeService } from 'src/app/service/like.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'apps-post-component',
@@ -32,6 +33,7 @@ export class AppsPostComponent implements AfterViewInit {
 		private postService: PostService,
 		private dialog: MatDialog,
 		private likeService: LikeService,
+		private router: Router
 	) { }
 
 	ngOnInit() {
@@ -165,5 +167,9 @@ export class AppsPostComponent implements AfterViewInit {
 				this.likeList = res.join('\n');
 			}
 		})
+	}
+
+	directToTimeline(): void {
+		this.router.navigateByUrl(`timeline/${this.post.userId}`);
 	}
 }

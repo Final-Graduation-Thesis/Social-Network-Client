@@ -74,4 +74,8 @@ export class AppsHeaderComponent {
 	clearNotiCount(): void {
 		this.countNoti = 0;
 	}
+
+	directToTimeline(): void {
+		this.router.navigateByUrl(`timeline/${localStorage.getItem('user_id')}`);
+	}
 }

@@ -82,6 +82,10 @@ header {
             font-weight: 500;
             font-size: 18px;
             text-align: center;
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
         }
     }
     .break-line {

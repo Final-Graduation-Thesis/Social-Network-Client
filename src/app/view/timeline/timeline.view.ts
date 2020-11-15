@@ -1,7 +1,10 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
+import { ReloadService } from 'src/app/service/reload.service';
+import { SearchService } from 'src/app/service/search.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -22,19 +25,41 @@ export class AppsTimeLineView implements OnInit {
 	hasNext: boolean = true;
 	postData: any;
 	user: any;
+	nextLink: string;
+	userId: string;
 	constructor(
-		private router: Router,
-		private postService: PostService,
+		private searchService: SearchService,
 		public dialog: MatDialog,
-		private userService: UserService
+		private userService: UserService,
+		private activatedRoute: ActivatedRoute,
+		private reloadService: ReloadService
 	) { }
 
 	ngOnInit() {
-		this.user = this.userService.getInfo(); // TODO
-		this.postService.list().subscribe(res => {this.postData = res.items;});
+		this.activatedRoute.paramMap.subscribe(params => {
+			this.userService.get(parseInt(params.get('id'))).subscribe(res => {
+				this.user = res;
+			})
+		});
+		this.reload();
+		this.reloadService.onReloadPost().subscribe(isReload => {
+			this.reload();
+		})
+	}
+
+	reload(): void {
+		this.activatedRoute.paramMap.subscribe(params => {
+			let body: HttpParams = new HttpParams()
+			.set('userId', params.get('id'));
+			this.searchService.list(this.searchService.url, body).subscribe(res => {
+				this.postData = res.items;
+				this.hasNext = res.hasNext;
+				this.nextLink = res.nextLink;
+			})
+		});
 	}
 
 	onUpdatePostData() {
-		this.postService.list().subscribe(res => this.postData = res.items);
+		this.reload();
 	}
 }

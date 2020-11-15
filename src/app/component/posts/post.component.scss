@@ -10,6 +10,14 @@ apps-post-component {
             border-radius: 50%;
         }
     }
+    .username {
+        mat-card-title {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
     .mat-card-subtitle {
         font-size: 12px;
     }

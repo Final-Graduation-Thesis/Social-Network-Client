@@ -40,7 +40,10 @@ apps-timeline-view {
             }
         }
         .post {
-
+            .not-found {
+                display: flex;
+                justify-content: center;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
 			<img src="{{post.avatar ? post.avatar : 'https://material.angular.io/assets/img/examples/shiba1.jpg'}}">
 		</div>
 		<div class="username">
-			<mat-card-title>{{post.username}}</mat-card-title>
+			<mat-card-title (click)="directToTimeline()">{{post.username}}</mat-card-title>
 			<mat-card-subtitle>{{post.createdAt | timeAgo}}</mat-card-subtitle>
 		</div>
 		<button class="more" mat-icon-button [matMenuTriggerFor]="menu">

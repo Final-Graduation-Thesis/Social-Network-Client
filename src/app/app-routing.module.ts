@@ -19,7 +19,7 @@ const routes: Routes = [
 			component: AppsLoginViewComponent
 		},
 		{
-			path: 'timeline',
+			path: 'timeline/:id',
 			component: AppsTimeLineView
 		},
 		{
