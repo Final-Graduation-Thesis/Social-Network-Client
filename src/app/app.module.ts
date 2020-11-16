@@ -36,7 +36,8 @@ import { AppsDetailPostView } from 'src/app/view/detail-post/detail-post.view';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { WebSocketService } from 'src/app/service/websocket.service';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import { PubNubAngular } from 'pubnub-angular2';
+import { AppsChatView } from 'src/app/view/chat/chat.view';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     AppsSearchComponent,
     AppsHeaderComponent,
     AppsTimeLineView,
+    AppsChatView
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { MatBadgeModule } from '@angular/material/badge';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     ReloadService,
-    WebSocketService
+    WebSocketService,
+    PubNubAngular
   ],
   bootstrap: [AppComponent]
 })
