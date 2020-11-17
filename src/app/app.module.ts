@@ -38,6 +38,8 @@ import { WebSocketService } from 'src/app/service/websocket.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { PubNubAngular } from 'pubnub-angular2';
 import { AppsChatView } from 'src/app/view/chat/chat.view';
+import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
+import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,8 @@ import { AppsChatView } from 'src/app/view/chat/chat.view';
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,
+    AppsChatPanelComponent,
+    AppsChatDialogComponent,
     VndCurrencyPipe,
     AppsButtonComponent,
     AppsNewPostPanelComponent,
@@ -80,7 +84,8 @@ import { AppsChatView } from 'src/app/view/chat/chat.view';
     MatBadgeModule
   ],
   entryComponents: [
-    AppsPostDialogComponent
+    AppsPostDialogComponent,
+    AppsChatDialogComponent
   ],
 
   providers: [

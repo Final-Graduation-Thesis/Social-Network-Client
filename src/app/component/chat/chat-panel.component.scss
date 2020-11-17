@@ -1,0 +1,20 @@
+apps-chat-panel-component {
+    margin: 8px 12px 8px 12px;
+    background-color: #fff;
+	height: 400px;
+    position: sticky;
+    top: 58px;
+    border-radius: 10px;
+    width: 75%;
+    margin-left: auto;
+    .header {
+        padding: 16px;
+        .title {
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+    .break-line {
+        border-bottom: 1px solid #eee;
+    }
+}
