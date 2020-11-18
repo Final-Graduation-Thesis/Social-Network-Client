@@ -1,5 +1,5 @@
 import {
-	Component, EventEmitter, OnInit, Output, ViewEncapsulation
+	Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -9,7 +9,13 @@ import {
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsChatDialogComponent implements OnInit {
+	@Input('data') data: any;
+
     ngOnInit(): void {
-        
-    }
+        console.log(this.data);
+	}
+
+	close(): void {
+		
+	}
 }

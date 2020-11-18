@@ -2,6 +2,7 @@ import {
 	Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
 import { AppsChatDialogComponent } from './chat-dialog/chat-dialog.component';
+import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 
 @Component({
 	selector: 'apps-chat-panel-component',
@@ -11,9 +12,7 @@ import { AppsChatDialogComponent } from './chat-dialog/chat-dialog.component';
 })
 export class AppsChatPanelComponent implements OnInit {
 
-    @ViewChild("chatDialog", { read: ViewContainerRef}) viewContainerRef: ViewContainerRef;
     constructor(
-        private componentFactory: ComponentFactoryResolver
     ) {
     }
     ngOnInit(): void {
@@ -21,7 +20,8 @@ export class AppsChatPanelComponent implements OnInit {
     }
 
     openChatDialog(): void {
-        const componentFactory = this.componentFactory.resolveComponentFactory(AppsChatDialogComponent)
-        const componentRef = this.viewContainerRef.createComponent(componentFactory);
+        let outlet = AppsChatOutletComponent.instance;
+        let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
+        chatDialog.data = 'abcd';
     }
 }

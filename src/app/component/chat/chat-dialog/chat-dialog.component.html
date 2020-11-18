@@ -1,1 +1,14 @@
-<div>asdasdasdasdasdasdasd</div>
+<div class="chat-dialog">
+    <div class="header">
+        <span class="username">Huynh Phuong Duy</span>
+        <span class="close" (click)="close()"><span class="material-icons"> cancel </span></span>
+    </div>
+    <div class="content">
+
+    </div>
+    <div class="footer">
+        <mat-form-field  class="comment-content">
+            <textarea  #commentInput (keydown.enter)="onEnterComment($event)" matInput placeholder="Bình luận..."></textarea>
+        </mat-form-field>
+    </div>
+</div>

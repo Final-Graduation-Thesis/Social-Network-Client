@@ -40,6 +40,7 @@ import { PubNubAngular } from 'pubnub-angular2';
 import { AppsChatView } from 'src/app/view/chat/chat.view';
 import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
 import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat-dialog.component';
+import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat
     AppsSearchComponent,
     AppsHeaderComponent,
     AppsTimeLineView,
-    AppsChatView
+    AppsChatView,
+    AppsChatOutletComponent
   ],
   imports: [
     BrowserModule,

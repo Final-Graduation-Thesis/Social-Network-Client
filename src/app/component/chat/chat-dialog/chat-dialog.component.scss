@@ -1,10 +1,60 @@
 apps-chat-dialog-component {
     margin: 8px 12px 8px 12px;
     background-color: #fff;
-	height: 400px;
     position: sticky;
     top: 58px;
     border-radius: 10px;
-    width: 75%;
     margin-left: auto;
+    .chat-dialog {
+        height: 380px;
+        width: 300px;
+        .header {
+            height: 35px;
+            background: #6fbe44;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .username {
+                margin-left: 20px;
+                font-weight: 500;
+            }
+            .close {
+                color: #ecf7e7;
+                margin-right: 12px;
+                margin-top: 5px;
+                &:hover {
+                    cursor: pointer;
+                    color: #ffffff;
+                }
+            }
+        }
+        .content {
+            height: 285px;
+        }
+        .footer {
+            .comment-content {
+                background-color: #f5f5f5;
+                margin-left: 20px;
+                width: 100%;
+                .mat-form-field-wrapper {
+                    border: 1px solid #eee;
+                    border-radius: 10px;
+                    padding-bottom: 0 !important;
+                    .mat-form-field-infix {
+                        padding-left: 12px;
+                        .mat-form-field-label-wrapper {
+                            margin-left: 12px;
+                        }
+                    }
+                    .mat-form-field-underline {
+                        height: 0;
+                        .mat-form-field-ripple {
+                            height: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
