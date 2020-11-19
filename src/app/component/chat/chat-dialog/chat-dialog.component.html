@@ -4,11 +4,17 @@
         <span class="close" (click)="close()"><span class="material-icons"> cancel </span></span>
     </div>
     <div class="content">
-
+        <div *ngFor="let item of data1">
+            <div class="user-1" *ngIf="!item.owner">
+                <img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+                <div class="message-1">{{item.message}}</div>
+            </div>
+            <div class="message-2" *ngIf="item.owner">{{item.message}}</div>
+        </div>
     </div>
+    <div class="break-line"></div>
     <div class="footer">
-        <mat-form-field  class="comment-content">
-            <textarea  #commentInput (keydown.enter)="onEnterComment($event)" matInput placeholder="Bình luận..."></textarea>
-        </mat-form-field>
+        <input class="chat-input" (keydown.enter)="onEnterMessage($event)" placeholder="Trả lời">
+        <span class="material-icons send-icon">send</span>
     </div>
 </div>

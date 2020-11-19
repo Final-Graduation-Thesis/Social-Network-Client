@@ -11,11 +11,29 @@ import {
 export class AppsChatDialogComponent implements OnInit {
 	@Input('data') data: any;
 
+	data1 = [
+		{
+			message: 'Xin chào các bạn',
+			owner: false
+		},
+		{
+			message: 'Chào mn',
+			owner: true
+		},
+		{
+			message: 'Xin chào các bạn2',
+			owner: false
+		},
+	]
     ngOnInit(): void {
         console.log(this.data);
 	}
 
 	close(): void {
 		
+	}
+
+	onEnterMessage(evt: KeyboardEvent): void {
+		console.log('ád');
 	}
 }

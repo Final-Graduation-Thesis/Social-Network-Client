@@ -8,16 +8,22 @@ apps-chat-dialog-component {
     .chat-dialog {
         height: 380px;
         width: 300px;
+        border: 1px solid #cccccc;
+        border-radius: 10px 10px 0 0;
         .header {
             height: 35px;
             background: #6fbe44;
-            border-radius: 10px 10px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 6px 6px 0 0;
             .username {
                 margin-left: 20px;
                 font-weight: 500;
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
             }
             .close {
                 color: #ecf7e7;
@@ -31,29 +37,54 @@ apps-chat-dialog-component {
         }
         .content {
             height: 285px;
+            overflow-y: auto;
+            .user-1 {
+                padding: 8px;
+                display: flex;
+                align-items: center;
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+            }
+            .message-1, .message-2 {
+                margin: 6px;
+                border-radius: 10px;
+                padding: 6px 12px;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                word-break: break-word;
+                background: #cccccc;
+            }
+            .message-2 {
+                margin-left: auto !important;
+                background: #adda95;
+            }
+        }
+        .break-line {
+            border-bottom: 1px solid #cccccc;
         }
         .footer {
-            .comment-content {
-                background-color: #f5f5f5;
-                margin-left: 20px;
-                width: 100%;
-                .mat-form-field-wrapper {
-                    border: 1px solid #eee;
-                    border-radius: 10px;
-                    padding-bottom: 0 !important;
-                    .mat-form-field-infix {
-                        padding-left: 12px;
-                        .mat-form-field-label-wrapper {
-                            margin-left: 12px;
-                        }
-                    }
-                    .mat-form-field-underline {
-                        height: 0;
-                        .mat-form-field-ripple {
-                            height: 0;
-                        }
-                    }
+            margin: 7px;
+            display: flex;
+            align-items: center;
+            height: 47px;
+            .chat-input {
+                border-radius: 10px;
+                border: 1px solid #cccccc;
+                width: 214px;
+                height: 30px;
+                padding: 4px 6px;
+                &:focus {
+                    outline: none;
                 }
+            }
+            .send-icon {
+                margin-left: 12px;
+                font-size: 35px;
+                color: #6FBE44;
             }
         }
     }
