@@ -33,7 +33,6 @@ export class AppsChatOutletComponent implements OnInit {
             this.components.pop();
             componentRef.destroy();
         }
-        console.log(this.components);
         return componentRef.instance;
     }
 }

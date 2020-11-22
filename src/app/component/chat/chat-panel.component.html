@@ -4,4 +4,9 @@
     </div>
 </div>
 <div class="break-line"></div>
-<button (click)="openChatDialog()">Huynh Duy</button>
+<div class="list-friend">
+    <div class="user" (click)="openChatDialog(user)" *ngFor="let user of userList">
+        <img src="{{user.avatar}}">
+        <div class="message-1">{{user.username}}</div>
+    </div>
+</div>

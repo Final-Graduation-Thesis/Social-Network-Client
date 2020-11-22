@@ -1,6 +1,8 @@
 import {
-	Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation
+	AfterViewInit,
+	Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, ViewChild, ViewEncapsulation
 } from '@angular/core';
+import { PubNubAngular } from 'pubnub-angular2';
 
 @Component({
 	selector: 'apps-chat-dialog-component',
@@ -8,25 +10,68 @@ import {
 	styleUrls: ['./chat-dialog.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AppsChatDialogComponent implements OnInit {
+export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 	@Input('data') data: any;
+	@Input('pubnub') pubnub: any;
+	channel: string;
+	@ViewChild('chatInput') chatInput: ElementRef;
+	@ViewChild('chatContent') chatContent: ElementRef;
+	messageData: any;
+	@Output('emitMessage') emitMessage: EventEmitter<any> =  new EventEmitter();
+	constructor(private pubnubAngular: PubNubAngular) {
 
-	data1 = [
-		{
-			message: 'Xin chào các bạn',
-			owner: false
-		},
-		{
-			message: 'Chào mn',
-			owner: true
-		},
-		{
-			message: 'Xin chào các bạn2',
-			owner: false
-		},
-	]
+	}
+	
     ngOnInit(): void {
-        console.log(this.data);
+		this.data.id = this.data.id.toString();
+		if (parseInt(localStorage.getItem('user_id')) > this.data.id) {
+			this.channel = `${localStorage.getItem('user_id')}-${this.data.id}`;
+		} else {
+			this.channel = `${this.data.id}-${localStorage.getItem('user_id')}`;
+		}
+		this.pubnub = this.pubnubAngular;
+		this.pubnub.init({
+            publishKey: 'pub-c-4c9e5d81-e20a-471b-81fa-c584d1495f4e',
+			subscribeKey: 'sub-c-5d6453ac-281f-11eb-8c1e-e6d4bf858fd7',
+			keepAlive: true
+		});   
+		this.pubnub.addListener({
+			status: function(st) {
+				if (st.category === "PNUnknownCategory") {
+					var newState = {
+						new: 'error'
+					};
+					this.pubnub.setState({
+						state: newState
+					},
+					function (status) {
+						console.log(st.errorData.message);
+					});
+				}
+			},
+			message: function(message) {
+				console.log(message);
+			}
+		});
+		this.pubnub.history(
+            {
+                channel: this.channel,
+                count: 30, // 100 is the default
+                stringifiedTimeToken: true // false is the default
+            },
+			(status, response) => {
+				setTimeout(() => {
+					this.messageData = response.messages;
+				}, 100)
+            }
+		);
+		setTimeout(() => {
+			this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
+		}, 500);
+	
+	}
+	ngAfterViewInit(): void {
+		
 	}
 
 	close(): void {
@@ -34,6 +79,25 @@ export class AppsChatDialogComponent implements OnInit {
 	}
 
 	onEnterMessage(evt: KeyboardEvent): void {
-		console.log('ád');
+		let hw = {
+			"from": localStorage.getItem('user_id'),
+			"message": this.chatInput.nativeElement.value,
+			"time": Date.now()
+		}
+		this.pubnub.publish({
+			channel: this.channel,
+			message: hw
+		});
+		let entry: any = {
+			"entry": {
+				'from': localStorage.getItem('user_id'),
+				'message': this.chatInput.nativeElement.value,
+				'time': Date.now()
+			}
+		}
+		this.messageData.push(entry);
+		setTimeout(() => {
+			this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
+		}, 100);
 	}
 }

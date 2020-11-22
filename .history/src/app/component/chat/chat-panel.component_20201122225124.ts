@@ -59,9 +59,11 @@ export class AppsChatPanelComponent implements OnInit {
                         id: parseInt(from),
                         username: 'Huynh Duy'
                     }
-                    this.a.userService.get(parseInt(from)).subscribe((res) => {
-                        this.a.openChatDialog(res);
-                    })
+                    console.log(this.a.openChatDialog);
+                    let outlet = AppsChatOutletComponent.instance;
+                    console.log(outlet);
+                    let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
+                    chatDialog.data = user;
             }, 100)
             },
             a: this

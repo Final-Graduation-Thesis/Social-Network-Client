@@ -16,7 +16,6 @@ export class AppsChatPanelComponent implements OnInit {
 
     pubnub: PubNubAngular
     userList: any = [];
-    from: any[] = [];
     constructor(
         private userService: UserService,
         private pubnubAngular: PubNubAngular
@@ -51,20 +50,11 @@ export class AppsChatPanelComponent implements OnInit {
                     let from = message.message.from;
                     console.log(message);
                     console.log(from);
-                    this.a.from.push(from);
-                    // this.userService.get(parseInt(from)).subscribe((res) => {
-                    //     this.openChatDialog(res)
-                    // })
-                    let user: any = {
-                        id: parseInt(from),
-                        username: 'Huynh Duy'
-                    }
-                    this.a.userService.get(parseInt(from)).subscribe((res) => {
-                        this.a.openChatDialog(res);
+                    this.userService.get(parseInt(from)).subscribe((res) => {
+                        this.openChatDialog(res)
                     })
             }, 100)
-            },
-            a: this
+            }
         });
         setTimeout(() => {
             this.pubnub.subscribe({
