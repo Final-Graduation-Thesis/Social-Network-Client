@@ -1,6 +1,6 @@
 import {
 	AfterViewInit,
-	Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, ViewChild, ViewEncapsulation
+	Component, ComponentRef, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { PubNubAngular } from 'pubnub-angular2';
 
@@ -11,6 +11,8 @@ import { PubNubAngular } from 'pubnub-angular2';
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsChatDialogComponent implements OnInit, AfterViewInit {
+
+	componentRef: ComponentRef<AppsChatDialogComponent>;
 	@Input('data') data: any;
 	@Input('pubnub') pubnub: any;
 	channel: string;
@@ -18,6 +20,8 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 	@ViewChild('chatContent') chatContent: ElementRef;
 	messageData: any;
 	@Output('emitMessage') emitMessage: EventEmitter<any> =  new EventEmitter();
+	@Output('hideChatEmiiter') hideChatEmitter: EventEmitter<any> = new EventEmitter();
+
 	constructor(private pubnubAngular: PubNubAngular) {
 
 	}
@@ -35,24 +39,6 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 			subscribeKey: 'sub-c-5d6453ac-281f-11eb-8c1e-e6d4bf858fd7',
 			keepAlive: true
 		});   
-		this.pubnub.addListener({
-			status: function(st) {
-				if (st.category === "PNUnknownCategory") {
-					var newState = {
-						new: 'error'
-					};
-					this.pubnub.setState({
-						state: newState
-					},
-					function (status) {
-						console.log(st.errorData.message);
-					});
-				}
-			},
-			message: function(message) {
-				console.log(message);
-			}
-		});
 		this.pubnub.history(
             {
                 channel: this.channel,
@@ -75,7 +61,7 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 	}
 
 	close(): void {
-		
+		this.hideChatEmitter.emit(this);
 	}
 
 	onEnterMessage(evt: KeyboardEvent): void {
