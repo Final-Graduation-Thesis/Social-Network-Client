@@ -82,6 +82,8 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 			}
 		}
 		this.messageData.push(entry);
+		this.chatInput.nativeElement.value = "";
+		this.chatInput.nativeElement.blur();
 		setTimeout(() => {
 			this.chatContent.nativeElement.scrollTop = this.chatContent.nativeElement.scrollHeight;
 		}, 100);

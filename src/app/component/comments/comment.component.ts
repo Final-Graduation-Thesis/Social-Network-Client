@@ -14,6 +14,7 @@ export class AppsCommentComponent implements OnInit {
 	@Input() postId: number;
 	commentOfPost: any;
 	comment: any;
+	avatar: string;
 	photosList = `https://i.imgur.com/nXgEtSy.jpg`;
 	@ViewChild('commentInput') commentInput: ElementRef;
 	constructor(
@@ -22,6 +23,7 @@ export class AppsCommentComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
+		this.avatar = localStorage.getItem('avatar');
 		this.commentService.get(this.postId).subscribe(res => {
 			this.commentOfPost = res ? res.items : []
 			this.comment = res ? res : {}

@@ -8,6 +8,7 @@ import { AppsChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 import { UserService } from 'src/app/service/user.service';
 import { PubNubAngular } from 'pubnub-angular2';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
 	selector: 'apps-chat-panel-component',
@@ -70,9 +71,8 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
                         setTimeout(() => {
                             let from = message.message.from;
                             this.a.from.push(from);
-                            console.log(this.a.chatDialogs);
                             this.a.userService.get(parseInt(from)).subscribe((res) => {
-                                this.a.openChatDialog(res);
+                                this.a.openChatDialog(res, message.message);
                             })
                     }, 100)
                     },
@@ -93,11 +93,41 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         
     }
-    openChatDialog(user: any): void {
+
+    openChatDialog(user: any, message?: any): void {
         let outlet = AppsChatOutletComponent.instance;
-        let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
-        this.chatDialogs.push(chatDialog);
-        chatDialog.instance.data = user;
-        chatDialog.instance.pubnub = this.pubnub;
+        let isCreateDialog: boolean = true;
+        let elementId: number;
+        outlet.components.some((component, index) => {
+            if (parseInt(component.instance.data.id) === parseInt(user.id)) {
+                elementId = index;
+                isCreateDialog = false
+                return true;
+            }
+        })
+        if (isCreateDialog) {
+            let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
+            chatDialog.instance.data = user;
+            chatDialog.instance.pubnub = this.pubnub;
+            console.log('open chat')
+        } else {
+            console.log(elementId);
+            console.log('continue chat');
+            if (typeof (elementId) != undefined) {
+                console.log(outlet.components[elementId].instance.messageData);
+                let entry: any = {
+                    "entry": {
+                        'from': user.id.toString(),
+                        'message': message.message,
+                        'time': Date.now()
+                    }
+                }
+                outlet.components[elementId].instance.messageData.push(entry);
+                setTimeout(() => {
+                    outlet.components[elementId].instance.chatContent.nativeElement.scrollTop =
+                     outlet.components[elementId].instance.chatContent.nativeElement.scrollHeight;
+                }, 100);
+            }
+        }
     }
 }
