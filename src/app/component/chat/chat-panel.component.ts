@@ -8,7 +8,6 @@ import { AppsChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 import { UserService } from 'src/app/service/user.service';
 import { PubNubAngular } from 'pubnub-angular2';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
 	selector: 'apps-chat-panel-component',
@@ -72,7 +71,9 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
                             let from = message.message.from;
                             this.a.from.push(from);
                             this.a.userService.get(parseInt(from)).subscribe((res) => {
-                                this.a.openChatDialog(res, message.message);
+                                if (parseInt(localStorage.getItem('user_id')) !==  parseInt(from)) {
+                                    this.a.openChatDialog(res, message.message);
+                                }
                             })
                     }, 100)
                     },
