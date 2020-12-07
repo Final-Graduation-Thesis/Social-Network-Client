@@ -6,6 +6,7 @@ import { AppsLoginViewComponent } from './view/login/login.view';
 import { AppsTimeLineView } from './view/timeline/timeline.view';
 import { AppsDetailPostView } from './view/detail-post/detail-post.view';
 import { AppsChatView } from 'src/app/view/chat/chat.view';
+import { AppsMapView } from 'src/app/view/map/map.view';
 
 const routes: Routes = [
 		{
@@ -31,6 +32,10 @@ const routes: Routes = [
 		{
 			path: 'chat',
 			component: AppsChatView
+		},
+		{
+			path: 'map',
+			component: AppsMapView
 		}
 ];
 

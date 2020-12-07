@@ -29,7 +29,6 @@ export class AppsChatOutletComponent implements OnInit {
             this.componentFactoryResolver.resolveComponentFactory(componentType), 0);
         this.components.push(componentRef);
         this.channels.push(componentRef.instance.channel);
-        console.log(this.channels);
         if (componentRef.instance.channel in this.channels) {
             this.removeChatDialog(this.components[this.components.length - 1]);
         }

@@ -1,0 +1,58 @@
+apps-map-view {
+    display: flex;
+    flex-direction: row;
+    background-color: #cccccc;
+    .utility {
+        width: 380px;
+        height: 607px;
+        background-color: #ffffff;
+        margin-right: 20px;
+        .map-tool {
+            height: 135px;
+            apps-button-component {
+                button {
+                    margin: 12px;
+                }
+            }
+            mat-form-field {
+                margin: 4px;
+            }
+        }
+        .post-list {
+            overflow-y: auto;
+            height: 471px;
+            .post {
+                height: 110px;
+                display: flex;
+                flex-direction: row;
+                .info {
+                    align-self: center;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .price, .title, .address, .district {
+                    display: flex;
+                    align-items: center;
+                }
+                .material-icons {
+                    margin-right: 5px;
+                    color: #6fbe44;
+                    font-size: 23px;
+                }
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 70%;
+                    margin: 3px 6px;
+                }
+            }
+        }
+    }
+    .break-line {
+        border-bottom: 1px solid #eee;
+    }
+    .map {
+        height: 606px;
+        width: 71%;
+       }
+}

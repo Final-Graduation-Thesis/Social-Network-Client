@@ -1,7 +1,7 @@
 import {
     AfterContentInit,
     AfterViewChecked,
-    AfterViewInit,
+    OnDestroy,
 	Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
 import { AppsChatDialogComponent } from './chat-dialog/chat-dialog.component';
@@ -15,7 +15,7 @@ import { PubNubAngular } from 'pubnub-angular2';
 	styleUrls: ['./chat-panel.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AppsChatPanelComponent implements OnInit, AfterViewInit {
+export class AppsChatPanelComponent implements OnInit, OnDestroy {
 
     pubnub: PubNubAngular
     userList: any = [];
@@ -33,10 +33,37 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
         this.pubnub.init({
             publishKey: 'sub-c-f8e414e0-27dc-11eb-8221-521a7107d7f7',
             subscribeKey: 'sub-c-5d6453ac-281f-11eb-8c1e-e6d4bf858fd7',
+            uuid: localStorage.getItem('user_id')
         });  
+        this.pubnub.addListener({
+            status: function(st) {
+                if (st.category === "PNUnknownCategory") {
+                    var newState = {
+                        new: 'error'
+                    };
+                    this.pubnub.setState({
+                        state: newState
+                    },
+                    function (status) {
+                        console.log(st.errorData.message);
+                    });
+                }
+            },
+            message: function(message) {
+                let from = message.message.from;
+                console.log(message);
+                this.a.userService.get(parseInt(from)).subscribe((res) => {
+                    if (parseInt(localStorage.getItem('user_id')) !==  parseInt(from)) {
+                        this.a.openChatDialog(res, message.message);
+                    }
+                })
+            },
+            a: this
+        });
         this.userService.list().subscribe({
             next: (res) => {
                 this.userList = res;
+                this.channels = [];
                 res.forEach(user => {
                     let channel: string;
                     if (parseInt(localStorage.getItem('user_id')) > user.id) {
@@ -51,35 +78,9 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
                 console.log(error);
             },
             complete: () => {
-                this.pubnub.addListener({
-                    status: function(st) {
-                        if (st.category === "PNUnknownCategory") {
-                            var newState = {
-                                new: 'error'
-                            };
-                            this.pubnub.setState({
-                                state: newState
-                            },
-                            function (status) {
-                                console.log(st.errorData.message);
-                            });
-                        }
-                    },
-                    message: function(message) {
-                        // console.log(channel);
-                        setTimeout(() => {
-                            let from = message.message.from;
-                            this.a.from.push(from);
-                            this.a.userService.get(parseInt(from)).subscribe((res) => {
-                                if (parseInt(localStorage.getItem('user_id')) !==  parseInt(from)) {
-                                    this.a.openChatDialog(res, message.message);
-                                }
-                            })
-                    }, 100)
-                    },
-                    a: this
-                });
+
                 setTimeout(() => {
+                    console.log(this.channels);
                     this.pubnub.subscribe({
                     channels: this.channels,
                     withPresence: true
@@ -91,8 +92,8 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
         )  
     }
 
-    ngAfterViewInit(): void {
-        
+    ngOnDestroy(): void {
+        this.pubnub.unsubscribeAll();
     }
 
     openChatDialog(user: any, message?: any): void {
@@ -105,17 +106,15 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
                 isCreateDialog = false
                 return true;
             }
-        })
+        });
+        console.log('ádasdasd');
         if (isCreateDialog) {
             let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
             chatDialog.instance.data = user;
             chatDialog.instance.pubnub = this.pubnub;
             console.log('open chat')
         } else {
-            console.log(elementId);
-            console.log('continue chat');
             if (typeof (elementId) != undefined) {
-                console.log(outlet.components[elementId].instance.messageData);
                 let entry: any = {
                     "entry": {
                         'from': user.id.toString(),
@@ -123,6 +122,7 @@ export class AppsChatPanelComponent implements OnInit, AfterViewInit {
                         'time': Date.now()
                     }
                 }
+                console.log('enter');
                 outlet.components[elementId].instance.messageData.push(entry);
                 setTimeout(() => {
                     outlet.components[elementId].instance.chatContent.nativeElement.scrollTop =

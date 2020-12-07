@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "@types/googlemaps": "^3.40.3",
     "core-js": "^2.5.4",
     "json-server": "^0.16.1",
     "moment": "^2.29.1",

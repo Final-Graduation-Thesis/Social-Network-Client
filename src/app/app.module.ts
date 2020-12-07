@@ -41,6 +41,8 @@ import { AppsChatView } from 'src/app/view/chat/chat.view';
 import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
 import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat-dialog.component';
 import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
+import { AppsMapView } from 'src/app/view/map/map.view';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,8 @@ import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.comp
     AppsHeaderComponent,
     AppsTimeLineView,
     AppsChatView,
-    AppsChatOutletComponent
+    AppsChatOutletComponent,
+    AppsMapView
   ],
   imports: [
     BrowserModule,

@@ -64,7 +64,7 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 		this.hideChatEmitter.emit(this);
 	}
 
-	onEnterMessage(evt: KeyboardEvent): void {
+	onEnterMessage(evt: EventTarget): void {
 		let hw = {
 			"from": localStorage.getItem('user_id'),
 			"message": this.chatInput.nativeElement.value,
@@ -74,6 +74,7 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 			channel: this.channel,
 			message: hw
 		});
+		console.log(evt);
 		let entry: any = {
 			"entry": {
 				'from': localStorage.getItem('user_id'),

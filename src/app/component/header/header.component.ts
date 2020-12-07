@@ -19,7 +19,7 @@ export class AppsHeaderComponent {
 			label: 'home'
 		},
 		{
-			path: '/asd',
+			path: '/map',
 			label: 'explore'
 
 		},
