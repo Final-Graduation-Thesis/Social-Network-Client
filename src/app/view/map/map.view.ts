@@ -57,6 +57,8 @@ export class AppsMapView implements OnInit {
   };
     ngOnInit(): void {
         this.mapInitializer();
+        const geocoder = new google.maps.Geocoder();
+        this.geocodeAddress(geocoder, this.map, ["etown 2", "15 Ấp Bắc, Tân Bình"]);
         const drawingManager = new google.maps.drawing.DrawingManager({
           drawingMode: google.maps.drawing.OverlayType.MARKER,
           drawingControl: true,
@@ -107,11 +109,42 @@ export class AppsMapView implements OnInit {
 			  true
 			: false;
 			console.log(resultPath);
-
+        if (resultPath) {
+          new google.maps.Marker({
+            position: new google.maps.LatLng({lat: 10.845135269892838, lng: 106.65524731784667}),
+            map: this.map,
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: 'red',
+              fillOpacity: 0.2,
+              strokeColor: "white",
+              strokeWeight: 0.5,
+              scale: 10,
+            },
+          });
+        }
 		});
 	}
 
-    mapInitializer() {
+    mapInitializer(): void {
         this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
-       }
+    }
+
+    geocodeAddress(geocoder?: google.maps.Geocoder, resultsMap?: google.maps.Map, addresses?: string[]): void {
+      addresses.forEach((add) => {
+        geocoder.geocode({ address: add }, (results, status) => {
+          if (status === "OK") {
+            resultsMap.setCenter(results[0].geometry.location);
+            new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location,
+            });
+            console.log(results[0].geometry.location);
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
+      })
+      
+    }
 }
