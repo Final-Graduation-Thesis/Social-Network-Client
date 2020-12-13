@@ -3,7 +3,7 @@
         <mat-form-field class="type-business">
             <mat-label>Thể loại cần tìm</mat-label>
             <mat-select
-             formControlName="typeBusiness">
+             (selectionChange)="onChangeTypeBusiness($event)" >
                 <mat-option *ngFor="let type of typeBusiness" [value]="type.value">
                     {{type.name}}
                 </mat-option>
@@ -11,39 +11,40 @@
         </mat-form-field>
         <mat-form-field class="type-property">
             <mat-label>Loại tài sản</mat-label>
-            <mat-select formControlName="typeProperty">
+            <mat-select (selectionChange)="onChangeTypeProperty($event)">
                 <mat-option  *ngFor="let type of typeProperty" [value]="type.value">
                     {{type.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <apps-button-component [title]="'Xóa hình đã vẽ'"></apps-button-component>
+        <apps-button-component (click)="clearDrawing()" [title]="'Xóa hình'"></apps-button-component>
     </div>
     <div class="break-line"></div>
     <div class="post-list">
-        <div class="post" *ngFor="let i of [1,2,3,4,55,6,7,8,9]">
+        <div class="post" *ngFor="let item of this.drawingManager.result" (click)="navigateToPost(item.id)">
             <div class="avatar">
-                <img src="">
+                <img src="{{item.images[0] || 'https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg'}}">
             </div>
             <div class="info">
                 <div class="title">
                     <span class="material-icons">
                         campaign
-                    </span>Cho thuê căn hộ chung cư 8x plus
+                    </span>{{item.title}}
                 </div>
-                <div class="price">
-                    <span class="material-icons">
-                        local_atm
-                    </span> {{20000000 | vndCurrency}}
-                </div>
+                <div class="price" *ngIf="isTypeBS13(item)"><span class="material-icons">
+					local_atm
+				</span><span>{{item.price | vndCurrency}}</span></div>
+			<div class="priceFrom" *ngIf="!isTypeBS13(item)"><span class="material-icons">
+					local_atm
+				</span><span>{{item.priceFrom | vndCurrency}} - {{item.priceTo | vndCurrency}}</span></div>
                 <div class="address">
                     <span class="material-icons">place
-                    </span> 43 Lý Thái Tổ
+                    </span> {{item.address}}
                  </div>
                 <div class="district">
                     <span class="material-icons">
                         my_location
-                    </span> Quận Bình Thạnh
+                    </span> {{item.district}}
                 </div>
             </div>
         </div>

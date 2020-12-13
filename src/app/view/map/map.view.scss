@@ -25,6 +25,10 @@ apps-map-view {
                 height: 110px;
                 display: flex;
                 flex-direction: row;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #cccccc;
+                }
                 .info {
                     align-self: center;
                     display: flex;

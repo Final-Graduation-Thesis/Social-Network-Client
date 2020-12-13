@@ -1,5 +1,7 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { PostService } from 'src/app/service/post.service';
 
 @Component({
 	selector: 'apps-map-view',
@@ -8,143 +10,201 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsMapView implements OnInit {
-    @ViewChild('mapContainer') gmap: ElementRef;
-    typeBusiness: any[] = [
-      {
-        name: "Bán",
-        value: 1
-      },
-      {
-        name: "Mua",
-        value: 2
-      },
-      {
-        name: "Cho thuê",
-        value: 3
-      },
-      {
-        name: "Cần thuê",
-        value: 4
-      },
-      {
-        name: "Tìm bạn cùng phòng",
-        value: 5
-      }
-  
-    ]
-    typeProperty: any[] = [
-      {
-        name: "Nhà đất",
-        value: 1
-      },
-      {
-        name: "Chung cư",
-        value: 2
-      },
-      {
-        name: "Phòng trọ",
-        value: 3
-      }
-    ]
-    map: google.maps.Map;
-    lat = 10.8016345;
-    lng = 106.6742159;
-    geoList: any[] = [];
+	@ViewChild('mapContainer') gmap: ElementRef;
+	typeBusiness: any[] = [
+		{
+			name: "Bán",
+			value: 1
+		},
+		{
+			name: "Mua",
+			value: 2
+		},
+		{
+			name: "Cho thuê",
+			value: 3
+		},
+		{
+			name: "Cần thuê",
+			value: 4
+		},
+		{
+			name: "Tìm bạn cùng phòng",
+			value: 5
+		}
+
+	]
+	typeProperty: any[] = [
+		{
+			name: "Nhà đất",
+			value: 1
+		},
+		{
+			name: "Chung cư",
+			value: 2
+		},
+		{
+			name: "Phòng trọ",
+			value: 3
+		}
+	]
+	delayFactor: number = 0;
+	map: google.maps.Map;
+	lat = 10.8016345;
+	lng = 106.6742159;
+	public geoList: any[] = [];
 	coordinates = new google.maps.LatLng(this.lat, this.lng);
 	mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    zoom: 12,
-  };
-    ngOnInit(): void {
-        this.mapInitializer();
-        const geocoder = new google.maps.Geocoder();
-        this.geocodeAddress(geocoder, this.map, ["etown 2", "15 Ấp Bắc, Tân Bình"]);
-        const drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.MARKER,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: [
-              google.maps.drawing.OverlayType.MARKER,
-              google.maps.drawing.OverlayType.CIRCLE,
-              google.maps.drawing.OverlayType.POLYGON,
-              google.maps.drawing.OverlayType.POLYLINE,
-              google.maps.drawing.OverlayType.RECTANGLE,
-            ],
-          },
-          markerOptions: {
-            icon:
-              "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-          },
-          circleOptions: {
-            fillColor: "#ffff00",
-            fillOpacity: 1,
-            strokeWeight: 5,
-            clickable: false,
-            editable: true,
-            zIndex: 1,
-          },
-        });
-        drawingManager.setMap(this.map);
-        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-		  const pointLength: number = event.overlay.getPath().getArray().length;
-		  let g: any[]=[];
-          for (let i=0;i<pointLength; i++) {
-			  	console.log(event.overlay.getPath().getArray()[i].lat());
+		center: this.coordinates,
+		zoom: 12,
+	};
+	public postList: any[] = [1];
+	timeout: number = 1000;
+	drawingManager: any;
+	constructor(
+		private postService: PostService,
+		private router: Router
+	) { }
+
+	ngOnInit(): void {
+		this.mapInitializer();
+		this.initPostList();
+		this.drawingManager = new google.maps.drawing.DrawingManager({
+			drawingMode: google.maps.drawing.OverlayType.MARKER,
+			drawingControl: true,
+			drawingControlOptions: {
+				position: google.maps.ControlPosition.TOP_CENTER,
+				drawingModes: [
+					google.maps.drawing.OverlayType.POLYGON,
+					google.maps.drawing.OverlayType.POLYLINE,
+				],
+			},
+			markerOptions: {
+				icon:
+					"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+			},
+			circleOptions: {
+				fillColor: "#ffff00",
+				fillOpacity: 1,
+				strokeWeight: 5,
+				clickable: false,
+				editable: true,
+				zIndex: 1,
+			},
+		});
+		this.drawingManager.setMap(this.map);
+		google.maps.event.addListener(this.drawingManager, 'overlaycomplete', function (this, event) {
+			this.drawingAreas.push(event.overlay);
+			const pointLength: number = event.overlay.getPath().getArray().length;
+			let g: any[] = [];
+			for (let i = 0; i < pointLength; i++) {
 				let point: any = {
 					lat: event.overlay.getPath().getArray()[i].lat(),
 					lng: event.overlay.getPath().getArray()[i].lng()
 				}
-				console.log(point);
 				g.push(point);
-		  }
-		  console.log(g);
-		  this.geoList = g;
-		  const bermudaTriangle = new google.maps.Polygon({ paths: g });
-		  const resultPath = google.maps.geometry.poly.containsLocation(
-			new google.maps.LatLng({lat: 10.845135269892838, lng: 106.65524731784667}),
-			bermudaTriangle
-		  )
-			? // A triangle.
-			  true
-			: false;
-			console.log(resultPath);
-        if (resultPath) {
-          new google.maps.Marker({
-            position: new google.maps.LatLng({lat: 10.845135269892838, lng: 106.65524731784667}),
-            map: this.map,
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: 'red',
-              fillOpacity: 0.2,
-              strokeColor: "white",
-              strokeWeight: 0.5,
-              scale: 10,
-            },
-          });
-        }
+			}
+			this.drawingArea = new google.maps.Polygon({ paths: g });
+			this.drawingAreas.push(this.drawingArea);
+			console.log(this.postList);
+			if (this.typeBusiness) {
+				this.postList = this.postList.filter(item => item.typeBusiness == this.typeBusiness);
+			}
+			if (this.typeProperty) {
+				this.postList = this.postList.filter(item => item.typeProperty == this.typeProperty);
+			}
+			this.postList.forEach(item => {
+				const resultPath = google.maps.geometry.poly.containsLocation(
+					new google.maps.LatLng({lat: item.geocode.lat(), lng: item.geocode.lng()}),
+					this.drawingArea
+				)
+					? // A triangle.
+					true
+					: false;
+				if (resultPath) {
+					let marker = new google.maps.Marker({
+						position: new google.maps.LatLng({lat: item.geocode.lat(), lng: item.geocode.lng()}),
+						map: this.map,
+					});
+					this.markerList.push(marker);
+					this.result.push(item);
+				}
+			})
 		});
 	}
 
-    mapInitializer(): void {
-        this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
-    }
+	initPostList(): void {
+		let params = new HttpParams().set('limit', '1000');
+		this.postService.list(null, params).subscribe({
+			next: (res) => {
+				this.postList = res.items;
+			},
+			error: (err) => { },
+			complete: () => {
+				this.drawingManager['postList'] = this.postList;
+				this.drawingManager['markerList'] = [];
+				this.drawingManager['drawingAreas'] = [];
+				this.drawingManager['result'] = [];
+				this.geocodePostList(this.postList);
+			}
+		})
+	}
 
-    geocodeAddress(geocoder?: google.maps.Geocoder, resultsMap?: google.maps.Map, addresses?: string[]): void {
-      addresses.forEach((add) => {
-        geocoder.geocode({ address: add }, (results, status) => {
-          if (status === "OK") {
-            resultsMap.setCenter(results[0].geometry.location);
-            new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location,
-            });
-            console.log(results[0].geometry.location);
-          } else {
-            alert("Geocode was not successful for the following reason: " + status);
-          }
-        });
-      })
-      
-    }
+	mapInitializer(): void {
+		this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
+	}
+
+	geocodePostList(postList: any[]): void {
+		const geocoder = new google.maps.Geocoder();
+		postList.forEach(item => {
+			let address: string = `${item.address}, ${item.district}`;
+			// item['geocode'] = this.geocodeAddress(geocoder, this.map, address);
+			// console.log(item);
+			this.timeout += 1000;
+			setTimeout(() => {
+				geocoder.geocode({ address: address }, (results, status) => {
+					if (status === "OK") {
+						item['geocode'] = results[0].geometry.location;
+					}
+					else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			}, this.timeout);
+		});
+	}
+
+	getPostList(): any[] {
+		return this.postList;
+	}
+
+	clearDrawing(): void {
+		for (let i=0; i< this.drawingManager.markerList.length; i++) {
+			this.drawingManager.markerList[i].setMap(null);
+		}
+		for (let i = 0; i < this.drawingManager.drawingAreas.length; i++) {
+			this.drawingManager.drawingAreas[i].setMap(null);
+		}
+		this.drawingManager.result = [];
+	}
+
+	isTypeBS13(post: any) {
+		if (!post) return;
+		if (post.typeBusiness === 1 || post.typeBusiness === 3) {
+			return true;
+		}
+		return false;
+	}
+
+	navigateToPost(id: any) {
+		this.router.navigateByUrl(`/post/${id}`);
+	}
+
+	onChangeTypeBusiness(event: any): void {
+		this.drawingManager['typeBusiness'] = event.value;
+	}
+
+	onChangeTypeProperty(event: any): void {
+		this.drawingManager['typeProperty'] = event.value;
+	}
 }
