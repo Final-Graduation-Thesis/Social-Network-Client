@@ -113,6 +113,7 @@ export class AppsMapView implements OnInit {
 			if (this.typeProperty) {
 				this.postList = this.postList.filter(item => item.typeProperty == this.typeProperty);
 			}
+
 			this.postList.forEach(item => {
 				const resultPath = google.maps.geometry.poly.containsLocation(
 					new google.maps.LatLng({lat: item.geocode.lat(), lng: item.geocode.lng()}),
@@ -121,15 +122,75 @@ export class AppsMapView implements OnInit {
 					? // A triangle.
 					true
 					: false;
+					let contentString;
+					if (parseInt(item.typeBusiness) == 1 || parseInt(item.typeBusiness) == 3) {
+					  contentString = `
+					  <div class="post" (click)="navigateToPost(item.id)">
+					<div class="avatar">
+						<img src="${item.images[0] || 'https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg'}">
+					</div> <div class="info">
+					<div class="title">
+						<span class="material-icons">
+							campaign
+						</span>${item.title}
+					</div>
+					<div class="price"><span class="material-icons">
+						local_atm
+					</span><span>${item.price}</span></div>
+					<div class="address">
+						<span class="material-icons">place
+						</span> ${item.address}
+					 </div>
+					<div class="district">
+						<span class="material-icons">
+							my_location
+						</span> ${item.district}
+					</div>
+				</div></div>`;
+					} else {
+						contentString = ` <div class="post" (click)="navigateToPost(item.id)">
+						<div class="avatar">
+							<img src="${item.images[0] || 'https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg'}">
+						</div><div class="info">
+					<div class="title">
+						<span class="material-icons">
+							campaign
+						</span>${item.title}
+					</div>
+					<div class="price"><span class="material-icons">
+						local_atm
+					</span><span>${item.priceFrom} - ${item.priceTo}</span></div>
+					<div class="address">
+						<span class="material-icons">place
+						</span> ${item.address}
+					 </div>
+					<div class="district">
+						<span class="material-icons">
+							my_location
+						</span> ${item.district}
+					</div>
+					</div></div>`;
+					}
 				if (resultPath) {
+					const infowindow = new google.maps.InfoWindow({
+						content: contentString,
+					  });
 					let marker = new google.maps.Marker({
 						position: new google.maps.LatLng({lat: item.geocode.lat(), lng: item.geocode.lng()}),
 						map: this.map,
+						animation: google.maps.Animation.DROP
+					});
+					marker.addListener("click", () => {
+						infowindow.open(this.map, marker);
 					});
 					this.markerList.push(marker);
 					this.result.push(item);
-				}
+				}				
 			})
+			console.log(this.markerList);
+			if (this.result.length === 0) {
+				alert('Không tìm thấy bất động sản trong khu vực chỉ định.');
+			}
 		});
 	}
 
@@ -185,6 +246,8 @@ export class AppsMapView implements OnInit {
 		for (let i = 0; i < this.drawingManager.drawingAreas.length; i++) {
 			this.drawingManager.drawingAreas[i].setMap(null);
 		}
+		this.drawingManager.markerList = [];
+		this.drawingManager.drawingAreas = [];
 		this.drawingManager.result = [];
 	}
 
