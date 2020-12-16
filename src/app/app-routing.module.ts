@@ -7,6 +7,7 @@ import { AppsTimeLineView } from './view/timeline/timeline.view';
 import { AppsDetailPostView } from './view/detail-post/detail-post.view';
 import { AppsChatView } from 'src/app/view/chat/chat.view';
 import { AppsMapView } from 'src/app/view/map/map.view';
+import { AuthGuardService } from './service/authGuard.service';
 
 const routes: Routes = [
 		{
@@ -16,6 +17,7 @@ const routes: Routes = [
 		{
 			path: '',
 			component: AppsHomeViewComponent,
+			canActivate: [AuthGuardService]
 		},
 		{
 			path: 'login',
@@ -23,19 +25,23 @@ const routes: Routes = [
 		},
 		{
 			path: 'timeline/:id',
-			component: AppsTimeLineView
+			component: AppsTimeLineView,
+			canActivate: [AuthGuardService]
 		},
 		{
 			path: 'post/:id',
-			component: AppsDetailPostView
+			component: AppsDetailPostView,
+			canActivate: [AuthGuardService]
 		},
 		{
 			path: 'chat',
-			component: AppsChatView
+			component: AppsChatView,
+			canActivate: [AuthGuardService]
 		},
 		{
 			path: 'map',
-			component: AppsMapView
+			component: AppsMapView,
+			canActivate: [AuthGuardService]
 		}
 ];
 

@@ -168,7 +168,17 @@ export class AppsPostDialogComponent implements OnInit {
 		}
 		else {
 			if (!this.data.isEdited) {
-				this.postService.post(body).subscribe(res => {
+				this.postService.post(body).subscribe({
+					next: (res) => {
+					this.loading = false;
+					this.onClose();
+					this.reloadService.reloadPost(true);
+					this.snackBar.open("Đăng bài thành công", null, {
+						duration: 2000,
+						panelClass: 'success'
+					});
+				},
+				error: (err) => {
 					this.loading = false;
 					this.onClose();
 					this.reloadService.reloadPost(true);
@@ -177,18 +187,31 @@ export class AppsPostDialogComponent implements OnInit {
 						panelClass: 'success'
 					});
 				}
+			}
 				);
 			}
 			else {
-				this.postService.put(this.data.id, bodyPut).subscribe(res => {
-					this.loading = false;
-					this.onClose();
-					this.reloadService.reloadPost(true);
-					this.snackBar.open("Sửa bài thành công", null, {
-						duration: 2000,
-						panelClass: 'success'
-					});
-				});
+				this.postService.put(this.data.id, bodyPut).subscribe({
+					next: (res) => {
+						this.loading = false;
+						this.onClose();
+						this.reloadService.reloadPost(true);
+						this.snackBar.open("Sửa bài thành công", null, {
+							duration: 2000,
+							panelClass: 'success'
+						});
+					},
+					error: (err) => {
+						this.loading = false;
+						this.onClose();
+						this.reloadService.reloadPost(true);
+						this.snackBar.open("Sửa bài thành công", null, {
+							duration: 2000,
+							panelClass: 'success'
+						});
+					}
+				}
+					);
 			}
 		}
 	}

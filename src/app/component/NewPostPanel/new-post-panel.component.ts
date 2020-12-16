@@ -10,11 +10,13 @@ import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/
 })
 export class AppsNewPostPanelComponent implements OnInit {
 
+	avatar: string;
 	constructor(
 		private dialog: MatDialog
     ) {}
 
 	ngOnInit() {
+		this.avatar = localStorage.getItem('avatar');
 	}
 
     openDialog(): void {

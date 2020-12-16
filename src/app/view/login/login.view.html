@@ -19,6 +19,7 @@
 			<mat-form-field class="">
 				<input type="password" formControlName="password" matInput placeholder="Mật khẩu">
 			</mat-form-field>
+			<p style="color:red" *ngIf="isIncorrectLogin">Sai tài khoản hoặc mật khẩu</p>
 			<a href="#">Quên mật khẩu?</a>
 			<div class="button-group">
 				<apps-button-component type="submit"  [title]="'Đăng nhập'"></apps-button-component>

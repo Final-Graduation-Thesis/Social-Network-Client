@@ -42,6 +42,7 @@ import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.compon
 import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat-dialog.component';
 import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 import { AppsMapView } from 'src/app/view/map/map.view';
+import { AuthGuardService } from './service/authGuard.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { AppsMapView } from 'src/app/view/map/map.view';
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     ReloadService,
     WebSocketService,
-    PubNubAngular
+    PubNubAngular,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

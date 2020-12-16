@@ -13,6 +13,7 @@ export class AppsLoginViewComponent implements OnInit {
 	loginForm: FormGroup;
 	registerForm: FormGroup;
 	isLogin: boolean = true;
+	isIncorrectLogin: boolean = false;
 	constructor(
 		private authService: AuthService,
 		private router: Router,
@@ -33,19 +34,28 @@ export class AppsLoginViewComponent implements OnInit {
 		)
 	}
 	login(): void {
-		this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res => {
-			this.router.navigateByUrl('/');
-		});
+		this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+			{
+				next: (res) => {
+					this.router.navigateByUrl('/');
+			},
+				error: (err) => { this.isIncorrectLogin = true}
+		})
 	}
+
 	register(): void {
 		let body: any = {
 			'email': this.registerForm.value.email,
 			'password': this.registerForm.value.password,
 			'username': this.registerForm.value.username
 		}
-		this.authService.register(body).subscribe(
-			res => {
-			alert('Đăng kí thành công. email: ' + body.get('email') + 'password: ' + body.get('password'));
+		this.authService.register(body).subscribe({
+			next: (res) => {
+				alert('Đăng kí thành công. email: ' + body.get('email') + 'password: ' + body.get('password'));
+			},
+			error: (res) => {
+				alert('Đăng kí thành công. email: ' + body.get('email') + 'password: ' + body.get('password'));
+			}
 		}
 		)
 	}
