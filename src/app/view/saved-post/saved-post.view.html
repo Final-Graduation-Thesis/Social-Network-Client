@@ -1,0 +1,29 @@
+<div class="post-list">
+    <div class="post" *ngFor="let item of this.postList" (click)="navigateToPost(item.id)">
+        <div class="avatar">
+            <img src="https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg">
+        </div>
+        <div class="info">
+            <div class="title">
+                <span class="material-icons">
+                    campaign
+                </span>{{item.title}}
+            </div>
+            <div class="price" *ngIf="isTypeBS13(item)"><span class="material-icons">
+                local_atm
+            </span><span>{{item.price | vndCurrency}}</span></div>
+            <div class="priceFrom" *ngIf="!isTypeBS13(item)"><span class="material-icons">
+                local_atm
+            </span><span>{{item.priceFrom | vndCurrency}} - {{item.priceTo | vndCurrency}}</span></div>
+            <div class="address">
+                <span class="material-icons">place
+                </span> {{item.address}}
+             </div>
+            <div class="district">
+                <span class="material-icons">
+                    my_location
+                </span> {{item.district}}
+            </div>
+        </div>
+    </div>
+</div>

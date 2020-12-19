@@ -21,7 +21,7 @@ export abstract class BaseService {
         return this.http.get(this.url + id, {params: params});
 	}
 
-	post(body: any, options: Options = {}): Observable<any> {
+	post(body?: any, options: Options = {}): Observable<any> {
 		return this.http.post(this.url, body, options);
 	}
 

@@ -1,0 +1,41 @@
+apps-util-component {
+    display: block;
+    margin: 8px 12px 8px 12px;
+    background-color: #fff;
+	height: 184px;
+    position: sticky;
+    top: 58px;
+    border-radius: 10px;
+    width: 75%;
+    .header {
+        padding: 16px;
+        .title {
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+    .break-line {
+        border-bottom: 1px solid #eee;
+    }
+    .content{
+        padding: 8px;
+        .saved-post {
+            margin: 8px 12px;
+            display: flex;
+            align-items: center;
+            .label{
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: #6fbe44;
+                }
+            }
+            
+        }
+        .material-icons {
+            margin-right: 12px;
+            margin-top: -3px;
+            color: #6fbe44;
+        }
+    }
+}

@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '../../service/post.service';
 import { LikeService } from 'src/app/service/like.service';
 import { Router } from '@angular/router';
+import { SavedService } from 'src/app/service/saved.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
 	selector: 'apps-post-component',
@@ -33,7 +35,9 @@ export class AppsPostComponent implements AfterViewInit {
 		private postService: PostService,
 		private dialog: MatDialog,
 		private likeService: LikeService,
-		private router: Router
+		private savedService: SavedService,
+		private router: Router,
+		private snackBar: MatSnackBar,
 	) { }
 
 	ngOnInit() {
@@ -171,5 +175,25 @@ export class AppsPostComponent implements AfterViewInit {
 
 	directToTimeline(): void {
 		this.router.navigateByUrl(`timeline/${this.post.userId}`);
+	}
+
+	onSave(id: number): void {
+		this.savedService.url = `${this.savedService.url}${id}`;
+		this.savedService.post().subscribe({
+			next: (res) => {},
+			error: (err) => {
+				this.snackBar.open("Đã có lỗi xảy ra, vui lòng thử lại", null, {
+					duration: 2000,
+					panelClass: 'error'
+				});
+			},
+			complete: () => {
+				this.snackBar.open("Lưu bài thành công", null, {
+					duration: 2000,
+					panelClass: 'success'
+				});
+			}
+		}
+			);
 	}
 }

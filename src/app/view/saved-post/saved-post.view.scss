@@ -1,0 +1,36 @@
+
+apps-saved-post-view {
+.post-list {
+    overflow-y: auto;
+    height: 471px;
+    .post {
+        height: 110px;
+        display: flex;
+        flex-direction: row;
+        &:hover {
+            cursor: pointer;
+            background-color: #cccccc;
+        }
+        .info {
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .price, .title, .address, .district {
+            display: flex;
+            align-items: center;
+        }
+        .material-icons {
+            margin-right: 5px;
+            color: #6fbe44;
+            font-size: 23px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 70%;
+            margin: 3px 6px;
+        }
+    }
+}
+}

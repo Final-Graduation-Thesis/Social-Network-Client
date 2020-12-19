@@ -43,7 +43,8 @@ import { AppsChatDialogComponent } from 'src/app/component/chat/chat-dialog/chat
 import { AppsChatOutletComponent } from 'src/app/component/chat/chat-outlet.component';
 import { AppsMapView } from 'src/app/view/map/map.view';
 import { AuthGuardService } from './service/authGuard.service';
-
+import { AppsUtilComponent } from './component/util/util.component';
+import { AppsSavedPostView } from './view/saved-post/saved-post.view';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,9 @@ import { AuthGuardService } from './service/authGuard.service';
     AppsTimeLineView,
     AppsChatView,
     AppsChatOutletComponent,
-    AppsMapView
+    AppsMapView,
+    AppsUtilComponent,
+    AppsSavedPostView
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,7 @@ import { AuthGuardService } from './service/authGuard.service';
     MatProgressSpinnerModule,
     MaterialFileInputModule,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
   entryComponents: [
     AppsPostDialogComponent,
