@@ -45,6 +45,9 @@ import { AppsMapView } from 'src/app/view/map/map.view';
 import { AuthGuardService } from './service/authGuard.service';
 import { AppsUtilComponent } from './component/util/util.component';
 import { AppsSavedPostView } from './view/saved-post/saved-post.view';
+import { AppsEventDialogComponent } from './component/header/event-dialog/event-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,7 @@ import { AppsSavedPostView } from './view/saved-post/saved-post.view';
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,
+    AppsEventDialogComponent,
     AppsChatPanelComponent,
     AppsChatDialogComponent,
     VndCurrencyPipe,
@@ -82,6 +86,7 @@ import { AppsSavedPostView } from './view/saved-post/saved-post.view';
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -91,10 +96,12 @@ import { AppsSavedPostView } from './view/saved-post/saved-post.view';
     MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
+    MatNativeDateModule
   ],
   entryComponents: [
     AppsPostDialogComponent,
-    AppsChatDialogComponent
+    AppsChatDialogComponent,
+    AppsEventDialogComponent
   ],
 
   providers: [

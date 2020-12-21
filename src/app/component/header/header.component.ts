@@ -5,6 +5,10 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ReloadService } from 'src/app/service/reload.service';
 import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/websocket.service';
+import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
+import { MatDialog } from '@angular/material';
+import { AppsEventDialogComponent } from './event-dialog/event-dialog.component';
+
 @Component({
 	selector: 'header',
 	templateUrl: './header.component.html',
@@ -38,7 +42,8 @@ export class AppsHeaderComponent {
 		private reloadService: ReloadService,
 		private webSocketService: WebSocketService,
 		private notificationService: NotificationService,
-		private userService: UserService
+		private userService: UserService,
+		private dialog: MatDialog
 	) { }
 
 	ngOnInit(): void {
@@ -67,8 +72,29 @@ export class AppsHeaderComponent {
 		this.router.navigateByUrl("/login");
 	}
 
-	navigatePost(url: string): void {
-		this.router.navigateByUrl(url);
+	onClickPost(noti: any): void {
+		let chat = AppsChatPanelComponent.instance;
+		
+		switch(noti.type) {
+			case 1:
+			case 2:
+				this.router.navigateByUrl(noti.url);
+				break;
+			case 4:
+				this.userService.get(3).subscribe(res => {
+					chat.openChatDialog(res);
+				})
+				break;
+			case 5:
+				const dialogRef = this.dialog.open(AppsEventDialogComponent, {
+					width: '350px',
+					data: {
+					}
+				  });
+				break;
+			default:
+				break;
+		}
 	}
 
 	clearNotiCount(): void {

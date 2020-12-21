@@ -1,36 +1,59 @@
 
 apps-saved-post-view {
-.post-list {
-    overflow-y: auto;
-    height: 471px;
-    .post {
-        height: 110px;
-        display: flex;
-        flex-direction: row;
-        &:hover {
-            cursor: pointer;
-            background-color: #cccccc;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    background-color: #cccccc;
+    height: 607px;
+    .post-list {
+        overflow-y: auto;
+        margin: 0 10px 0;
+        background: #fff;
+        width: 80%;
+        .header {
+            padding: 16px;
+            .title {
+                font-size: 20px;
+                text-align: center;
+            }
         }
-        .info {
-            align-self: center;
+        .break-line {
+            border-bottom: 1px solid #eee;
+        }
+        .post {
+            height: 110px;
             display: flex;
-            flex-direction: column;
-        }
-        .price, .title, .address, .district {
-            display: flex;
-            align-items: center;
-        }
-        .material-icons {
-            margin-right: 5px;
-            color: #6fbe44;
-            font-size: 23px;
-        }
-        img {
-            width: 100px;
-            height: 100px;
-            border-radius: 70%;
-            margin: 3px 6px;
+            flex-direction: row;
+            &:hover {
+                cursor: pointer;
+                background-color: #9bd67b94;
+            }
+            .info, .info-user {
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+                width: 290px;
+            }
+            .price, .priceFrom, .priceTo, .title, .address, .district, .fullname, .time {
+                display: flex;
+                align-items: center;
+            }
+            .material-icons {
+                margin-right: 5px;
+                color: #6fbe44;
+                font-size: 23px;
+            }
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 70%;
+                margin: 3px 6px;
+            }
+            .vertical-line {
+                border-left: 1px solid #cccccc;
+            }
+            .info-user {
+                margin-left: 8px;
+            }
         }
     }
-}
 }

@@ -17,6 +17,8 @@ import { PubNubAngular } from 'pubnub-angular2';
 })
 export class AppsChatPanelComponent implements OnInit, OnDestroy {
 
+    static instance: AppsChatPanelComponent;
+
     pubnub: PubNubAngular
     userList: any = [];
     from: any[] = [];
@@ -29,6 +31,7 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
          
     }
     ngOnInit(): void {
+
         this.pubnub = this.pubnubAngular;
         this.pubnub.init({
             publishKey: 'sub-c-f8e414e0-27dc-11eb-8221-521a7107d7f7',
@@ -87,9 +90,8 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
                 });})
             }
         }
-            
-           
         )  
+        AppsChatPanelComponent.instance = this;
     }
 
     ngOnDestroy(): void {
@@ -107,12 +109,10 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
                 return true;
             }
         });
-        console.log('ádasdasd');
         if (isCreateDialog) {
             let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
             chatDialog.instance.data = user;
             chatDialog.instance.pubnub = this.pubnub;
-            console.log('open chat')
         } else {
             if (typeof (elementId) != undefined) {
                 let entry: any = {
@@ -122,7 +122,6 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
                         'time': Date.now()
                     }
                 }
-                console.log('enter');
                 outlet.components[elementId].instance.messageData.push(entry);
                 setTimeout(() => {
                     outlet.components[elementId].instance.chatContent.nativeElement.scrollTop =

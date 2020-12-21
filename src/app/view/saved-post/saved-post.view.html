@@ -1,4 +1,10 @@
 <div class="post-list">
+    <div class="header">
+        <div class="title">
+            Bài viết đã lưu
+        </div>
+    </div>
+    <div class="break-line"></div>
     <div class="post" *ngFor="let item of this.postList" (click)="navigateToPost(item.id)">
         <div class="avatar">
             <img src="https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg">
@@ -25,5 +31,15 @@
                 </span> {{item.district}}
             </div>
         </div>
+        <div class="vertical-line"></div>
+        <div class="info-user">
+            <div class="fullname"><span class="material-icons">
+                person
+                </span>Huỳnh Phương Duy</div>
+            <div class="time"><span class="material-icons">
+                watch_later
+                </span>{{item.createdAt | timeAgo}}</div>
+        </div>
     </div>
 </div>
+<apps-chat-panel-component></apps-chat-panel-component>
