@@ -23,6 +23,8 @@
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
+    "@coreui/angular": "^2.9.3",
+    "@coreui/coreui": "^2.1.16",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@types/googlemaps": "^3.40.3",
     "amazing-time-picker": "^1.8.0",

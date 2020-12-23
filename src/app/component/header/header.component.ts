@@ -8,6 +8,7 @@ import { WebSocketService } from 'src/app/service/websocket.service';
 import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
 import { MatDialog } from '@angular/material';
 import { AppsEventDialogComponent } from './event-dialog/event-dialog.component';
+import { ReadNotificationService } from 'src/app/service/read-notification.service';
 
 @Component({
 	selector: 'header',
@@ -43,12 +44,16 @@ export class AppsHeaderComponent {
 		private webSocketService: WebSocketService,
 		private notificationService: NotificationService,
 		private userService: UserService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private readNotiService: ReadNotificationService
 	) { }
 
 	ngOnInit(): void {
 		this.notificationService.list().subscribe((res) => {
 			this.notifications = res.items;
+			this.notifications.forEach(noti => {
+				!noti.markAsRead ? this.countNoti++ : '';
+			});
 		});
 		this.user = this.userService.getInfo();
 		let stompClient = this.webSocketService.connect();
@@ -72,16 +77,16 @@ export class AppsHeaderComponent {
 		this.router.navigateByUrl("/login");
 	}
 
-	onClickPost(noti: any): void {
+	onClickPost(noti: any, index: number): void {
 		let chat = AppsChatPanelComponent.instance;
-		
 		switch(noti.type) {
 			case 1:
 			case 2:
+			case 3:
 				this.router.navigateByUrl(noti.url);
 				break;
 			case 4:
-				this.userService.get(3).subscribe(res => {
+				this.userService.get(noti.secondUserId).subscribe(res => {
 					chat.openChatDialog(res);
 				})
 				break;
@@ -95,9 +100,15 @@ export class AppsHeaderComponent {
 			default:
 				break;
 		}
+		console.log(index);
+		this.readNotiService.markAsRead('', noti.id).subscribe(res => {
+		});
+		this.notifications[index].markAsRead = true;
+
 	}
 
 	clearNotiCount(): void {
+		this.readNotiService.markAsRead('/social/notification/markAsRead/all/').subscribe(res => {});
 		this.countNoti = 0;
 	}
 

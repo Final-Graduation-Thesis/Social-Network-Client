@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/service/post.service';
+import { ReadNotificationService } from 'src/app/service/read-notification.service';
 
 @Component({
 	selector: 'apps-saved-post-view',
@@ -13,7 +14,8 @@ export class AppsSavedPostView implements AfterViewInit {
     postList: any;
     constructor(
         private postService: PostService,
-        private router: Router
+        private router: Router,
+        private readNotiService: ReadNotificationService
     ) {
     }
 
@@ -33,6 +35,7 @@ export class AppsSavedPostView implements AfterViewInit {
 	}
 
 	navigateToPost(id: any) {
+        this.readNotiService.readDetail('/social/notification/read/detail/', id).subscribe(res => {});
 		this.router.navigateByUrl(`/post/${id}`);
 	}
 }

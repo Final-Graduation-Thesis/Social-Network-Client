@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router'
 @Component({
 	selector: 'app-root',
@@ -11,11 +11,15 @@ export class AppComponent {
 	// onScroll 
 	isLoginView: boolean = true;
 	title = 'MyLand';
-
+	url: any = window.location.pathname;
+	forbidHeader = ['/admin', '/login'];
 	constructor(
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
+		console.log(this.router.url);
+		console.log(window.location.pathname );
 	}
 
 }

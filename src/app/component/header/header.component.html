@@ -16,7 +16,7 @@
 				notifications
 			</span>
 			<mat-menu class="notification-menu" #menu="matMenu">
-				<div class="notification" *ngFor="let noti of notifications" (click)="onClickPost(noti)">
+				<div class="notification" *ngFor="let noti of notifications, index as index" [class.read]="!noti.markAsRead" (click)="onClickPost(noti, index)">
 					<div class="avatar">
 						<img src="{{noti.avatar}}">
 					</div>

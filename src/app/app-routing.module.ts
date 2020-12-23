@@ -9,6 +9,8 @@ import { AppsChatView } from 'src/app/view/chat/chat.view';
 import { AppsMapView } from 'src/app/view/map/map.view';
 import { AuthGuardService } from './service/authGuard.service';
 import { AppsSavedPostView } from './view/saved-post/saved-post.view';
+import { AppsAdminIndexView } from './view/admin/index.view';
+
 const routes: Routes = [
 		{
 			path: 'home',
@@ -46,6 +48,11 @@ const routes: Routes = [
 		{
 			path: 'saved',
 			component: AppsSavedPostView,
+			canActivate: [AuthGuardService]
+		},
+		{
+			path: 'admin',
+			component: AppsAdminIndexView,
 			canActivate: [AuthGuardService]
 		}
 ];

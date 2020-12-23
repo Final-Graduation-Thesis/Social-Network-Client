@@ -115,7 +115,11 @@ header {
 			display: grid;
 			grid-template-columns: 30% 70%;
 			padding: 5px 0 5px;
-			border-radius: 8px;
+            border-radius: 8px;
+            &.read {
+                font-weight: 500;
+                 background: #ecf7e7;
+            }
 			&:hover {
 				background-color: #ccc4c442;
 				cursor: pointer;
