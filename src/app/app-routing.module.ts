@@ -53,8 +53,10 @@ const routes: Routes = [
 		{
 			path: 'admin',
 			component: AppsAdminIndexView,
-			canActivate: [AuthGuardService]
+			canActivate: [AuthGuardService],
+			loadChildren: () => import('./view/admin/report/report.module').then(m => m.ReportModule)
 		}
+
 ];
 
 @NgModule({

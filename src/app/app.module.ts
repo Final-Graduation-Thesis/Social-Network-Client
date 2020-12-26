@@ -77,7 +77,7 @@ AppSidebarModule
     AppsMapView,
     AppsUtilComponent,
     AppsSavedPostView,
-    AppsAdminIndexView
+    AppsAdminIndexView,
   ],
   imports: [
     BrowserModule,
