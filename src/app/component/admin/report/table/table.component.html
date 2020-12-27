@@ -1,0 +1,40 @@
+<div class="card-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Mã bài viết</th>
+        <th>Nguyên nhân</th>
+        <th>Mô tả</th>
+        <th>Ngày báo cáo</th>
+        <th>Chi tiết bài viết</th>
+        <th>Xóa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reports">
+        <td>{{item.postId}}</td>
+        <td>{{item.reportType.name}}</td>
+        <td>{{item.description}}</td>
+        <td>
+          17/02/2020
+        </td>
+        <td>
+          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+            <button type="button" class="btn btn-block btn-success" (click)="navigatePost(item.postId)">Chi tiết</button>
+          </div>
+        </td>
+        <td>Xóa</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="previousPageNumber === 0"><div class="page-link"
+       (click)="nextPage(previousPageNumber)"
+       >
+       Lùi lại</div></li>
+    <li class="page-item" [class.disabled]="hasNext"><div class="page-link"
+       (click)="nextPage(nextPageNumber)"
+       >Kế tiếp</div></li>
+  </ul>
+</div>

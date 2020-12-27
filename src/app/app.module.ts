@@ -49,10 +49,15 @@ import { AppsEventDialogComponent } from './component/header/event-dialog/event-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { AppsAdminIndexView } from 'src/app/view/admin/index.view';
+
 import {
   AppAsideModule,
-AppSidebarModule
+  AppBreadcrumbModule,
+  AppHeaderModule,
+  AppFooterModule,
+  AppSidebarModule,
 } from '@coreui/angular';
+import { AppsAdminHeaderComponent } from './component/admin/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +83,7 @@ AppSidebarModule
     AppsUtilComponent,
     AppsSavedPostView,
     AppsAdminIndexView,
+    AppsAdminHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +110,8 @@ AppSidebarModule
     MatBadgeModule,
     MatNativeDateModule,
     AppAsideModule,
-    AppSidebarModule
+    AppSidebarModule,
+    AppHeaderModule
   ],
   entryComponents: [
     AppsPostDialogComponent,

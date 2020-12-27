@@ -12,14 +12,13 @@ export class AppComponent {
 	isLoginView: boolean = true;
 	title = 'MyLand';
 	url: any = window.location.pathname;
-	forbidHeader = ['/admin', '/login'];
+	isAdmin : boolean;
 	constructor(
 		private router: Router
 	) { }
 
 	ngOnInit(): void {
-		console.log(this.router.url);
-		console.log(window.location.pathname );
+		this.isAdmin = this.url.startsWith('/admin') || this.url.startsWith('/login');
 	}
 
 }

@@ -54,7 +54,7 @@ const routes: Routes = [
 			path: 'admin',
 			component: AppsAdminIndexView,
 			canActivate: [AuthGuardService],
-			loadChildren: () => import('./view/admin/report/report.module').then(m => m.ReportModule)
+			loadChildren: () => import('./view/admin/admin.module').then(m => m.AdminModule)
 		}
 
 ];

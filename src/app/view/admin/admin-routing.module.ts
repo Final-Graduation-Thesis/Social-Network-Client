@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppsAdminReportView } from './report.view';
+import { AppsAdminReportView } from './report/report.view';
 
 const routes: Routes = [
   {
         path: '',
-       children: [
-           {
-               path: 'report',
-               component: AppsAdminReportView
-           }
+        children: [
+        {
+          path: 'report',
+          component: AppsAdminReportView,
+        },
        ]
   }
 ];
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ReportRoutingModule {}
+export class AdminRoutingModule {}
