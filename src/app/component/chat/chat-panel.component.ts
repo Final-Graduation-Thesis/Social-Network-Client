@@ -38,6 +38,13 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
             subscribeKey: 'sub-c-5d6453ac-281f-11eb-8c1e-e6d4bf858fd7',
             uuid: localStorage.getItem('user_id')
         });  
+        this.pubnub.hereNow({
+            channels: ['3-4', '4-3'],
+           includeUUIDs: true,
+           includeState: true,
+         }, (status, response) => {
+           console.log(response);
+         });
         this.pubnub.addListener({
             status: function(st) {
                 if (st.category === "PNUnknownCategory") {
@@ -52,6 +59,9 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
                     });
                 }
             },
+            presence: function(presenceEvent) {
+                console.log(presenceEvent);
+              },
             message: function(message) {
                 let from = message.message.from;
                 console.log(message);

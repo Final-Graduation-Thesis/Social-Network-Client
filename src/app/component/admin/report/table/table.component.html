@@ -1,13 +1,13 @@
 <div class="card-body">
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-responsive-sm table-hover table-outline mb-0">
+    <thead class="thead-light">
       <tr>
         <th>Mã bài viết</th>
         <th>Nguyên nhân</th>
         <th>Mô tả</th>
         <th>Ngày báo cáo</th>
         <th>Chi tiết bài viết</th>
-        <th>Xóa</th>
+        <th style="text-align: center">Xóa bài viết</th>
       </tr>
     </thead>
     <tbody>
@@ -23,17 +23,21 @@
             <button type="button" class="btn btn-block btn-success" (click)="navigatePost(item.postId)">Chi tiết</button>
           </div>
         </td>
-        <td>Xóa</td>
+        <td>
+          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+            <button type="button" class="btn btn-block btn-danger" (click)="onDeletePost(item.postId, item.id)">Xóa bài viết</button>
+          </div>
+        </td>
       </tr>
       
     </tbody>
   </table>
   <ul class="pagination">
-    <li class="page-item" [class.disabled]="previousPageNumber === 0"><div class="page-link"
+    <li class="page-item"><div class="page-link"
        (click)="nextPage(previousPageNumber)"
        >
        Lùi lại</div></li>
-    <li class="page-item" [class.disabled]="hasNext"><div class="page-link"
+    <li class="page-item"><div class="page-link"
        (click)="nextPage(nextPageNumber)"
        >Kế tiếp</div></li>
   </ul>

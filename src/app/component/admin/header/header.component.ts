@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: "apps-admin-header",
@@ -6,7 +6,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 	styleUrls: ['./header.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class AppsAdminHeaderComponent {
+export class AppsAdminHeaderComponent implements OnInit {
 
-    
+    username: string;
+    ngOnInit(): void {
+        this.username = localStorage.getItem('username');
+    }
 }

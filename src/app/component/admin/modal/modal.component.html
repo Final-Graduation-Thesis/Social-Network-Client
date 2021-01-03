@@ -1,0 +1,15 @@
+<div class="overlay" *ngIf="loading">
+	<mat-spinner class="loading" mode="indeterminate"></mat-spinner>
+</div>
+<div class="header">
+	<span></span>
+	<span class="title">
+		Xác nhận xóa?
+	</span>
+</div>
+<div class="break-line"></div>
+
+<div class="footer">
+    <button mat-stroked-button color="primary" type="submit" (click)="onDelete()">Xác nhận</button>
+    <button mat-stroked-button color="primary" type="submit" (click)="onCancel()">Hủy bỏ</button>
+</div>

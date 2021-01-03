@@ -1,0 +1,48 @@
+
+apps-admin-type-report-dialog-component {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        .title {
+            font-size: 22px;
+            text-align: center;
+        }
+        .material-icons {
+            cursor: pointer;
+            color: #6fbe44!important;
+            &:hover {
+                background-color:#d5edca;
+            }
+        }
+    }
+    .break-line {
+        margin: 16px -16px 28px -16px;
+        border-bottom: 1px solid #eee;
+    }
+    @import "~@coreui/coreui/scss/coreui";
+    @import "~@coreui/coreui/scss/variables";
+    .card-body {
+        padding-bottom: 0;
+    }
+    .card-footer {
+        display: flex;
+        justify-content: center;
+        background-color: #fff !important;
+        padding-bottom: 0;
+    }
+    .btn {
+        padding: 7px 20px !important;
+    }
+}
+.mat-snack-bar-container  {
+    margin-bottom: 160% !important;
+    .mat-simple-snackbar {
+        justify-content: center !important;
+    }
+    &.error {
+        color: red !important;
+    }
+    &.success {
+        color: #6fbe44 !important;
+    }
+}

@@ -11,7 +11,7 @@ import { AppsEventDialogComponent } from './event-dialog/event-dialog.component'
 import { ReadNotificationService } from 'src/app/service/read-notification.service';
 
 @Component({
-	selector: 'header',
+	selector: 'apps-ui-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
 	encapsulation: ViewEncapsulation.None

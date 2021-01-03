@@ -1,0 +1,28 @@
+<div class="header">
+	<span></span>
+	<span class="title" *ngIf="!data.isEdited">
+		Tạo bài viết mới
+	</span>
+	<span class="title" *ngIf="data.isEdited">
+		Sửa bài
+	</span>
+	<span class="material-icons" (click)=onClose()>
+		cancel
+	</span>
+
+</div>
+<div class="break-line"></div>
+<div class="card-body">
+	<form #userForm="ngForm" (ngSubmit)="submit(userForm)" class="form-horizontal">
+	  <div class="form-group row">
+		<label class="col-md-3 col-form-label" for="text-input">Nội dung</label>
+		<div class="col-md-9">
+		  <input type="text" id="text-input" name="name" [(ngModel)]="data.name" required #name="ngModel" class="form-control">
+		</div>
+	  </div>
+	  <div class="card-footer">
+		<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Tạo</button>
+	  </div>
+	</form>
+  </div>
+

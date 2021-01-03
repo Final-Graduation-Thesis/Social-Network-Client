@@ -9,18 +9,21 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class AppsAdminIndexView {
     navItems: any[] = [
         {
-            name: 'Colors',
-            url: '/theme/colors',
+            name: 'Bài viết bị báo cáo',
+            url: '/admin/report',
             icon: 'icon-drop'
           },
           {
-            name: 'Typography',
-            url: '/theme/typography',
+            name: 'Loại báo cáo',
+            url: '/admin/type-report',
             icon: 'icon-pencil'
           },
 
     ]
+  
+    username: string;
     ngOnInit() {
+      this.username = localStorage.getItem('username');
     }
     
 }

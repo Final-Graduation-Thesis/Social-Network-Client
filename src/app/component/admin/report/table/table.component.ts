@@ -2,8 +2,10 @@ import {
 	AfterViewInit,
 	Component, OnInit, ViewEncapsulation
 } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { ReportService } from 'src/app/service/report.service';
+import { AppsAdminModalComponent } from '../../modal/modal.component';
 
 @Component({
 	selector: 'apps-admin-report-table',
@@ -20,9 +22,11 @@ export class AppsAdminReportTableComponent implements AfterViewInit {
 	nextPageNumber: number = 0;
 	previousPageNumber: number = 0;
 	pageNumber: number = 0;
+
 	constructor(
 		private router: Router,
-		private reportService: ReportService
+		private reportService: ReportService,
+		private dialog: MatDialog,
 	) {
 		
 	}
@@ -45,12 +49,23 @@ export class AppsAdminReportTableComponent implements AfterViewInit {
 				this.previousPageNumber = previousPageNumber >= 0 ? previousPageNumber : 0;
 			},
 			error: (err)=> {},
-			complete: () => {
-			}
+			complete: () => {}
 		});
 	}
 
 	navigatePost(id: number): void {
 		this.router.navigateByUrl(`post/${id}`);
 	}
+
+	onDeletePost(postId: number, id: number): void {
+		const dialogRef = this.dialog.open(AppsAdminModalComponent, {
+			width: '350px',
+			data: {
+				postId: postId,
+				type: "delete-post"
+			}
+		  });
+		this.reportService.delete(id).subscribe();
+	}
+
 }

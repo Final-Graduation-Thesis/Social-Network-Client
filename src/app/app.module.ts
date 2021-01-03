@@ -58,6 +58,7 @@ import {
   AppSidebarModule,
 } from '@coreui/angular';
 import { AppsAdminHeaderComponent } from './component/admin/header/header.component';
+import { AppsAdminModalComponent } from './component/admin/modal/modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { AppsAdminHeaderComponent } from './component/admin/header/header.compon
     AppsUtilComponent,
     AppsSavedPostView,
     AppsAdminIndexView,
-    AppsAdminHeaderComponent
+    AppsAdminHeaderComponent,
+    AppsAdminModalComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ import { AppsAdminHeaderComponent } from './component/admin/header/header.compon
   entryComponents: [
     AppsPostDialogComponent,
     AppsChatDialogComponent,
-    AppsEventDialogComponent
+    AppsEventDialogComponent,
+    AppsAdminModalComponent
   ],
 
   providers: [

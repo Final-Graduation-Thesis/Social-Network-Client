@@ -4,8 +4,11 @@ apps-admin-report-table {
     .app-body {
         background-color: #e4e5e6;
     }
+    tr:hover {
+        cursor: pointer;
+    }
     table {
-        width: 142% !important;
+        width: 120% !important;
         .btn {
             padding-left: 0 !important;
         }

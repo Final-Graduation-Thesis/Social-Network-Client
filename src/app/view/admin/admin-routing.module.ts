@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppsAdminReportView } from './report/report.view';
+import { AppsAdminTypeReportView } from './type-report/type-report.view';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
           path: 'report',
           component: AppsAdminReportView,
         },
+        {
+          path: 'type-report',
+          component: AppsAdminTypeReportView
+		    }
        ]
   }
 ];

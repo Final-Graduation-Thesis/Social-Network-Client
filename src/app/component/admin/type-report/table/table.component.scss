@@ -1,0 +1,15 @@
+apps-admin-type-report-table {
+    .new-btn {
+        width: 200px !important;
+        margin-top: 25px;
+    }
+    tr:hover {
+        cursor: pointer;
+    }
+    .page-link {
+        color: #20a8d8;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
