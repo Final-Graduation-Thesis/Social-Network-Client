@@ -1,5 +1,5 @@
 
-apps-event-dialog-component {
+apps-report-dialog-component {
     .header {
         display: flex;
         justify-content: space-between;
@@ -39,9 +39,13 @@ apps-event-dialog-component {
             }
         }
     }
+    .note {
+        font-weight: bold;
+    }
     .footer {
         display: flex;
         justify-content: center;
+        margin-top: 12px;
         button {
             width: 80%;
             background-color: #ECF7E7;
@@ -54,7 +58,7 @@ apps-event-dialog-component {
 }
 
 .mat-snack-bar-container  {
-    margin-bottom: 160% !important;
+    margin-bottom: 140% !important;
     .mat-simple-snackbar {
         justify-content: center !important;
     }

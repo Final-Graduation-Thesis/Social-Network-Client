@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { forwardRef, NgModule } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +45,6 @@ import { AppsMapView } from 'src/app/view/map/map.view';
 import { AuthGuardService } from './service/authGuard.service';
 import { AppsUtilComponent } from './component/util/util.component';
 import { AppsSavedPostView } from './view/saved-post/saved-post.view';
-import { AppsEventDialogComponent } from './component/header/event-dialog/event-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { AppsAdminIndexView } from 'src/app/view/admin/index.view';
@@ -59,6 +58,7 @@ import {
 } from '@coreui/angular';
 import { AppsAdminHeaderComponent } from './component/admin/header/header.component';
 import { AppsAdminModalComponent } from './component/admin/modal/modal.component';
+import { AppsReportDialogComponent } from './component/posts/report-dialog/report-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +68,6 @@ import { AppsAdminModalComponent } from './component/admin/modal/modal.component
     AppsCommentComponent,
     AppsPostComponent,
     AppsPostDialogComponent,
-    AppsEventDialogComponent,
     AppsChatPanelComponent,
     AppsChatDialogComponent,
     VndCurrencyPipe,
@@ -85,7 +84,8 @@ import { AppsAdminModalComponent } from './component/admin/modal/modal.component
     AppsSavedPostView,
     AppsAdminIndexView,
     AppsAdminHeaderComponent,
-    AppsAdminModalComponent
+    AppsAdminModalComponent,
+    AppsReportDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +118,7 @@ import { AppsAdminModalComponent } from './component/admin/modal/modal.component
   entryComponents: [
     AppsPostDialogComponent,
     AppsChatDialogComponent,
-    AppsEventDialogComponent,
+    AppsReportDialogComponent,
     AppsAdminModalComponent
   ],
 

@@ -11,9 +11,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of typeReports" (click)="onEdit(item)">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
+      <tr *ngFor="let item of typeReports" >
+        <td (click)="onEdit(item)">{{item.id}}</td>
+        <td (click)="onEdit(item)">{{item.name}}</td>
         <td>
           <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
             <button type="button" class="btn btn-block btn-danger" (click)="onDelete(item.id)">Xóa</button>

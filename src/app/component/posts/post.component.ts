@@ -9,6 +9,7 @@ import { LikeService } from 'src/app/service/like.service';
 import { Router } from '@angular/router';
 import { SavedService } from 'src/app/service/saved.service';
 import { MatSnackBar } from '@angular/material';
+import { AppsReportDialogComponent } from './report-dialog/report-dialog.component';
 
 @Component({
 	selector: 'apps-post-component',
@@ -195,5 +196,14 @@ export class AppsPostComponent implements AfterViewInit {
 			}
 		}
 			);
+	}
+
+	onClickReport(post: any): void {
+		const dialogRef = this.dialog.open(AppsReportDialogComponent, {
+					width: '350px',
+					data: {
+						postId: post.id
+					}
+				  });
 	}
 }

@@ -15,9 +15,7 @@
         <td>{{item.postId}}</td>
         <td>{{item.reportType.name}}</td>
         <td>{{item.description}}</td>
-        <td>
-          17/02/2020
-        </td>
+        <td>{{item.createdAt | date : 'short'}}</td>
         <td>
           <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
             <button type="button" class="btn btn-block btn-success" (click)="navigatePost(item.postId)">Chi tiết</button>

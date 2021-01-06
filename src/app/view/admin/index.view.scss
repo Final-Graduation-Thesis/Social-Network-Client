@@ -1,4 +1,7 @@
 apps-admin-index-view {
     @import "~@coreui/coreui/scss/coreui";
     @import "~@coreui/coreui/scss/variables";
+    app-sidebar {
+        height: 602px;
+    } 
 }

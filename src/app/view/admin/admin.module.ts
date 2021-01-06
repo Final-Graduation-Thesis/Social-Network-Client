@@ -43,8 +43,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     AppsAdminReportTableComponent,
     AppsAdminTypeReportTableComponent,
     AppsAdminTypeReportView,
-    AppsAdminTypeReportDialogComponent
-    
+    AppsAdminTypeReportDialogComponent,
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,38 @@
+<div class="overlay" *ngIf="loading">
+	<mat-spinner class="loading" mode="indeterminate"></mat-spinner>
+</div>
+<div class="header">
+	<span></span>
+	<span class="title">
+		Báo cáo
+	</span>
+	<span class="material-icons" (click)="onClose()">
+		cancel
+	</span>
+
+</div>
+<div class="break-line"></div>
+<form [formGroup]="form" (submit)="submit()">
+	<div class="body" mat-dialog-content>
+        <div class="second-user">Vui lòng chọn vấn đề để tiếp tục </div>
+		<mat-form-field>
+			<mat-label>Vấn đề</mat-label>
+			<mat-select required formControlName="typeReportId">
+				<mat-option 
+				 	*ngFor="let type of typeReports " [value]="type.id"
+					 required
+				>
+				{{type.name}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput formControlName="description" placeholder="Mô tả thêm"></textarea>
+		</mat-form-field>
+	</div>
+	<mat-label class="note">Trước khi báo cáo, bạn hãy chắc chắn rằng bài viết này có vi phạm Tiêu chuẩn cộng đồng của chúng tôi không?
+		Chúng tôi chỉ gỡ những nội dung vi phạm Tiêu chuẩn cộng đồng của mình</mat-label>
+	<div class="footer">
+		<button mat-stroked-button color="primary" type="submit">Gửi</button>
+	</div>
+</form>

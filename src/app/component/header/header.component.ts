@@ -7,7 +7,6 @@ import { UserService } from 'src/app/service/user.service';
 import { WebSocketService } from 'src/app/service/websocket.service';
 import { AppsChatPanelComponent } from 'src/app/component/chat/chat-panel.component';
 import { MatDialog } from '@angular/material';
-import { AppsEventDialogComponent } from './event-dialog/event-dialog.component';
 import { ReadNotificationService } from 'src/app/service/read-notification.service';
 
 @Component({
@@ -91,12 +90,12 @@ export class AppsHeaderComponent {
 				})
 				break;
 			case 5:
-				const dialogRef = this.dialog.open(AppsEventDialogComponent, {
-					width: '350px',
-					data: {
-					}
-				  });
-				break;
+				// const dialogRef = this.dialog.open(AppsEventDialogComponent, {
+				// 	width: '350px',
+				// 	data: {
+				// 	}
+				//   });
+				// break;
 			default:
 				break;
 		}

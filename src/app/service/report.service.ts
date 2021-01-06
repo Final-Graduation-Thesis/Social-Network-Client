@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from './service';
+import { Observable } from 'rxjs';
 
 const URL = '/social/admin/report/';
 
@@ -15,4 +16,9 @@ export class ReportService extends BaseService {
     ) {
         super();
     }
+
+	post(url, body?: any): Observable<any> {
+		return this.http.post(url, body);
+	}
+
 }
