@@ -1,0 +1,71 @@
+<div class="row">
+	<div>
+<div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+    <button type="button" class="btn new-btn btn-block btn-success" (click)="newType()" >Tạo mới</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-responsive-sm table-hover table-outline mb-0">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Tên</th>
+          <th>Điểm</th>
+          <th style="text-align: center">Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of recommendList" >
+          <td (click)="onEdit(item)">{{item.id}}</td>
+          <td (click)="onEdit(item)">{{item.name}}</td>
+          <td (click)="onEdit(item)">{{item.activePoint}}</td>
+          <td>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+              <button type="button" class="btn btn-block btn-danger" (click)="onDelete(item.id)">Xóa</button>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <ul class="pagination">
+      <li class="page-item"><div class="page-link">
+         Lùi lại</div></li>
+      <li class="page-item"><div class="page-link"
+         >Kế tiếp</div></li>
+    </ul>
+  </div>
+</div>
+<div>
+  <div class="card-body">
+	<table class="table table-responsive-sm table-hover table-outline mb-0">
+	  <thead class="thead-light">
+		<tr>
+		  <th>ID</th>
+		  <th>Tên</th>
+		  <th>Điểm</th>
+		  <th style="text-align: center">Xóa</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr *ngFor="let item of actionList" >
+		  <td (click)="onEditAction(item)">{{item.id}}</td>
+		  <td (click)="onEditAction(item)">{{item.actionName}}</td>
+		  <td (click)="onEditAction(item)">{{item.point}}</td>
+		  <td>
+			<div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+			  <button type="button" class="btn btn-block btn-danger" (click)="onDeleteAction(item.id)">Xóa</button>
+			</div>
+		  </td>
+		</tr>
+		
+	  </tbody>
+	</table>
+	<ul class="pagination">
+	  <li class="page-item"><div class="page-link">
+		 Lùi lại</div></li>
+	  <li class="page-item"><div class="page-link"
+		 >Kế tiếp</div></li>
+	</ul>
+  </div>
+</div>
+</div>

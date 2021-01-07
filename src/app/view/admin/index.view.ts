@@ -18,7 +18,11 @@ export class AppsAdminIndexView {
             url: '/admin/type-report',
             icon: 'icon-pencil'
           },
-
+          {
+            name: 'Hệ thống kết nối gợi ý',
+            url: '/admin/recommend',
+            icon: 'icon-pencil'
+          },
     ]
   
     username: string;

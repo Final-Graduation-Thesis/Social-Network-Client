@@ -11,6 +11,10 @@ import { AppsAdminTypeReportTableComponent } from 'src/app/component/admin/type-
 import { AppsAdminTypeReportDialogComponent } from 'src/app/component/admin/type-report/dialog/dialog.component';
 import { MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule, MatTabsModule, MatTooltipModule } from '@angular/material';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { AppsAdminRecommendView } from './recommend/recommend.view';
+import { AppsAdminRecommendTableComponent } from 'src/app/component/admin/recommend/table/table.component';
+import { AppsAdminRecommendDialogComponent } from 'src/app/component/admin/recommend/dialog/dialog.component';
+import { AppsAdminRecommendActionDialogComponent } from 'src/app/component/admin/recommend/action-dialog/action-dialog.component';
 
 @NgModule({
   imports: [
@@ -36,7 +40,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatNativeDateModule,
   ],
   entryComponents: [
-    AppsAdminTypeReportDialogComponent
+    AppsAdminTypeReportDialogComponent,
+    AppsAdminRecommendDialogComponent,
+    AppsAdminRecommendActionDialogComponent
   ],
   declarations: [
     AppsAdminReportView,
@@ -44,6 +50,10 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     AppsAdminTypeReportTableComponent,
     AppsAdminTypeReportView,
     AppsAdminTypeReportDialogComponent,
+    AppsAdminRecommendTableComponent,
+    AppsAdminRecommendView,
+    AppsAdminRecommendDialogComponent,
+    AppsAdminRecommendActionDialogComponent
   ]
 })
 export class AdminModule { }

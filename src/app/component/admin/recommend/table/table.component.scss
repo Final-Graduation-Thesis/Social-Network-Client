@@ -1,0 +1,19 @@
+apps-admin-recommend-table {
+    .row {
+        margin-left: 30px;
+    }
+    .new-btn {
+        width: 200px !important;
+        margin-top: 25px;
+        margin-left: 5px;
+    }
+    tr:hover {
+        cursor: pointer;
+    }
+    .page-link {
+        color: #20a8d8;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { PostService } from 'src/app/service/post.service';
+import { RecommendService } from 'src/app/service/recommend.service';
 import { TypeReportService } from 'src/app/service/type-report.service';
 
 @Component({
@@ -16,18 +17,20 @@ export class AppsAdminModalComponent implements OnInit {
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public snackBar: MatSnackBar,
 		private postService: PostService,
-		private typeReportService: TypeReportService
-
+		private typeReportService: TypeReportService,
+		private recommendService: RecommendService
 	) {}
 
 	ngOnInit(): void {
 	}
-	
+
 	onDelete(): void {
 		if (this.data.type == "delete-post") {
 			this._deletePost();
 		} else if (this.data.type == "delete-type-report") {
 			this._deleteTypeReport();
+		} else if (this.data.type == "delete-recommend-level") {
+			this._deleteRecommendLevel();
 		}
 	}
 
@@ -76,6 +79,27 @@ export class AppsAdminModalComponent implements OnInit {
 
 	}
 
+	_deleteRecommendLevel(): void {
+		this.recommendService.delete(this.data.id).subscribe({
+			next: (res) => {
+			this.snackBar.open("Xóa thành công", null, {
+					duration: 2000,
+					panelClass: 'success'
+				});
+				this.dialogRef.close();
+				this.recommendService.reload({isReload: true});
+			},
+			error: (err) => {
+				this.snackBar.open("Xóa thành công", null, {
+					duration: 2000,
+					panelClass: 'success'
+				});
+				this.dialogRef.close();
+				this.recommendService.reload({isReload: true});
+			},
+			complete: () => {}
+		});
+	}
 	onCancel(): void {
 		this.dialogRef.close();
 	}
