@@ -1,10 +1,10 @@
 <div class="header">
 	<span></span>
 	<span class="title" *ngIf="!data.isEdited">
-		Tạo bài viết mới
+		Tạo loại vi phạm mới
 	</span>
 	<span class="title" *ngIf="data.isEdited">
-		Sửa bài
+		Sửa vi phạm
 	</span>
 	<span class="material-icons" (click)=onClose()>
 		cancel
@@ -21,7 +21,9 @@
 		</div>
 	  </div>
 	  <div class="card-footer">
-		<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Tạo</button>
+		<button type="submit" *ngIf="!data.isEdited" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Tạo</button>
+		<button type="submit" *ngIf="data.isEdited" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Sửa</button>
+
 	  </div>
 	</form>
   </div>

@@ -6,7 +6,7 @@
     <div class="content" #chatContent>
         <div *ngFor="let item of messageData">
             <div class="user-1" *ngIf="this.data.id === item.entry.from">
-                <img src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+                <img src="{{avatar}}">
                 <div class="message-1">{{item.entry.message}}</div>
             </div>
             <div class="message-2" *ngIf="this.data.id !== item.entry.from">{{item.entry.message}}</div>

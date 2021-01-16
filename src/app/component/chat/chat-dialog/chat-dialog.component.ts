@@ -3,6 +3,7 @@ import {
 	Component, ComponentRef, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { PubNubAngular } from 'pubnub-angular2';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
 	selector: 'apps-chat-dialog-component',
@@ -21,12 +22,17 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 	messageData: any;
 	@Output('emitMessage') emitMessage: EventEmitter<any> =  new EventEmitter();
 	@Output('hideChatEmiiter') hideChatEmitter: EventEmitter<any> = new EventEmitter();
-
-	constructor(private pubnubAngular: PubNubAngular) {
+	avatar: any;
+	constructor(private pubnubAngular: PubNubAngular,
+		private userService: UserService) {
 
 	}
 	
     ngOnInit(): void {
+		this.userService.get(this.data.id).subscribe(res=> {
+			this.avatar = res.avatar;
+			console.log(this.avatar);
+		})
 		this.data.id = this.data.id.toString();
 		if (parseInt(localStorage.getItem('user_id')) > this.data.id) {
 			this.channel = `${localStorage.getItem('user_id')}-${this.data.id}`;

@@ -34,7 +34,7 @@ export class AppsAdminRecommendTableComponent implements OnInit {
 			if (res.isReload && !res.isEdited) {
 				this.recommendList = this.recommendList.filter(res => res.id != this.id);
 				if (res.name) {
-					this.recommendList.push({name: res.name, id: res.id, activePoint: res.activePoint});
+					this.recommendList.push({name: res.actionName, id: res.id, activePoint: res.activePoint});
 				}
 			}
 			if (res.isEdited) {
@@ -47,6 +47,24 @@ export class AppsAdminRecommendTableComponent implements OnInit {
 				})
 			}
 		})
+		this.actionService.onReload().subscribe(res => {
+			console.log(res);
+			if (res.isReload && !res.isEdited) {
+				this.actionList = this.actionList.filter(res => res.id != this.id);
+				if (res.name) {
+					this.actionList.push({actionName: res.actionName, id: res.id, point: res.point});
+				}
+			}
+			if (res.isEdited) {
+				this.actionList.some(item => {
+					if (item.id == res.id ) {
+                        item.actionName = res.actionName;
+                        item.point = res.point;
+						return true;
+					}
+				})
+			}
+		})
 	}
 	ngAfterViewInit(): void {
         this.load();
@@ -54,7 +72,7 @@ export class AppsAdminRecommendTableComponent implements OnInit {
 	}
 
 	load(pageNumber: number = 0): void {
-			this.recommendService.list('/social/admin/levels').subscribe({
+			this.recommendService.list().subscribe({
 				next: (res) => {
 				this.recommendList = res;
 			},
@@ -64,7 +82,7 @@ export class AppsAdminRecommendTableComponent implements OnInit {
 	}
 
     loadAction(): void {
-        this.recommendService.list('/social/admin/actions').subscribe({
+        this.actionService.list().subscribe({
             next: (res) => {
             this.actionList = res;
         },

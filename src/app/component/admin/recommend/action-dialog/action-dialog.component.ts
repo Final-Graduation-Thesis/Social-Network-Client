@@ -82,9 +82,9 @@ export class AppsAdminRecommendActionDialogComponent implements OnInit {
 			error: (err) => {
 				this.loading = false;
 				this.onClose();
-				this.snackBar.open("Sửa thành công", null, {
+				this.snackBar.open("Lỗi xảy ra, vui lòng thử lại", null, {
 					duration: 2000,
-					panelClass: 'success'
+					panelClass: 'error'
 				});
 			},
 		});

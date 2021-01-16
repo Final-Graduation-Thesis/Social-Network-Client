@@ -15,6 +15,7 @@ import { AppsAdminRecommendView } from './recommend/recommend.view';
 import { AppsAdminRecommendTableComponent } from 'src/app/component/admin/recommend/table/table.component';
 import { AppsAdminRecommendDialogComponent } from 'src/app/component/admin/recommend/dialog/dialog.component';
 import { AppsAdminRecommendActionDialogComponent } from 'src/app/component/admin/recommend/action-dialog/action-dialog.component';
+import { AppsAdminDashboardView } from './dashboard/dashboard.view';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { AppsAdminRecommendActionDialogComponent } from 'src/app/component/admin
     MatTooltipModule,
     MatCardModule,
     MatNativeDateModule,
+    
   ],
   entryComponents: [
     AppsAdminTypeReportDialogComponent,
@@ -53,7 +55,8 @@ import { AppsAdminRecommendActionDialogComponent } from 'src/app/component/admin
     AppsAdminRecommendTableComponent,
     AppsAdminRecommendView,
     AppsAdminRecommendDialogComponent,
-    AppsAdminRecommendActionDialogComponent
+    AppsAdminRecommendActionDialogComponent,
+    AppsAdminDashboardView
   ]
 })
 export class AdminModule { }

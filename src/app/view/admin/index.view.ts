@@ -8,7 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppsAdminIndexView {
     navItems: any[] = [
-        {
+		{
+            name: 'Trang chủ',
+            url: '/admin/dashboard',
+            icon: 'icon-drop'
+          },
+          {
             name: 'Bài viết bị báo cáo',
             url: '/admin/report',
             icon: 'icon-drop'
