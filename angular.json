@@ -67,7 +67,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "Social-Network-Client:build:production"
+              "browserTarget": "Social-Network-Client:build:production",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },
