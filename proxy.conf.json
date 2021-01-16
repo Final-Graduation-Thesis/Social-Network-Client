@@ -1,9 +1,17 @@
 {
     "/social": {
-      "target": "http://localhost:9090"
+      "target": "http://localhost:9090",
+      "secure": false,
+    "pathRewrite": {"^/social" : ""},
+    "changeOrigin": true,
+    "logLevel": "debug"
     },
     "/auth": {
-      "target": "http://localhost:9090"
+      "target": "http://localhost:9090",
+      "secure": false,
+    "pathRewrite": {"^/auth": ""},
+    "changeOrigin": true,
+    "logLevel": "debug"
     }
 
   }
