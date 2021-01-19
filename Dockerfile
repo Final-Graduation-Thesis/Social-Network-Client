@@ -13,3 +13,7 @@ RUN npm run build --prod
 FROM nginx:1.15.8-alpine
 
 COPY --from=builder /usr/src/app/dist/Social-Network-Client/ /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
