@@ -29,6 +29,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@types/googlemaps": "^3.40.3",
     "amazing-time-picker": "^1.8.0",
+    "angular-http-server": "^1.9.0",
     "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "json-server": "^0.16.1",
