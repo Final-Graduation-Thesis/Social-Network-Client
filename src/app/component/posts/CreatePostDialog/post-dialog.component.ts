@@ -142,8 +142,6 @@ export class AppsPostDialogComponent implements OnInit {
 		body.append("description", val.description ? val.description : "");
 		body.append("priceFrom", val.priceFrom);
 		body.append("priceTo", val.priceTo);
-		body.append("username", "Huỳnh Phương Duy");
-		body.append("userId", "1");
 		body.append("expiredAt", "30-10-2020");
 		body.append("roomNumber", "2");
 
@@ -182,9 +180,9 @@ export class AppsPostDialogComponent implements OnInit {
 					this.loading = false;
 					this.onClose();
 					this.reloadService.reloadPost(true);
-					this.snackBar.open("Đăng bài thành công", null, {
+					this.snackBar.open("Đã có lỗi xảy ra, vui lòng thử lại", null, {
 						duration: 2000,
-						panelClass: 'success'
+						panelClass: 'error'
 					});
 				}
 			}

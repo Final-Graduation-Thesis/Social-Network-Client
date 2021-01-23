@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { AuthService } from 'src/app/service/auth.service';
+import { UserService } from 'src/app/service/user.service';
 import { AppsPostDialogComponent } from '../../component/posts/CreatePostDialog/post-dialog.component';
 
 @Component({
@@ -12,11 +14,15 @@ export class AppsNewPostPanelComponent implements OnInit {
 
 	avatar: string;
 	constructor(
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private authService: AuthService,
+		private userService: UserService
     ) {}
 
-	ngOnInit() {
-		this.avatar = localStorage.getItem('avatar');
+	ngOnInit(): void {
+		this.userService.get(parseInt(localStorage.getItem('user_id'))).subscribe(res => {
+			this.avatar = res.avatar;
+		});
 	}
 
     openDialog(): void {

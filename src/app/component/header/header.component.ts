@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -36,6 +36,7 @@ export class AppsHeaderComponent {
 	notifications: any[] = [];
 	countNoti: number = 0;
 	user: any;
+
 	constructor(
 		public router: Router,
 		private authService: AuthService,
@@ -48,24 +49,34 @@ export class AppsHeaderComponent {
 	) { }
 
 	ngOnInit(): void {
-		this.notificationService.list().subscribe((res) => {
-			this.notifications = res.items;
-			this.notifications.forEach(noti => {
-				!noti.markAsRead ? this.countNoti++ : '';
+		if (!this.user) {
+			this.user = this.userService.getInfo();
+		}
+		this.authService.onReloadHeader().subscribe(res => {
+			console.log('loggginansdasd');
+			this.userService.get(parseInt(localStorage.getItem('user_id'))).subscribe(res => {
+				this.user.username = res.username;
+				this.user.avatar = res.avatar;
 			});
-		});
-		this.user = this.userService.getInfo();
-		let stompClient = this.webSocketService.connect();
-        setTimeout(() => {
-			stompClient.connect({}, frame => {
-				let url: string = `/user/${localStorage.getItem("username")}/notification/social`;
-				stompClient.subscribe(url, notification => {
-					let noti: any = JSON.parse(notification.body)
-					this.notifications.unshift(noti);
-					this.countNoti++;
+			this.notificationService.list().subscribe((res) => {
+				this.notifications = res.items;
+				this.notifications.forEach(noti => {
+					!noti.markAsRead ? this.countNoti++ : '';
+				});
+			});
+			let stompClient = this.webSocketService.connect();
+			setTimeout(() => {
+				stompClient.connect({}, frame => {
+					let url: string = `/user/${this.user.username}/notification/social`;
+					stompClient.subscribe(url, notification => {
+						let noti: any = JSON.parse(notification.body)
+						this.notifications.unshift(noti);
+						this.countNoti++;
+					});
 				});
 			});
 		});
+		
 	}
 	onClickIndex(): void {
 		this.reloadService.reloadPost(true);
@@ -87,23 +98,16 @@ export class AppsHeaderComponent {
 			case 4:
 				this.userService.get(noti.secondUserId).subscribe(res => {
 					chat.openChatDialog(res);
-				})
+				});
 				break;
 			case 5:
-				// const dialogRef = this.dialog.open(AppsEventDialogComponent, {
-				// 	width: '350px',
-				// 	data: {
-				// 	}
-				//   });
-				// break;
+				window.open("https://meet.google.com/new", "_blank")
 			default:
 				break;
 		}
-		console.log(index);
 		this.readNotiService.markAsRead('', noti.id).subscribe(res => {
 		});
 		this.notifications[index].markAsRead = true;
-
 	}
 
 	clearNotiCount(): void {

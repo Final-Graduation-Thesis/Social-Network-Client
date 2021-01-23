@@ -13,11 +13,11 @@
 		</div>
 		<form class="login-form" [formGroup]="loginForm" (submit)="login()">
 			<mat-form-field class="">
-				<input type="email" formControlName="email" matInput placeholder="Email">
+				<input type="email" formControlName="email" matInput placeholder="Email" required>
 			</mat-form-field>
 			<br>
 			<mat-form-field class="">
-				<input type="password" formControlName="password" matInput placeholder="Mật khẩu">
+				<input type="password" formControlName="password" matInput placeholder="Mật khẩu" required>
 			</mat-form-field>
 			<p style="color:red" *ngIf="isIncorrectLogin">Sai tài khoản hoặc mật khẩu</p>
 			<a href="#">Quên mật khẩu?</a>

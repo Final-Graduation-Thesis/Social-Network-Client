@@ -14,6 +14,8 @@ import { WebSocketService } from 'src/app/service/websocket.service';
 })
 export class AppsHomeViewComponent implements OnInit {
 	@ViewChild('notFound') notFound: ElementRef;
+	@ViewChild('loading') loading: ElementRef;
+
 	@HostListener("window:scroll", [])
 		onWindowScroll() {
 			let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight;
@@ -46,13 +48,17 @@ export class AppsHomeViewComponent implements OnInit {
 
 	
 	ngOnInit() {
-		this.postService.list().subscribe((res) => {
-			this.postData = res.items;
-			this.hasNext = res.hasNext;
-			this.nextLink = res.nextLink;
-		},
-		(err) => {
-		});
+		this.postService.list().subscribe(
+			{
+				next: (res) => {
+				this.postData = res.items;
+				this.hasNext = res.hasNext;
+				this.nextLink = res.nextLink;
+				},
+				error: (err) => {
+					this.postData = [1];
+					this.notFound.nativeElement.innerHTML = "Lỗi xảy ra, vui lòng thử lại";
+				}});
 		this.reloadService.onReloadPost().subscribe(isReload => {
 			this.reload();
 		})

@@ -105,7 +105,6 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.pubnub.unsubscribeAll();
     }
 
     openChatDialog(user: any, message?: any): void {

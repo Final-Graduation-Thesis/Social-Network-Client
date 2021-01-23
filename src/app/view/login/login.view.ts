@@ -36,10 +36,13 @@ export class AppsLoginViewComponent implements OnInit {
 	login(): void {
 		this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
 			{
-				next: (res) => {
+				next: (res: any) => {
 					this.router.navigateByUrl('/');
 			},
-				error: (err) => { this.isIncorrectLogin = true}
+				error: (err) => { this.isIncorrectLogin = true},
+				complete: () => {
+					this.authService.reloadHeader(true);
+				}
 		})
 	}
 
@@ -51,10 +54,10 @@ export class AppsLoginViewComponent implements OnInit {
 		}
 		this.authService.register(body).subscribe({
 			next: (res) => {
-				alert('Đăng kí thành công. email: ' + body.get('email') + 'password: ' + body.get('password'));
+				alert('Đăng kí thành công\nEmail: ' + res.email  + '\nTên hiển thị: ' + res.name);
 			},
 			error: (res) => {
-				alert('Đăng kí thành công. email: ' + body.get('email') + 'password: ' + body.get('password'));
+				alert('Đã xảy ra lỗi, vui lòng thử lại');
 			}
 		}
 		)

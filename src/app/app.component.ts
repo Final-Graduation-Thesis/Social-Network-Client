@@ -18,7 +18,7 @@ export class AppComponent {
 	) { }
 
 	ngOnInit(): void {
-		this.isAdmin = this.url.startsWith('/admin') || this.url.startsWith('/login');
+		this.isAdmin = this.url.startsWith('/admin') || this.url.startsWith('/login') || this.url.startsWith('/login?return=%2F');
 	}
 
 }
