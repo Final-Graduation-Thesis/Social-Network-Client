@@ -48,6 +48,8 @@ export class AppsMapView implements OnInit {
 			value: 3
 		}
 	]
+	priceFrom: number;
+	priceTo: number;
 	delayFactor: number = 0;
 	map: google.maps.Map;
 	lat = 10.8016345;
@@ -106,12 +108,29 @@ export class AppsMapView implements OnInit {
 			}
 			this.drawingArea = new google.maps.Polygon({ paths: g });
 			this.drawingAreas.push(this.drawingArea);
-			console.log(this.postList);
 			if (this.typeBusiness) {
 				this.postList = this.postList.filter(item => item.typeBusiness == this.typeBusiness);
 			}
 			if (this.typeProperty) {
 				this.postList = this.postList.filter(item => item.typeProperty == this.typeProperty);
+			}
+			if (this.priceFrom) {
+				this.postList = this.postList.filter(item => {
+					if (item.price) {
+						return item.price >= this.priceFrom;
+					} else {
+						return item.priceFrom >= this.priceFrom;
+					}
+				})
+			}
+			if (this.priceTo) {
+				this.postList = this.postList.filter(item => {
+					if (item.price) {
+						return item.price <= this.priceTo;
+					} else {
+						return item.priceFrom <= this.priceTo;
+					}
+				})
 			}
 
 			this.postList.forEach(item => {
@@ -269,5 +288,13 @@ export class AppsMapView implements OnInit {
 
 	onChangeTypeProperty(event: any): void {
 		this.drawingManager['typeProperty'] = event.value;
+	}
+
+	onChangePriceMin(event: any): void {
+		this.drawingManager['priceFrom'] = event.target.value;
+	}
+
+	onChangePriceMax(event: any): void {
+		this.drawingManager['priceTo'] = event.target.value;
 	}
 }

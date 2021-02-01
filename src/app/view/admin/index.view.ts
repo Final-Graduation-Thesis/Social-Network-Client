@@ -24,6 +24,11 @@ export class AppsAdminIndexView {
             icon: 'icon-pencil'
           },
           {
+            name: 'Danh sách người dùng gợi ý theo bài viết',
+            url: '/admin/interested-user',
+            icon: 'icon-pencil'
+          },
+          {
             name: 'Hệ thống kết nối gợi ý',
             url: '/admin/recommend',
             icon: 'icon-pencil'

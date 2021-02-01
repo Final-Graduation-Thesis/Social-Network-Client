@@ -3,5 +3,9 @@ apps-admin-index-view {
     @import "~@coreui/coreui/scss/variables";
     app-sidebar {
         height: 602px;
+        .nav-link {
+            justify-content: flex-start;
+            display: flex !important;
+        }
     } 
 }

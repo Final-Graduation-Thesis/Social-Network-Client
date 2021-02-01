@@ -25,10 +25,12 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field class="price-min">
-        <input type="number" formControlName="priceMin" matInput  placeholder="Giá thấp nhất">
+        <input formControlName="priceMin" #priceMin (keyup)="formatMinCurrency($event)" matInput  placeholder="Giá thấp nhất">
+        <span matSuffix>VNĐ &nbsp;</span>
     </mat-form-field>
     <mat-form-field class="price-max">
-        <input type="number" formControlName="priceMax" matInput  placeholder="Giá cao nhất">
+        <input formControlName="priceMax" #priceMax matInput (keyup)="formatMaxCurrency($event)" placeholder="Giá cao nhất">
+        <span matSuffix>VNĐ &nbsp;</span>
     </mat-form-field>
     <mat-form-field class="area">
         <input type="number" formControlName="area" matInput  placeholder="Diện tích">

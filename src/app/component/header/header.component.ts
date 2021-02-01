@@ -53,7 +53,6 @@ export class AppsHeaderComponent {
 			this.user = this.userService.getInfo();
 		}
 		this.authService.onReloadHeader().subscribe(res => {
-			console.log('loggginansdasd');
 			this.userService.get(parseInt(localStorage.getItem('user_id'))).subscribe(res => {
 				this.user.username = res.username;
 				this.user.avatar = res.avatar;
@@ -73,6 +72,23 @@ export class AppsHeaderComponent {
 						this.notifications.unshift(noti);
 						this.countNoti++;
 					});
+				});
+			});
+		});
+		this.notificationService.list().subscribe((res) => {
+			this.notifications = res.items;
+			this.notifications.forEach(noti => {
+				!noti.markAsRead ? this.countNoti++ : '';
+			});
+		});
+		let stompClient = this.webSocketService.connect();
+		setTimeout(() => {
+			stompClient.connect({}, frame => {
+				let url: string = `/user/${this.user.username}/notification/social`;
+				stompClient.subscribe(url, notification => {
+					let noti: any = JSON.parse(notification.body)
+					this.notifications.unshift(noti);
+					this.countNoti++;
 				});
 			});
 		});

@@ -1,0 +1,25 @@
+apps-admin-interested-user-view {
+    tr:hover {
+        cursor: pointer;
+    }
+    table {
+        width: 110% !important;
+        .btn {
+            padding-left: 0 !important;
+        }
+    }
+    .detail-post {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+            color: #6fbe44;
+        }
+    }
+    .page-link {
+        color: #20a8d8;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+

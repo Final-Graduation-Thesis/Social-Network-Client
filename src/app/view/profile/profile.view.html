@@ -1,0 +1,82 @@
+<div class="tab-group">
+    <mat-tab-group mat-align-tabs="start" class="vertical" animationDuration="0ms">
+        <mat-tab label="Thông tin cá nhân">
+            <div class="title">
+                Thông tin cá nhân
+            </div>
+            <div class="break-line"></div>
+            <div class="profile">
+                <form [formGroup]="form" (submit)="submit()">
+                    <div class="body" mat-dialog-content>
+                        <div class="input">
+                            <mat-label>Ảnh đại diện</mat-label>
+                            <img src="{{user.avatar}}">
+                            <mat-form-field class="avatar">
+                                <ngx-mat-file-input formControlName="avatar"
+                                    (change)="onFileChanged($event)"
+                                    [accept]="'image/*'"
+                                    placeholder="Đổi ảnh đại diện">
+                                    [ngModel]="user.avatar"
+                                </ngx-mat-file-input>
+                                <mat-icon ngxMatFileInputIcon>perm_media
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Họ tên</mat-label>
+                            <mat-form-field class="">
+                                <input matInput [ngModel]="user.username" formControlName="username" value="{{user.username}}" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Giới tính</mat-label>
+                            <mat-form-field>
+                                <mat-select
+                                    [ngModel]="user.gender"
+                                    formControlName="gender" required>
+                                    <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                        {{gender.name}}
+                                    </mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Ngày sinh</mat-label>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Chọn ngày sinh</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="birthday" value="{{user.birthday}}" [ngModel]="user.birthday" (dateChange)="onChangeBirthday($event)">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Địa chỉ</mat-label>
+                            <mat-form-field class="">
+                                <input matInput [ngModel]="user.address" formControlName="address" value="{{user.address != 'null' ? user.address : ''}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Quê quán</mat-label>
+                            <mat-form-field class="">
+                                <input matInput [ngModel]="user.hometown" formControlName="hometown" value="{{user.hometown != 'undefined' ? user.hometown : ''}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-label>Email</mat-label>
+                            <mat-form-field class="">
+                                <input matInput [ngModel]="user.email" formControlName="email" value="{{user.email}}" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button mat-stroked-button color="primary" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+           
+        </mat-tab>
+        <mat-tab label="Đổi mật khẩu">Đổi mật khẩu</mat-tab>
+        <mat-tab label="Cài đặt khác">Cài đặt khác</mat-tab>
+    </mat-tab-group>
+</div>
+<apps-chat-panel-component></apps-chat-panel-component>

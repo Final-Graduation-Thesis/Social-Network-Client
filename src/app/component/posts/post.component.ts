@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 import { SavedService } from 'src/app/service/saved.service';
 import { MatSnackBar } from '@angular/material';
 import { AppsReportDialogComponent } from './report-dialog/report-dialog.component';
+import { RecommendService } from 'src/app/service/recommend.service';
+import { first, take } from 'rxjs/operators'
+import { resolveDefinition } from '@angular/core/src/view/util';
 
 @Component({
 	selector: 'apps-post-component',
@@ -18,6 +21,8 @@ import { AppsReportDialogComponent } from './report-dialog/report-dialog.compone
 	encapsulation: ViewEncapsulation.None
 })
 export class AppsPostComponent implements AfterViewInit {
+
+	static instance: AppsPostComponent;
 
 	@ViewChild('images') images: ElementRef;
 	@Input() post: any;
@@ -31,6 +36,19 @@ export class AppsPostComponent implements AfterViewInit {
 	isOwner: boolean = false;
 	liked: boolean = false;
 	likeList: string;
+	countTime: number = 0;
+	interval: any;
+	id: any;
+	set InViewport(value: any) {
+		this.inViewport = value;
+	}
+
+	get InViewport(): any {
+		return this.inViewport;
+	}
+	
+	sub: any;
+	inViewport: boolean = false;
 	constructor(
 		private renderer: Renderer2,
 		private postService: PostService,
@@ -39,10 +57,19 @@ export class AppsPostComponent implements AfterViewInit {
 		private savedService: SavedService,
 		private router: Router,
 		private snackBar: MatSnackBar,
+		private el: ElementRef,
+		private recommendService: RecommendService
 	) { }
 
-	ngOnInit() {
-	
+	ngOnInit():void {
+		this.sub = this.recommendService.onRecommend15s().subscribe(res => {
+			if (res.sub && res.id == this.post.id) {
+				this.sub = setTimeout(() => {
+					console.log('recommend ' + this.post.id);
+				}, 5000)
+			}
+		})
+		
 	}
 
 	ngAfterViewInit() {
@@ -205,5 +232,28 @@ export class AppsPostComponent implements AfterViewInit {
 						postId: post.id
 					}
 				  });
+	}
+
+	getBoundingClientRect(): any {
+		return this.el.nativeElement.getBoundingClientRect();
+	}
+
+	startCountingTime(): void {
+		this.interval = setInterval(() => {
+			this.countTime++;
+			if (this.countTime >= 112) {
+				this.recommendTime();
+				this.countTime = 0;
+			}
+		}, 5000);
+		
+	}
+
+	stopCountingTime(): void {
+		clearInterval(this.interval);
+		this.countTime = 0;
+	}
+	recommendTime(): void {
+		console.log('recommend ' + this.post.id);
 	}
 }

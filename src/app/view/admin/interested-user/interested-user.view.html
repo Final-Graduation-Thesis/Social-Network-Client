@@ -1,0 +1,38 @@
+<div class="card-body">
+    <table class="table table-responsive-sm table-hover table-outline mb-0">
+      <thead class="thead-light">
+        <tr>
+          <th>Mã bài viết</th>
+          <th>Người đăng</th>
+          <th>Tiêu đề</th>
+          <th>Ngày đăng</th>
+          <th>Thể loại</th>
+          <th>Loại hình BĐS</th>
+          <th>Chi tiết bài viết</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts" (click)="openUserList(post.id)">
+          <td>{{post.id}}</td>
+          <td>{{post.username}}</td>
+          <td>{{post.title}}</td>
+          <td>{{post.createdAt | date : 'short'}}</td>
+          <td>{{getTypeBusinessStr(post.typeBusiness)}}</td>
+          <td>{{getTypePorpertyStr(post.typeProperty)}}</td>
+          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+            <button type="button" class="btn btn-block btn-danger" (click)="navigatePost(post.id)">Chi tiết bài viết</button>
+          </div>
+        </tr>
+        
+      </tbody>
+    </table>
+    <ul class="pagination">
+      <li class="page-item"><div class="page-link"
+         (click)="nextPage(previousPageNumber)"
+         >
+         Lùi lại</div></li>
+      <li class="page-item"><div class="page-link"
+         (click)="nextPage(nextPageNumber)"
+         >Kế tiếp</div></li>
+    </ul>
+  </div>

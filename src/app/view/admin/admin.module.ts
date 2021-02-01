@@ -16,7 +16,8 @@ import { AppsAdminRecommendTableComponent } from 'src/app/component/admin/recomm
 import { AppsAdminRecommendDialogComponent } from 'src/app/component/admin/recommend/dialog/dialog.component';
 import { AppsAdminRecommendActionDialogComponent } from 'src/app/component/admin/recommend/action-dialog/action-dialog.component';
 import { AppsAdminDashboardView } from './dashboard/dashboard.view';
-
+import { AppsAdminInterestedUserView } from './interested-user/interested-user.view';
+import { AppsAdminInterestedUserDialogComponent } from 'src/app/component/admin/interested-user-dialog/interested-user-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -44,7 +45,8 @@ import { AppsAdminDashboardView } from './dashboard/dashboard.view';
   entryComponents: [
     AppsAdminTypeReportDialogComponent,
     AppsAdminRecommendDialogComponent,
-    AppsAdminRecommendActionDialogComponent
+    AppsAdminRecommendActionDialogComponent,
+    AppsAdminInterestedUserDialogComponent
   ],
   declarations: [
     AppsAdminReportView,
@@ -56,7 +58,9 @@ import { AppsAdminDashboardView } from './dashboard/dashboard.view';
     AppsAdminRecommendView,
     AppsAdminRecommendDialogComponent,
     AppsAdminRecommendActionDialogComponent,
-    AppsAdminDashboardView
+    AppsAdminDashboardView,
+    AppsAdminInterestedUserView,
+    AppsAdminInterestedUserDialogComponent
   ]
 })
 export class AdminModule { }

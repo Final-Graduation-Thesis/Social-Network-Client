@@ -28,6 +28,8 @@ export class UserService extends BaseService {
         localStorage.setItem("gender", user.gender);
         localStorage.setItem("email", user.email);
         localStorage.setItem("avatar", user.avatar);
+        localStorage.setItem('hometown', user.homwtown);
+        localStorage.setItem('address', user.address);
     }
 
     getInfo(): any {
@@ -36,7 +38,9 @@ export class UserService extends BaseService {
             email: localStorage.getItem("email"),
             birthday: localStorage.getItem("birthday"),
 			gender: localStorage.getItem("gender"),
-			avatar: localStorage.getItem("avatar")
+            avatar: localStorage.getItem("avatar"),
+            hometown: localStorage.getItem('hometown'),
+            address: localStorage.getItem('address')
 		}
     }
 }

@@ -17,6 +17,12 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field class="price-min">
+            <input type="number" (change)="onChangePriceMin($event)" matInput  placeholder="Giá thấp nhất">
+        </mat-form-field>
+        <mat-form-field class="price-max">
+            <input type="number" (change)="onChangePriceMax($event)" matInput  placeholder="Giá cao nhất">
+        </mat-form-field>
         <apps-button-component (click)="clearDrawing()" [title]="'Xóa hình'"></apps-button-component>
     </div>
     <div class="break-line"></div>

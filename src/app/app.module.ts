@@ -48,6 +48,7 @@ import { AppsSavedPostView } from './view/saved-post/saved-post.view';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { AppsAdminIndexView } from 'src/app/view/admin/index.view';
+import { AppsProfileView } from 'src/app/view/profile/profile.view';
 
 import {
   AppAsideModule,
@@ -85,7 +86,8 @@ import { AppsReportDialogComponent } from './component/posts/report-dialog/repor
     AppsAdminIndexView,
     AppsAdminHeaderComponent,
     AppsAdminModalComponent,
-    AppsReportDialogComponent
+    AppsReportDialogComponent,
+    AppsProfileView
   ],
   imports: [
     BrowserModule,
@@ -113,7 +115,7 @@ import { AppsReportDialogComponent } from './component/posts/report-dialog/repor
     MatNativeDateModule,
     AppAsideModule,
     AppSidebarModule,
-    AppHeaderModule
+    AppHeaderModule,
   ],
   entryComponents: [
     AppsPostDialogComponent,

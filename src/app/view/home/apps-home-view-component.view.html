@@ -8,7 +8,7 @@
         <mat-spinner class="loading" mode="indeterminate"></mat-spinner>
     </ng-template>
     <ng-container *ngIf="postData else loading">
-        <apps-post-component *ngFor="let data of postData" [post]="data" (update)="onUpdatePostData()">
+        <apps-post-component #post *ngFor="let data of postData" [post]="data" (update)="onUpdatePostData()">
         </apps-post-component>
     </ng-container>
     <div class="not-found" #notFound *ngIf="!hasNext">

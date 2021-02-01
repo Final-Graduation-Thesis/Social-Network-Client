@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { PostService } from 'src/app/service/post.service';
@@ -14,6 +14,13 @@ import { ReloadService } from 'src/app/service/reload.service';
 })
 export class AppsPostDialogComponent implements OnInit {
 
+	@ViewChild('price') price: ElementRef;
+	@ViewChild('priceMin') priceMin: ElementRef;
+	@ViewChild('priceMax') priceMax: ElementRef;
+
+	priceNum: number;
+	priceFrom: number;
+	priceTo: number;
 	form: FormGroup;
 	typeBusiness: any[] = [
 		{
@@ -131,17 +138,17 @@ export class AppsPostDialogComponent implements OnInit {
 		let body = new FormData();
 		for  (var i =  0; i <  this.selectedImage.length; i++)  {  
 			body.append("images",  this.selectedImage[i]);
-		} 
+		}
 		body.append("typeBusiness", val.typeBusiness ? val.typeBusiness : "");
 		body.append("title", val.title ? val.title : "");
 		body.append("typeProperty", val.typeProperty ? val.typeProperty : "");
 		body.append("area", val.area ? val.area : "");
-		body.append("price", val.price ? val.price : "");
+		body.append("price", this.priceNum ? this.priceNum.toString() : "");
 		body.append("address", val.address ? val.address : "");
 		body.append("district", val.district ? val.district : "");
 		body.append("description", val.description ? val.description : "");
-		body.append("priceFrom", val.priceFrom);
-		body.append("priceTo", val.priceTo);
+		body.append("priceFrom", this.priceFrom ? this.priceFrom.toString() : "");
+		body.append("priceTo", this.priceTo ? this.priceTo.toString() : "");
 		body.append("expiredAt", "30-10-2020");
 		body.append("roomNumber", "2");
 
@@ -213,6 +220,7 @@ export class AppsPostDialogComponent implements OnInit {
 			}
 		}
 	}
+
 	onChangeTypeBusiness(): void {
 		let val: number = this.form.value.typeBusiness;
 		if (val === 2 || val === 4 || val === 5) {
@@ -221,5 +229,26 @@ export class AppsPostDialogComponent implements OnInit {
 		else {
 			this.isPrice = true;
 		}
+	}
+
+	formatPriceCurrency(e: any): void {
+		this.price.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceNum = parseInt(this.price.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
+	}
+
+	formatMinCurrency(e: any): void {
+		this.priceMin.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceFrom = parseInt(this.priceMin.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ",").replace(/\D/g, ""));
+	}
+
+	formatMaxCurrency(e: any): void {
+		this.priceMax.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceTo = parseInt(this.priceMax.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
 	}
 }

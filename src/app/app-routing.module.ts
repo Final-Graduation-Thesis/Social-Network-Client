@@ -10,7 +10,8 @@ import { AppsMapView } from 'src/app/view/map/map.view';
 import { AuthGuardService } from './service/authGuard.service';
 import { AppsSavedPostView } from './view/saved-post/saved-post.view';
 import { AppsAdminIndexView } from './view/admin/index.view';
-
+import { AuthService } from './service/auth.service';
+import { AppsProfileView } from './view/profile/profile.view';
 const routes: Routes = [
 		{
 			path: 'home',
@@ -55,6 +56,11 @@ const routes: Routes = [
 			component: AppsAdminIndexView,
 			canActivate: [AuthGuardService],
 			loadChildren: () => import('./view/admin/admin.module').then(m => m.AdminModule)
+		},
+		{
+			path: 'profile',
+			component: AppsProfileView,
+			canActivate: [AuthGuardService]
 		}
 
 ];

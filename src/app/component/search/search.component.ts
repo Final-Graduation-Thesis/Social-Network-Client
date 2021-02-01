@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import {
-	Component, EventEmitter, OnInit, Output, ViewEncapsulation
+	Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -13,6 +13,11 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class AppsSearchComponent implements OnInit {
 
 	@Output('search') searchEmitter: EventEmitter<any> = new EventEmitter();
+	@ViewChild('priceMin') priceMin: ElementRef;
+	@ViewChild('priceMax') priceMax: ElementRef;
+
+	priceFrom: number;
+	priceTo: number;
 	form: FormGroup;
 	typeBusiness: any[] = [
 		{
@@ -94,17 +99,32 @@ export class AppsSearchComponent implements OnInit {
 
 	search(): void {
 		let form: any = this.form.value;
-		if (form.priceMin > form.priceMax) {
+		if (this.priceFrom > this.priceTo) {
 			alert('Vui lòng nhập lại giá hợp lệ!')
 		} else {
 			let body: HttpParams = new HttpParams()
 			.set('typeBusiness', form.typeBusiness.toString())
-			.set('priceFrom', form.priceMin)
-			.set('priceTo', form.priceMax)
+			.set('priceFrom', this.priceFrom.toString())
+			.set('priceTo', this.priceTo.toString())
 			.set('district', form.district)
 			.set('typeProperty', form.typeProperty)
 			.set('area', form.area);
 			this.searchEmitter.emit(body);
 		}
+	}
+
+	formatMinCurrency(e: any): void {
+		console.log(this.priceMin);
+		this.priceMin.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceFrom = parseInt(this.priceMin.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
+	}
+
+	formatMaxCurrency(e: any): void {
+		this.priceMax.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceTo = parseInt(this.priceMax.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
 	}
 }

@@ -38,17 +38,20 @@
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="">
-			<input [ngModel]="data.area" matInput formControlName="area" placeholder="Diện tích" required>
+			<input [ngModel]="data.area" type="number" matInput formControlName="area" placeholder="Diện tích" required>
 			<span matSuffix>m2 &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field *ngIf="isPrice">
-			<input type="number" [ngModel]="data.price" formControlName="price" matInput  placeholder="Giá">
+			<input [ngModel]="data.price" #price formControlName="price" (keyup)="formatPriceCurrency($event)" matInput  placeholder="Giá">
+			<span matSuffix>VNĐ &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field *ngIf="!isPrice">
-			<input type="number" [ngModel]="data.priceFrom" formControlName="priceFrom" matInput  placeholder="Giá thấp nhất">
+			<input [ngModel]="data.priceFrom" #priceMin formControlName="priceFrom" (keyup)="formatMinCurrency($event)" matInput  placeholder="Giá thấp nhất">
+			<span matSuffix>VNĐ &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field *ngIf="!isPrice">
-			<input type="number" [ngModel]="data.priceTo" formControlName="priceTo" matInput  placeholder="Giá cao nhất">
+			<input [ngModel]="data.priceTo" #priceMax formControlName="priceTo" matInput (keyup)="formatMaxCurrency($event)"  placeholder="Giá cao nhất">
+			<span matSuffix>VNĐ &nbsp;</span>
 		</mat-form-field>
 		<mat-form-field class="">
 			<input matInput [ngModel]="data.address" formControlName="address" placeholder="Địa chỉ">

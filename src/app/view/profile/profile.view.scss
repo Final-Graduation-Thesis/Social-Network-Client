@@ -1,0 +1,80 @@
+apps-profile-view {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    background-color: #cccccc;
+    height: 608px;
+    .tab-group {
+        display: flex;
+        background-color: #ffffff;  
+        height: 106%;
+        .mat-tab-label {
+            justify-content: flex-start;
+        }
+        .mat-tab-group.vertical {
+            flex-direction: row;
+            width: 100%;
+        }
+        .mat-tab-header {
+          border-bottom: none;
+          width: 270px;
+        }
+        .mat-tab-header-pagination {
+            display: none !important;
+        }
+        .vertical .mat-tab-labels {
+            flex-direction: column;
+        }
+        .mat-ink-bar {
+            height: 100%;
+            left: 99% !important;
+            background-color: #cccccc !important;
+        }
+        .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+        }
+        .title {
+            font-size: 20px;
+            padding: 24px;
+        }
+        .break-line {
+            margin: 0 24px 16px 24px;
+            border-bottom: 1px solid #eee;
+        }
+        .body {
+            margin-left: 42px;
+            .input {
+                display: flex;
+                mat-label {
+                    width: 180px;
+                    display: flex;
+                    align-items: center;
+                }
+                .avatar {
+                    width: 108px !important;
+                    padding-top: 50px;
+                    padding-left: 24px;
+                }
+            }
+            img {
+                width: 130px;
+                height: 130px;
+                border-radius: 70px;
+            }
+            mat-form-field {
+                width: 255px !important;
+            }
+        }
+        .footer {
+            display: flex;
+            justify-content: center;
+            button {
+                width: 30%;
+                background-color: #ECF7E7;
+                color: #6fbe44!important;
+                &:hover {
+                    background-color:#d5edca;
+                }
+            }
+        }
+    }
+}

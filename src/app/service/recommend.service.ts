@@ -18,6 +18,7 @@ export class RecommendService extends BaseService {
     }
 
     private rl : Subject<any> = new Subject<any>();
+    private _recommend15s: Subject<any> = new Subject<any>();
 
     reload(item: any): void {
         this.rl.next(item);
@@ -25,5 +26,13 @@ export class RecommendService extends BaseService {
 
     onReload(): Observable<any> {
         return this.rl;
+    }
+
+    recommend15s(item: any): void {
+        this._recommend15s.next(item);
+    }
+
+    onRecommend15s(): Observable<any> {
+        return this._recommend15s;
     }
 }
