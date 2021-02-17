@@ -121,7 +121,6 @@ export class AppsChatPanelComponent implements OnInit, OnDestroy {
         if (isCreateDialog) {
             let chatDialog = outlet.createChatDialog(AppsChatDialogComponent);
             chatDialog.instance.data = user;
-            chatDialog.instance.pubnub = this.pubnub;
         } else {
             if (typeof (elementId) != undefined) {
                 let entry: any = {

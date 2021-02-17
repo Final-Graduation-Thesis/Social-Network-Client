@@ -11,6 +11,8 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class AppsMapView implements OnInit {
 	@ViewChild('mapContainer') gmap: ElementRef;
+	@ViewChild('priceMin') priceMin: ElementRef;
+	@ViewChild('priceMax') priceMax: ElementRef;
 	typeBusiness: any[] = [
 		{
 			name: "Bán",
@@ -149,22 +151,16 @@ export class AppsMapView implements OnInit {
 						<img src="${item.images[0] || 'https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg'}">
 					</div> <div class="info">
 					<div class="title">
-						<span class="material-icons">
-							campaign
-						</span>${item.title}
+					<img class="material-icons" src="assets/images/title.png">${item.title}
 					</div>
-					<div class="price"><span class="material-icons">
-						local_atm
-					</span><span>${item.price}</span></div>
+					<div class="price"><img class="material-icons" src="assets/images/money.png"><span>${item.price}</span></div>
 					<div class="address">
-						<span class="material-icons">place
-						</span> ${item.address}
+					<img class="material-icons" src="assets/images/address.png"> ${item.address}
 					 </div>
 					<div class="district">
-						<span class="material-icons">
-							my_location
-						</span> ${item.district}
+					<img class="material-icons" src="assets/images/district.png"> ${item.district}
 					</div>
+					<div class="detail"><a href="post/${item.id}" target="_blank">Xem chi tiết</a></div>
 				</div></div>`;
 					} else {
 						contentString = ` <div class="post" (click)="navigateToPost(item.id)">
@@ -172,22 +168,16 @@ export class AppsMapView implements OnInit {
 							<img src="${item.images[0] || 'https://timviec365.vn/pictures/images/b%C4%91s-la-gi-1.jpg'}">
 						</div><div class="info">
 					<div class="title">
-						<span class="material-icons">
-							campaign
-						</span>${item.title}
+					<img class="material-icons" src="assets/images/title.png">${item.title}
 					</div>
-					<div class="price"><span class="material-icons">
-						local_atm
-					</span><span>${item.priceFrom} - ${item.priceTo}</span></div>
+					<div class="price"><img class="material-icons" src="assets/images/money.png"><span>${item.priceFrom} - ${item.priceTo}</span></div>
 					<div class="address">
-						<span class="material-icons">place
-						</span> ${item.address}
+					<img class="material-icons" src="assets/images/address.png"> ${item.address}
 					 </div>
 					<div class="district">
-						<span class="material-icons">
-							my_location
-						</span> ${item.district}
+					<img class="material-icons" src="assets/images/district.png"> ${item.district}
 					</div>
+					<div class="detail"><a href="post/${item.id}" target="_blank">Xem chi tiết</a></div>
 					</div></div>`;
 					}
 				if (resultPath) {
@@ -291,10 +281,25 @@ export class AppsMapView implements OnInit {
 	}
 
 	onChangePriceMin(event: any): void {
-		this.drawingManager['priceFrom'] = event.target.value;
+		this.drawingManager['priceFrom'] = this.priceFrom;
 	}
 
 	onChangePriceMax(event: any): void {
-		this.drawingManager['priceTo'] = event.target.value;
+		this.drawingManager['priceTo'] = this.priceTo;
+		console.log(this.priceTo);
+	}
+
+	formatMinCurrency(e: any): void {
+		this.priceMin.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceFrom = parseInt(this.priceMin.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
+	}
+
+	formatMaxCurrency(e: any): void {
+		this.priceMax.nativeElement.value = e.target.value.replace(
+			/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		this.priceTo = parseInt(this.priceMax.nativeElement.value.replace(
+			/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\D/g, ""));
 	}
 }

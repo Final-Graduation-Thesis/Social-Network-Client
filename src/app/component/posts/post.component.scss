@@ -27,8 +27,11 @@ apps-post-component {
     mat-card-header {
         .more {
             margin-left: auto;
+           
+
         }
     }
+    
     .type-business:before {
         left: 229px;
     }
@@ -129,4 +132,14 @@ apps-post-component {
 .tooltip-like {
     white-space: pre-line;
     font-size: 13px;
+}
+.mat-menu-item {
+    .block {
+        display: flex;
+        align-items: center;
+        .report {
+            margin-left: 8px;
+        }
+    }
+
 }

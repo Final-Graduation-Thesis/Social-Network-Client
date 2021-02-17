@@ -104,8 +104,7 @@ export class AppsPostComponent implements AfterViewInit {
 				this.renderer.setStyle(subLayout, 'flex-direction', 'column');
 				for (let i: number = 1; i < this.post.images.length; i++) {
 					const image: ElementRef = this.renderer.createElement('img');
-					const height: number = mainLayout.clientHeight / subTotalImages - 3;
-					this.renderer.setStyle(image, 'height', height + 'px');
+					const height: number = mainLayout.clientHeight / subTotalImages;
 					this.renderer.appendChild(subLayout, image);
 					this.renderer.setAttribute(image, 'src', this.post.images[i]);
 				}
@@ -239,21 +238,11 @@ export class AppsPostComponent implements AfterViewInit {
 	}
 
 	startCountingTime(): void {
-		this.interval = setInterval(() => {
-			this.countTime++;
-			if (this.countTime >= 112) {
-				this.recommendTime();
-				this.countTime = 0;
-			}
-		}, 5000);
-		
 	}
 
 	stopCountingTime(): void {
-		clearInterval(this.interval);
-		this.countTime = 0;
+
 	}
 	recommendTime(): void {
-		console.log('recommend ' + this.post.id);
 	}
 }

@@ -13,20 +13,28 @@
 		</button>
 		<mat-menu #menu="matMenu">
 			<button mat-menu-item (click)="onEdit()" *ngIf="isOwner">
-				<mat-icon>edit</mat-icon>
-				<span>Sửa</span>
+				<div class="block">
+					<img class="material-icons" src="assets/images/edit.png">
+					<span class="report">Sửa</span>
+				</div>
 			</button>
 			<button (click)="onClickReport(post)" mat-menu-item>
-				<mat-icon>report_problem</mat-icon>
-				<span>Báo cáo bài viết</span>
+				<div class="block">
+					<img class="material-icons" src="assets/images/warning.png">
+					<span class="report">Báo cáo bài viết</span>
+				</div>
 			</button>
 			<button mat-menu-item (click)="onSave(post.id)" *ngIf="!isOwner">
-				<mat-icon>bookmark</mat-icon>
-				<span>Lưu bài viết</span>
+				<div class="block">
+					<img class="material-icons" src="assets/images/bookmark.png">
+					<span class="report">Lưu bài viết</span>
+				</div>
 			</button>
 			<button mat-menu-item (click)="onDelete()" *ngIf="isOwner">
-				<mat-icon>delete</mat-icon>
-				<span>Xóa</span>
+				<div class="block">
+					<img class="material-icons" src="assets/images/delete.png">
+					<span class="report">Xóa</span>
+				</div>
 			</button>
 		</mat-menu>
 	</mat-card-header>
@@ -34,21 +42,18 @@
 	</div>
 	<mat-card-content>
 		<div class="information">
-			<div class="title"><span class="material-icons">
-					campaign
-				</span><span>{{post.title}}</span></div>
-			<div class="price" *ngIf="isTypeBS13(post)"><span class="material-icons">
-					local_atm
-				</span><span>{{post.price | vndCurrency}}</span></div>
-			<div class="priceFrom" *ngIf="!isTypeBS13(post)"><span class="material-icons">
-					local_atm
-				</span><span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</span></div>
-			<div class="address"><span class="material-icons">
-					place
-				</span><span>{{post.address}}</span></div>
-			<div class="district"><span class="material-icons">
-					my_location
-				</span><span>{{post.district}}</span></div>
+			<div class="title">
+				<img class="material-icons" src="assets/images/title.png">
+				<span>{{post.title}}</span></div>
+			<div class="price" *ngIf="isTypeBS13(post)">
+				<img class="material-icons" src="assets/images/money.png"><span>{{post.price | vndCurrency}}</span></div>
+			<div class="priceFrom" *ngIf="!isTypeBS13(post)">
+				<img class="material-icons" src="assets/images/money.png">
+				<span>{{post.priceFrom | vndCurrency}} - {{post.priceTo | vndCurrency}}</span></div>
+			<div class="address"><img class="material-icons" src="assets/images/address.png">
+				<span>{{post.address}}</span></div>
+			<div class="district"><img class="material-icons" src="assets/images/district.png">
+				<span>{{post.district}}</span></div>
 		</div>
 		<div class="break-line-small" *ngIf="post.images.length !== 0"></div>
 		<div class="description">

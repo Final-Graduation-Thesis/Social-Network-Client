@@ -80,7 +80,6 @@ export class AppsChatDialogComponent implements OnInit, AfterViewInit {
 			channel: this.channel,
 			message: hw
 		});
-		console.log(evt);
 		let entry: any = {
 			"entry": {
 				'from': localStorage.getItem('user_id'),
